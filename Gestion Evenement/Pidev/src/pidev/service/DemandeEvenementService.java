@@ -37,23 +37,23 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
 
     @Override
     public void ajouter(DemandeEvenement t) throws SQLException {
-        
-        String req = "INSERT INTO demandeevenement (Description,DateDebut,DateFin,Etat,	idClub) values(?,?,?,?,?)";
+
+        String req = "INSERT INTO demandeevenement (Description,DateDebut,DateFin,Etat,	idClub,budget) values(?,?,?,?,?,?)";
 
         pst = cnx.prepareStatement(req);
         pst.setString(1, t.getDescription());
         pst.setString(2, t.getDatedebut());
         pst.setString(3, t.getDatefin());
-        pst.setString(4, t.getEtat());
+        pst.setString(4, "Non valider");
         pst.setInt(5, t.getIdclub());
+        pst.setFloat(6, t.getBudget());
         System.out.println("aaaaaaaaaaaaaaa");
         pst.execute();
     }
 
     @Override
     public void modifier(DemandeEvenement t, int id) throws SQLException {
-        
-      
+
         String req = "UPDATE `demandeevenement` SET `Description` = '" + t.getDescription() + "', `DateDebut` = '" + t.getDatedebut() + "', `DateFin` = '" + t.getDatefin() + "' WHERE `demandeevenement`.`idDemandeEvenement` =" + id + "";
         pst = cnx.prepareStatement(req);
         pst.execute();
@@ -82,34 +82,43 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
             String ddd = dateFormat.format(dd);
             DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
             String dff = dateFormat0.format(df);
-            DemandeEvenement dv = new DemandeEvenement(idClub, id, Description, ddd, dff);
+            DemandeEvenement dv = new DemandeEvenement(idClub, id, Description, ddd, dff, etat, id);
             arr.add(dv);
 
         }
         return arr;
     }
 
-    @Override
-    public List<DemandeEvenement> tri() throws SQLException {
+    public List<DemandeEvenement> afficherDemandeSpecifique(int idd) throws SQLException {
         List<DemandeEvenement> arr = new ArrayList<>();
         ste = cnx.createStatement();
-        ResultSet rs = ste.executeQuery("select * from demandeevenement order by idClub");
+        idd = 123;
+        ResultSet rs = ste.executeQuery("select * from demandeevenement where  idClub='" + idd + "'");
         while (rs.next()) {
             int id = rs.getInt("idDemandeEvenement");
             int idClub = rs.getInt("idClub");
             String Description = rs.getString("Description");
             Date dd = rs.getDate("DateDebut");
             Date df = rs.getDate("DateFin");
-            String etat = rs.getString("Etat");
+            float budget = rs.getFloat("budget");
 
- DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String ddd = dateFormat.format(dd);
             DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
             String dff = dateFormat0.format(df);
-            DemandeEvenement dv = new DemandeEvenement(idClub, id, Description, ddd, dff);            arr.add(dv);
+            DemandeEvenement dv = new DemandeEvenement(idClub, Description, ddd, dff, budget);
+            arr.add(dv);
         }
         return arr;
     }
+
+    public void valider(int id) throws SQLException {
+        String etat = "valider";
+        String req = "UPDATE `demandeevenement` SET `etat` = '" + etat + "' WHERE `demandeevenement`.`idDemandeEvenement` =" + id + "";
+        pst = cnx.prepareStatement(req);
+        pst.execute();
+    }
+    
 
     /*@Override
     public List<DemandeEvenement> recherche(String x) throws SQLException {

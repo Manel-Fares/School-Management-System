@@ -81,22 +81,7 @@ public class ClubService implements IService<Club> {
         return arr;
     }
 
-    @Override
-    public List<Club> tri() throws SQLException {
-        List<Club> arr = new ArrayList<>();
-        ste = cnx.createStatement();
-        ResultSet rs = ste.executeQuery("select * from club order by idClub");
-        while (rs.next()) {
-            int id = rs.getInt("idClub");
-            String nomClub = rs.getString("nomClub");
-            int idResponsable = rs.getInt("idResponsable");
-            String domaine =rs.getString("domaine");
-            Club c = new Club(id, idResponsable, nomClub,domaine);
-            arr.add(c);
-        }
-        return arr;
-    }
-
+   
    /* @Override
     public List<Club> recherche(String x) throws SQLException {
 List<Club> arr = new ArrayList<>();

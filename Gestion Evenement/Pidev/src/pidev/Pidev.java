@@ -49,7 +49,7 @@ public class Pidev extends Application {
            // dvs.modifier(db, 8);
             //dvs.supprimer(10);
             System.out.println("***************");
-            evs.modifier(ev, 5);
+            evs.modifier(ev,11);
             /* try {
             System.out.println(cs.affciher());
             } catch (SQLException ex) {
@@ -60,8 +60,8 @@ public class Pidev extends Application {
         }
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("FXML1.fxml"));
-            Scene scene = new Scene(root, 700, 600);
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML1.fxml"));
+            Scene scene = new Scene(root, 1000, 600);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

@@ -18,7 +18,6 @@ public interface IService<T> {
 
     void supprimer(int id) throws SQLException;
 
-    List<T> tri() throws SQLException;
 
   //  List<T> recherche(String x) throws SQLException;
 

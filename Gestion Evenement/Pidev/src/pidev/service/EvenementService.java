@@ -16,10 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import pidev.BD.Database;
-import pidev.entities.Club;
 import pidev.entities.Evenement;
 
 /**
@@ -86,26 +84,7 @@ public class EvenementService implements IService<Evenement> {
         return arr;
     }
 
-    @Override
-    public List<Evenement> tri() throws SQLException {
-        List<Evenement> arr = new ArrayList<>();
-        ste = cnx.createStatement();
-        ResultSet rs = ste.executeQuery("select * from Evenement order by idEvenement");
-        while (rs.next()) {
-            int id = rs.getInt("idEvenement");
-            int idClub = rs.getInt("idClub");
-
-            Date dd = rs.getDate("dateDebut");
-            Date df = rs.getDate("dateFin");
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String ddd = dateFormat.format(dd);
-            DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
-            String dff = dateFormat0.format(df);
-            Evenement e = new Evenement(id, ddd, dff, idClub);
-            arr.add(e);
-        }
-        return arr;
-    }
+   
 
     /* @Override
     public List<Evenement> recherche(String x) throws SQLException {

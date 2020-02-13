@@ -15,7 +15,26 @@ public class DemandeEvenement {
     private String description;
     private String datedebut;
     private String datefin;
-    private String etat="non valide ";
+    private String etat;
+    private float budget;
+
+    public DemandeEvenement(int idclub, String description, String datedebut, String datefin, float budget) {
+        this.idclub = idclub;
+        this.description = description;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.budget = budget;
+    }
+
+    public DemandeEvenement(int idclub, int idDemandeEvenement, String description, String datedebut, String datefin, String etat, float budget) {
+        this.idclub = idclub;
+        this.idDemandeEvenement = idDemandeEvenement;
+        this.description = description;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.etat = etat;
+        this.budget = budget;
+    }
 
     public void setDatedebut(String datedebut) {
         this.datedebut = datedebut;
@@ -33,12 +52,34 @@ public class DemandeEvenement {
         return datefin;
     }
 
+    public DemandeEvenement(int idclub, int idDemandeEvenement, String description, String datedebut, String datefin, String etat) {
+        this.idclub = idclub;
+        this.idDemandeEvenement = idDemandeEvenement;
+        this.description = description;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.etat = etat;
+    }
+
     public DemandeEvenement(int idclub, String description, String datedebut, String datefin) {
         this.idclub = idclub;
         this.description = description;
         this.datedebut = datedebut;
         this.datefin = datefin;
     }
+
+
+    public DemandeEvenement(int idclub, String description, String datedebut, String datefin, String etat) {
+        this.idclub = idclub;
+        this.description = description;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.etat = etat;
+    }
+
+ 
+
+    
 
     public DemandeEvenement(int idclub, int idDemandeEvenement, String description, String datedebut, String datefin) {
         this.idclub = idclub;
@@ -88,11 +129,20 @@ public class DemandeEvenement {
  public DemandeEvenement() {
     }
 
-    @Override
-    public String toString() {
-        return "DemandeEvenement{" + "idclub=" + idclub + ", idDemandeEvenement=" + idDemandeEvenement + ", description=" + description + ", datedebut=" + datedebut + ", datefin=" + datefin + ", etat=" + etat + '}';
+    public void setBudget(int budget) {
+        this.budget = budget;
     }
 
+    public float getBudget() {
+        return budget;
+    }
+
+    @Override
+    public String toString() {
+        return "DemandeEvenement{" + "idclub=" + idclub + ", idDemandeEvenement=" + idDemandeEvenement + ", description=" + description + ", datedebut=" + datedebut + ", datefin=" + datefin + ", etat=" + etat + ", budget=" + budget + '}';
+    }
+
+  
     
    
 

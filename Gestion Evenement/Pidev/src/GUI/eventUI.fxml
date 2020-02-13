@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="page_creer_club" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EventUIController">
+   <children>
+      <Pane fx:id="bck" layoutX="199.0" prefHeight="600.0" prefWidth="1000.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#688297" height="338.0" layoutX="38.0" layoutY="162.0" stroke="BLACK" strokeType="INSIDE" width="530.0" />
+            <Pane prefHeight="103.0" prefWidth="499.0" styleClass="barre" stylesheets="@style.css">
+               <children>
+                  <Label layoutX="10.0" layoutY="21.0" text="Creer Votre Club " textFill="WHITE">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="34.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <JFXTextField fx:id="idResponsable" layoutX="176.0" layoutY="345.0" promptText="Identifiant Responsable">
+               <unFocusColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#5185b5" />
+                        <Stop color="#ddd4d4" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </unFocusColor>
+            </JFXTextField>
+            <JFXTextField fx:id="nom_club" layoutX="261.0" layoutY="206.0" maxWidth="149.0" minWidth="149.0" prefHeight="45.0" prefWidth="149.0" promptText="Nom Club">
+               <unFocusColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#5185b5" />
+                        <Stop color="#f2bdbd" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </unFocusColor>
+            </JFXTextField>
+            <JFXButton layoutX="197.0" layoutY="419.0" onMouseClicked="#ajouter_club" prefHeight="25.0" prefWidth="128.0" styleClass="loginBtn" stylesheets="@style.css" text="Envoyer" />
+            <JFXTextField fx:id="domaine" layoutX="94.0" layoutY="218.0" promptText="Domaine">
+               <unFocusColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#614040" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </unFocusColor>
+            </JFXTextField>
+         </children></Pane>
+      <Pane layoutX="-2.0" prefHeight="600.0" prefWidth="205.0" styleClass="parent">
+         <children>
+            <Line endX="100.0" layoutX="104.0" layoutY="119.0" startX="-100.0" stroke="#f5efef" />
+            <Label layoutX="53.0" layoutY="86.0" text="Jmai Omar" textFill="#fcfcfc">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font></Label>
+            <Label contentDisplay="CENTER" layoutX="24.0" layoutY="285.0" onMouseClicked="#demandeEvenement" prefHeight="31.0" prefWidth="158.0" text="Consulter Club" textFill="#e1e1e1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="8.0" layoutY="335.0" onMouseClicked="#afficher_club" text="Demande Evenement" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Label layoutX="7.0" layoutY="376.0" onMouseClicked="#Evenement" prefHeight="35.0" prefWidth="190.0" text="Consulter Demande d'evenement" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Line endX="100.0" layoutX="102.0" layoutY="275.0" startX="-100.0" stroke="#fffefe" />
+            <Line endX="100.0" layoutX="118.0" layoutY="325.0" startX="-119.0" stroke="#fffefe" />
+            <Line endX="100.0" layoutX="104.0" layoutY="375.0" startX="-100.0" stroke="#fffefe" />
+            <Line endX="100.0" layoutX="94.0" layoutY="419.0" startX="-100.0" stroke="#fffefe" />
+            <Circle fill="DODGERBLUE" layoutX="104.0" layoutY="43.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label layoutX="9.0" layoutY="437.0" onMouseClicked="#affiche_demabde_evenement" prefHeight="25.0" prefWidth="190.0" text="Consulter Demande d'evenement" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Line endX="100.0" layoutX="100.0" layoutY="234.0" startX="-100.0" stroke="#fffefe" />
+            <Label layoutX="29.0" layoutY="241.0" onMouseClicked="#ajouterEvenement" text="Evenements" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+         <stylesheets>
+            <URL value="@s" />
+            <URL value="@style.css" />
+         </stylesheets>
+      </Pane>
+   </children>
+</AnchorPane>

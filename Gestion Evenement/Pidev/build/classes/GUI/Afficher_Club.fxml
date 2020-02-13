@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="page2" maxHeight="600.0" maxWidth="500.0" minHeight="600.0" minWidth="800.0" prefHeight="552.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Page2Controller">
+   <children>
+      <TableView fx:id="tab_club" layoutX="40.0" layoutY="141.0" onMouseClicked="#selection" prefHeight="360.0" prefWidth="727.0">
+        <columns>
+          <TableColumn fx:id="id_club" prefWidth="138.0" text="Identifiant Club" />
+          <TableColumn fx:id="nom_club" prefWidth="170.0" text="Nom Club" />
+            <TableColumn fx:id="id_responsable" prefWidth="185.0" text="Identifiant Responsable" />
+            <TableColumn fx:id="domaine" prefWidth="232.0" text="Domaine" />
+        </columns>
+      </TableView>
+      <Pane prefHeight="99.0" prefWidth="800.0" styleClass="barre" stylesheets="@style.css">
+         <children>
+            <Label layoutX="26.0" layoutY="14.0" text="Les Clubs" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <JFXTextField fx:id="search" layoutX="40.0" layoutY="104.0" />
+      <Pane layoutX="43.0" layoutY="509.0" prefHeight="91.0" prefWidth="727.0" style="-fx-background-color: #a1d1ff;">
+         <children>
+            <Label layoutX="45.0" layoutY="14.0" text="Club à supprimer :" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="select" layoutX="233.0" layoutY="7.0" />
+            <JFXButton fx:id="supprimer" layoutX="432.0" layoutY="13.0" onMouseClicked="#supprimer_club" style="-fx-background-color: red;" text="Supprimer" textFill="WHITE" />
+         </children>
+      </Pane>
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="189.0" layoutY="124.0" />
+   </children>
+</AnchorPane>

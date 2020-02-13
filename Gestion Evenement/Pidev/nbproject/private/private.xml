@@ -4,27 +4,30 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/service/ClubService.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/Page2Controller.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/Affciher_EvenementController.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/EventUIController.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/Pidev.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/entities/Evenement.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/Ajout_evenementController.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/style.css</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Afficher_Demande_EvenementController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/DemandeEvenementController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Demande_club.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/eventUI.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/FXML1Controller.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/service/DemandeEvenementService.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/Ajout_evenement.fxml</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/FXML1Controller.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Afficher_Club.fxml</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/entities/Club.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/entities/DemandeEvenement.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/FXMLController.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/afficher_Demande_Evenement.fxml</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/page2.fxml</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/Afficher_Demande_EvenementController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Demande_clubController.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/service/EvenementService.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/IService/IService.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/DemandeEvenementController.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/Affciher_Evenement.fxml</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/DemandeEvenement.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Consulter_demande_evenemetController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/DemandeEvenement.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/EventUIController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/FXML1.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/Pidev.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Page2Controller.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/entities/Evenement.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/afficher_Demande_Evenement.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/DemandeEvenement.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Affciher_EvenementController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Affciher_Evenement.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/consulter_demande_evenemet.fxml</file>
         </group>
     </open-files>
 </project-private>
