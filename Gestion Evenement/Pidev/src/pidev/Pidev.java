@@ -5,10 +5,8 @@
  */
 package pidev;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -67,7 +65,6 @@ public class Pidev extends Application {
         } catch (IOException ex) {
             Logger.getLogger(Pidev.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         //primaryStage.setTitle("Hello World!");
         /*  try {
             root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));

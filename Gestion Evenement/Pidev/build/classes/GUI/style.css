@@ -18,11 +18,17 @@
 }
 .loginBtn:hover{
     -fx-background-color:transparent;
-        -fx-text-fill:#1E90FF;
-         -fx-border-color:#1E90FF;
+        -fx-text-fill:#FFF;
+         -fx-border-color:#cfeaff;
          -fx-border-width:1px;
          -fx-border-style:solid;
         
+
+    
+}
+.loginBtn:collapsed{
+  -fx-background-color:#FFF;
+    -fx-text-fill:#FFF;
 
     
 }
@@ -30,7 +36,38 @@
        -fx-background-color: gainsboro;
  
 }
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {   
+    -fx-background-color: #9E9E9E;
+    -fx-stroke: transparent;
+    -fx-size:50;
+    -fx-alignment: CENTER ;    
+    -fx-text-alignment: center;
 
+}
+.table-row-cell:filled:hover {
+
+    -fx-size:50;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+
+
+}
+.table-view:row-selection {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-fixed-cell-size: 50;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+
+}
+
+.table-view .table-column{
+    -fx-text-alignment: center;
+    -fx-alignment: CENTER 
+
+}
 
 
 

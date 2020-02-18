@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import pidev.BD.Database;
-import pidev.entities.Club;
+
 import pidev.entities.DemandeEvenement;
 
 /**
@@ -26,7 +26,7 @@ import pidev.entities.DemandeEvenement;
  */
 public class DemandeEvenementService implements IService<DemandeEvenement> {
 
-    private Connection cnx;
+    private final Connection cnx;
     private Statement ste;
     private PreparedStatement pst;
     private ResultSet rs;
@@ -38,7 +38,7 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
     @Override
     public void ajouter(DemandeEvenement t) throws SQLException {
 
-        String req = "INSERT INTO demandeevenement (Description,DateDebut,DateFin,Etat,	idClub,budget) values(?,?,?,?,?,?)";
+        String req = "INSERT INTO demandeevenement (Description,DateDebut,DateFin,Etat,	idClub,budget,image) values(?,?,?,?,?,?,?)";
 
         pst = cnx.prepareStatement(req);
         pst.setString(1, t.getDescription());
@@ -47,6 +47,7 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
         pst.setString(4, "Non valider");
         pst.setInt(5, t.getIdclub());
         pst.setFloat(6, t.getBudget());
+        pst.setString(7,t.getImage());
         System.out.println("aaaaaaaaaaaaaaa");
         pst.execute();
     }
@@ -54,7 +55,7 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
     @Override
     public void modifier(DemandeEvenement t, int id) throws SQLException {
 
-        String req = "UPDATE `demandeevenement` SET `Description` = '" + t.getDescription() + "', `DateDebut` = '" + t.getDatedebut() + "', `DateFin` = '" + t.getDatefin() + "' WHERE `demandeevenement`.`idDemandeEvenement` =" + id + "";
+        String req = "UPDATE `demandeevenement` SET `budget` = '" + t.getBudget() + "',`Description` = '" + t.getDescription() + "', `DateDebut` = '" + t.getDatedebut() + "', `DateFin` = '" + t.getDatefin() + "' WHERE `demandeevenement`.`idDemandeEvenement` =" + id + "";
         pst = cnx.prepareStatement(req);
         pst.execute();
     }
@@ -70,7 +71,7 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
     public List<DemandeEvenement> affciher() throws SQLException {
         List<DemandeEvenement> arr = new ArrayList<>();
         ste = cnx.createStatement();
-        ResultSet rs = ste.executeQuery("select * from demandeevenement");
+         rs = ste.executeQuery("select * from demandeevenement");
         while (rs.next()) {
             int id = rs.getInt("idDemandeEvenement");
             int idClub = rs.getInt("idClub");
@@ -78,11 +79,13 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
             Date dd = rs.getDate("DateDebut");
             Date df = rs.getDate("DateFin");
             String etat = rs.getString("Etat");
+            String img=rs.getString("image");
+            float budget=rs.getFloat("budget");
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String ddd = dateFormat.format(dd);
             DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
             String dff = dateFormat0.format(df);
-            DemandeEvenement dv = new DemandeEvenement(idClub, id, Description, ddd, dff, etat, id);
+            DemandeEvenement dv = new DemandeEvenement(idClub, id, Description, ddd, dff, etat, budget, img);
             arr.add(dv);
 
         }
@@ -90,10 +93,10 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
     }
 
     public List<DemandeEvenement> afficherDemandeSpecifique(int idd) throws SQLException {
-        List<DemandeEvenement> arr = new ArrayList<>();
+       List<DemandeEvenement>xd=new ArrayList<>();
         ste = cnx.createStatement();
-        idd = 123;
-        ResultSet rs = ste.executeQuery("select * from demandeevenement where  idClub='" + idd + "'");
+     
+        rs = ste.executeQuery("select * from demandeevenement where  idClub='"+idd+"' ");
         while (rs.next()) {
             int id = rs.getInt("idDemandeEvenement");
             int idClub = rs.getInt("idClub");
@@ -101,15 +104,24 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
             Date dd = rs.getDate("DateDebut");
             Date df = rs.getDate("DateFin");
             float budget = rs.getFloat("budget");
-
+            String etat=rs.getString("etat");
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String ddd = dateFormat.format(dd);
+
             DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
             String dff = dateFormat0.format(df);
-            DemandeEvenement dv = new DemandeEvenement(idClub, Description, ddd, dff, budget);
-            arr.add(dv);
+            String img=rs.getString("image");
+
+          try{
+           DemandeEvenement dem=new DemandeEvenement(idClub, id, Description, ddd, dff, etat, budget, img);
+           //   System.out.println(dem);
+        xd.add(dem);
+          }
+          catch(NullPointerException p){
         }
-        return arr;
+        
+        }
+        return xd;
     }
 
     public void valider(int id) throws SQLException {
@@ -118,13 +130,96 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
         pst = cnx.prepareStatement(req);
         pst.execute();
     }
+   
     
+    public int nombre_demande()
+    {int nbr=111;
+        System.out.println("aaaaaaaaaa");
+         try {
+            String req = "SELECT count(*) nbr FROM `demandeevenement` WHERE Etat='Non valider'";
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+                    System.out.println("bbbbbbb");
 
-    /*@Override
+             while (rs.next()) {
+           
+             nbr=rs.getInt("nbr");
+             return nbr;
+             }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+         return nbr;
+        
+    }
+    public List<String> notifiction(){
+    
+        List<String> arr = new ArrayList<>();
+
+try {
+            String req = " SELECT Description FROM `demandeevenement` WHERE Etat='Non valider' ORDER by idDemandeEvenement desc";
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+
+             while (rs.next()) {
+                 String desc=rs.getString("Description");
+                 arr.add(desc);
+           
+             }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println(arr);
+    return arr;
+    }
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*@Override
     public List<DemandeEvenement> recherche(String x) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
-}
 /*public void ajouterDemandeEvenement(DemandeEvenement Dev) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date_debut = dateFormat.format(Dev.getDatedebut());
@@ -147,7 +242,7 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
 
     public void afficherDemandeEvenement() {
         try {
-            String req = "SELECT * FROM demandeevenement ";
+            String req = "SELECT count(*) FROM `demandeevenement` WHERE Etat="Non valider"";
             ste = cnx.createStatement();
             rs = ste.executeQuery(req);
             while (rs.next()) {

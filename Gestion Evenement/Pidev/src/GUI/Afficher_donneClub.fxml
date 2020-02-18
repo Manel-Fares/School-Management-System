@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Afficher_donneClubController">
+   <children>
+      <Pane layoutX="189.0" layoutY="167.0" prefHeight="328.0" prefWidth="371.0" style="-fx-background-color: #a1d1ff;">
+         <children>
+            <Label fx:id="idClub" layoutX="139.0" layoutY="56.0" prefHeight="32.0" prefWidth="173.0" text="//////////////////////">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font></Label>
+            <Label fx:id="IdResponsable" layoutX="141.0" layoutY="94.0" prefHeight="32.0" prefWidth="173.0" text="//////////////////////">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font></Label>
+            <JFXTextField fx:id="nom" layoutX="134.0" layoutY="124.0">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font></JFXTextField>
+            <JFXButton layoutX="255.0" layoutY="260.0" onMouseClicked="#modifier" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #FF4500;" text="Modifier" textFill="WHITE" />
+            <JFXTextField fx:id="domaine" layoutX="133.0" layoutY="159.0">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font></JFXTextField>
+            <Label layoutX="32.0" layoutY="63.0" text="ID Club:">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="101.0" text="ID Responsable :">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="136.0" text="Nom Club :">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="172.0" text="ID Domaine :">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane prefHeight="90.0" prefWidth="800.0" styleClass="barre" stylesheets="@style.css">
+         <children>
+            <Label layoutX="59.0" layoutY="28.0" text="Donneés de votre Club " textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

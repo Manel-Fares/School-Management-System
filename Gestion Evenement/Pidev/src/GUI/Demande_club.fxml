@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.Demande_clubController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Demande_clubController">
    <children>
-      <Label layoutX="216.0" layoutY="115.0" text="Labffffffffffffffffel" />
+      <Pane layoutX="109.0" layoutY="71.0" prefHeight="523.0" prefWidth="559.0">
+         <children>
+            <JFXTextArea layoutX="24.0" layoutY="262.0" />
+         </children>
+      </Pane>
+      <JFXTextField layoutX="251.0" layoutY="176.0" maxWidth="215.0" minWidth="215.0" prefHeight="31.0" prefWidth="215.0" />
+      <JFXTextField layoutX="252.0" layoutY="223.0" maxWidth="215.0" minWidth="215.0" prefHeight="31.0" prefWidth="215.0" />
+      <JFXTextField layoutX="253.0" layoutY="275.0" maxWidth="215.0" minWidth="215.0" prefHeight="31.0" prefWidth="215.0" />
    </children>
 </AnchorPane>

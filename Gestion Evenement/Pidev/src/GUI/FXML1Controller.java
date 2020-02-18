@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import com.jfoenix.controls.JFXTextField;
 import pidev.BD.*;
 import pidev.*;
 import java.io.IOException;
@@ -28,12 +29,6 @@ import javafx.scene.layout.Pane;
  */
 public class FXML1Controller implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    
-    @FXML
-    private TableView<String> table;
     @FXML
     private Pane sidebar;
 
@@ -43,6 +38,10 @@ public class FXML1Controller implements Initializable {
     private ImageView left_img;*/
      @FXML
     private AnchorPane login_page;
+    @FXML
+    private ImageView left_img;
+    @FXML
+    private JFXTextField user_name;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -50,10 +49,13 @@ public class FXML1Controller implements Initializable {
     } 
       @FXML
     void affiche_tab(MouseEvent event) throws IOException {
-            Parent fxml=FXMLLoader.load(getClass().getResource("eventUI.fxml"));
+              FXMLLoader loader = new FXMLLoader(getClass().getResource("eventUI.fxml"));
+            Parent root = loader.load();
+            EventUIController ev=loader.getController();
+            ev.setRolle(user_name.getText());
         login_page.getChildren().removeAll();        
-        login_page.getChildren().setAll(fxml);
-        
+        login_page.getChildren().setAll(root);
+         
     }
-    
+ 
 }

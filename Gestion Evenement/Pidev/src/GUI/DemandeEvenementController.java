@@ -6,26 +6,23 @@
 package GUI;
 
 import com.jfoenix.controls.JFXButton;
-import pidev.*;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import pidev.entities.DemandeEvenement;
+import pidev.service.ClubService;
 import pidev.service.DemandeEvenementService;
 
 /**
@@ -47,12 +44,16 @@ public class DemandeEvenementController implements Initializable {
     private JFXDatePicker date_fin;
     @FXML
     private JFXTextArea desc;
-    @FXML
-    private JFXTextField id_club;
         @FXML
     private JFXTextField budget;
     @FXML
     private JFXButton b;
+    @FXML
+    private JFXButton select_img;
+    @FXML
+    private JFXTextField listView;
+int identifiant=1;
+ClubService c=new ClubService();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,15 +72,30 @@ public class DemandeEvenementController implements Initializable {
 
     @FXML
     void ajouter_demande(MouseEvent event) throws SQLException {
-        int id = Integer.parseInt(id_club.getText());
+       // int id = Integer.parseInt(id_club.getText());
+            int id=c.recuperer_id_club(identifiant);
         System.out.println("" + id);
         String dd = date_debut.getValue().toString();
         String df = date_fin.getValue().toString();
-        System.out.println("" + desc.getText());
+        String descc= desc.getText();
         float b=Float.parseFloat(budget.getText());
-        ev = new DemandeEvenement(id,  desc.getText(), dd, df, b);
+        String img=listView.getText();
+        ev = new DemandeEvenement(id, descc, dd, df, img, b, img);
         des.ajouter(ev);
+        
 
+    }
+
+    @FXML
+    private void selectioe_image(ActionEvent event) {
+        FileChooser fc=new FileChooser();
+        File selectedFile= fc.showSaveDialog(null);
+        fc.getExtensionFilters().addAll(new ExtensionFilter ("PDF Files","*.pdf"));
+        if(selectedFile !=null)
+        {
+            listView.setText(selectedFile.getAbsolutePath());
+        }
+        
     }
 
 }

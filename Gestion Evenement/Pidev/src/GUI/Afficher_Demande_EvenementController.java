@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import API.Mailing;
 import pidev.*;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
@@ -22,20 +23,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import pidev.entities.DemandeEvenement;
 import pidev.entities.Evenement;
+import pidev.entities.User;
 import pidev.service.DemandeEvenementService;
+import pidev.service.EvenementService;
+import pidev.service.UserService;
 
 /**
  * FXML Controller class
  *
  * @author asus
  */
-
-    
 public class Afficher_Demande_EvenementController implements Initializable {
 
     /**
      * Initializes the controller class.
-     */@FXML
+     */
+    @FXML
     private TableView<DemandeEvenement> tab_demande_evenemnt;
 
     @FXML
@@ -55,18 +58,20 @@ public class Afficher_Demande_EvenementController implements Initializable {
 
     @FXML
     private TableColumn<DemandeEvenement, String> etat;
-        @FXML
+    @FXML
     private JFXTextField id_evenment_selectionne;
-
+int identfiant=1;
     private final ObservableList<DemandeEvenement> listDemandeEvenement = FXCollections.observableArrayList();
-        DemandeEvenementService cs = new DemandeEvenementService();
+    DemandeEvenementService cs = new DemandeEvenementService();
+    EvenementService evs = new EvenementService();
+    UserService u=new UserService();
     @FXML
     private TableColumn<DemandeEvenement, Float> Budget;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-         // TODO
+        // TODO
         try {
             listDemandeEvenement.addAll(cs.affciher());
         } catch (SQLException ex) {
@@ -82,24 +87,39 @@ public class Afficher_Demande_EvenementController implements Initializable {
         Budget.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, Float>("budget"));
         tab_demande_evenemnt.setItems(listDemandeEvenement);
 
-    }    
-        @FXML
-    void select(MouseEvent event) {
-        System.out.println("hhhh");
-         DemandeEvenement dev = tab_demande_evenemnt.getSelectionModel().getSelectedItem();
-            System.out.println(dev.getIdDemandeEvenement());
-            
-            id_evenment_selectionne.setText(""+dev.getIdDemandeEvenement());
     }
+
+    @FXML
+    void select(MouseEvent event) {
+        DemandeEvenement dev = tab_demande_evenemnt.getSelectionModel().getSelectedItem();
+
+        System.out.println("hhhh");
+        System.out.println(dev.getIdDemandeEvenement());
+
+        id_evenment_selectionne.setText("" + dev.getIdDemandeEvenement());
+    }
+
     @FXML
     void validation(MouseEvent event) {
-         try {        System.out.println("aaaaaaaaaaaa");
+        final ObservableList<DemandeEvenement> refresh = FXCollections.observableArrayList();
 
-             cs.valider(Integer.parseInt(id_evenment_selectionne.getText()));
-         } catch (SQLException ex) {
-             ex.getMessage();
-         }
-         
+        try {
+            DemandeEvenement dev = tab_demande_evenemnt.getSelectionModel().getSelectedItem();
+            cs.valider(Integer.parseInt(id_evenment_selectionne.getText()));
+            evs.ajouter_demande_valider();
+           // cs.supprimer(dev.getIdDemandeEvenement());
+            String maill=u.getMail(identfiant);
+            Mailing m=new Mailing();
+            m.envoyer(maill);
+            System.out.println(maill);
+            dev.getIdclub();
+            refresh.addAll(cs.affciher());
+            tab_demande_evenemnt.setItems(refresh);
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+
     }
-    
+
 }

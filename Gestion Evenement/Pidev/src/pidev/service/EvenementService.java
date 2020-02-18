@@ -15,7 +15,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import pidev.BD.Database;
 import pidev.entities.Evenement;
@@ -38,11 +40,12 @@ public class EvenementService implements IService<Evenement> {
     @Override
     public void ajouter(Evenement t) throws SQLException {
 
-        String req = "INSERT INTO Evenement (dateDebut,dateFin,idClub) values(?,?,?)";
+        String req = "INSERT INTO Evenement (dateDebut,dateFin,idClub,image) values(?,?,?,?)";
         pst = cnx.prepareStatement(req);
         pst.setString(1, t.getDateDebut());
         pst.setString(2, t.getDateFin());
         pst.setInt(3, t.getIdClub());
+        pst.setString(4, t.getImage());
         pst.execute();
     }
 
@@ -78,13 +81,70 @@ public class EvenementService implements IService<Evenement> {
             String ddd = dateFormat.format(dd);
             DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
             String dff = dateFormat0.format(df);
-            Evenement e = new Evenement(id, ddd, dff, idClub);
+            String img = rs.getString("image");
+            Evenement e = new Evenement(id, ddd, dff, idClub, img);
             arr.add(e);
         }
         return arr;
     }
 
-   
+    public void ajouter_demande_valider() {
+        try {
+            String req = "INSERT INTO `evenement`(dateDebut,dateFin,idClub,image) SELECT `DateDebut`,`DateFin`,`idClub`,`image` FROM `demandeevenement`";
+            pst = cnx.prepareStatement(req);
+
+            pst.execute();
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+
+    }
+
+    public Map<String, String> nbrEvenementClub(int idd) throws SQLException {
+        Map<String, String> arr = new HashMap<>();
+
+        ste = cnx.createStatement();
+        ResultSet rs = ste.executeQuery("select nomClub,COUNT(evenement.idClub) nbr from club INNER JOIN evenement on club.idClub=evenement.idClub where evenement.idClub ='" + idd + "'");
+        while (rs.next()) {
+            String nomClub = rs.getString("nomClub");
+            String nbr = Integer.toString(rs.getInt("nbr"));
+            arr.put(nomClub, nbr);
+
+        }
+        return arr;
+
+    }
+
+    public List<String> recpererImage() throws SQLException {
+
+        List<String> arr = new ArrayList<>();
+        ste = cnx.createStatement();
+        rs = ste.executeQuery("select image from evenement");
+        while (rs.next()) {
+
+            String img = rs.getString("image");
+
+            arr.add(img);
+
+        }
+        return arr;
+    }
+
+    public int nbr_evenementTotale() throws SQLException {
+
+        int x = 0;
+        ste = cnx.createStatement();
+        rs = ste.executeQuery("select count(idEvenement) nbr from evenement");
+        while (rs.next()) {
+
+            x = rs.getInt("nbr");
+
+        }
+        return x;
+    }
+
+  
 
     /* @Override
     public List<Evenement> recherche(String x) throws SQLException {
@@ -97,7 +157,7 @@ public class EvenementService implements IService<Evenement> {
             DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
             String date_fin = dateFormat0.format(ev.getDateFin());
         try {
-            String req = "INSERT INTO Evenement (dateDebut,dateFin,idClub) values(?,?,?)";
+            String req = "INSERT INTO `evenement`(dateDebut,dateFin,idClub) SELECT `DateDebut`,`DateFin`,`idClub` FROM `demandeevenement`";
             pst = cnx.prepareStatement(req);
             pst.setString(1, date_debut);
             pst.setString(2, date_fin);

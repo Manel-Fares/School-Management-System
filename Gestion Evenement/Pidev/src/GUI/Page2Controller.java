@@ -66,6 +66,7 @@ public class Page2Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             listClub.addAll(cs.affciher());
+            //System.out.println(cs.recuperer_id_clubs());
         } catch (SQLException ex) {
             Logger.getLogger(Page2Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,14 +81,20 @@ public class Page2Controller implements Initializable {
 
     @FXML
     void selection(MouseEvent event) {
- Club ev = tab_club.getSelectionModel().getSelectedItem();
- select.setText(""+ev.getIdClub());
+        Club ev = tab_club.getSelectionModel().getSelectedItem();
+        select.setText("" + ev.getIdClub());
     }
 
     @FXML
     void supprimer_club(MouseEvent event) {
+        final ObservableList<Club> listClub2 = FXCollections.observableArrayList();
+
         try {
             cs.supprimer(Integer.parseInt(select.getText()));
+                        listClub2.addAll(cs.affciher());
+
+            tab_club.setItems(listClub2);
+
         } catch (SQLException ex) {
             Logger.getLogger(Page2Controller.class.getName()).log(Level.SEVERE, null, ex);
         }

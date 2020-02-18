@@ -6,15 +6,25 @@
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/service/ClubService.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Afficher_Demande_EvenementController.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/DemandeEvenementController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Affichage_evenement_etudiant.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/sidebar.fxml</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Demande_club.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Afficher_donneClubController.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/eventUI.fxml</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/FXML1Controller.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/service/DemandeEvenementService.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/SidebarController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/service/UserService.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Afficher_Club.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/barre.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Affichage_evenement_etudiantController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/ClubPlusActifController.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/entities/Club.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/entities/DemandeEvenement.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Afficher_donneClub.fxml</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Demande_clubController.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/service/EvenementService.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/API/Mailing.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/IService/IService.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Consulter_demande_evenemetController.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/DemandeEvenement.fxml</file>
@@ -22,12 +32,18 @@
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/FXML1.fxml</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/Pidev.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Page2Controller.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/ClubPlusActif.fxml</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/entities/Evenement.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/afficher_Demande_Evenement.fxml</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/DemandeEvenement.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/BarreController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/SatatistiqueController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Affciher_EvenementController.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Affciher_Evenement.fxml</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/consulter_demande_evenemet.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/Statistique.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/pidev/entities/User.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Pidev/src/GUI/style.css</file>
         </group>
     </open-files>
 </project-private>

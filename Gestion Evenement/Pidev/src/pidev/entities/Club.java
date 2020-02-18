@@ -19,6 +19,11 @@ public class Club {
     public Club() {
     }
 
+    public Club(String nomClub, String domaine) {
+        this.nomClub = nomClub;
+        this.domaine = domaine;
+    }
+
     public Club(int idClub, int idResponsable, String nomClub, String domaine) {
         this.idClub = idClub;
         this.idResponsable = idResponsable;

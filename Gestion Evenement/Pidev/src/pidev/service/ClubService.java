@@ -46,12 +46,9 @@ public class ClubService implements IService<Club> {
 
     @Override
     public void modifier(Club t, int id) throws SQLException {
-        int idd = t.getIdResponsable();
-        String nom = t.getNomClub();
-        System.out.println(idd);
-        System.out.println(nom);
+     
 
-        String req = "UPDATE `club` SET `idResponsable` ='" + idd + "', `nomClub`= '" + nom + "' WHERE `club`.`idClub`=" + id + "";
+        String req = "UPDATE `club` SET `domaine` ='" + t.getDomaine() + "', `nomClub`= '" + t.getNomClub()+ "' WHERE `club`.`idClub`=" + id + "";
         pst = cnx.prepareStatement(req);
         pst.execute();
     }
@@ -81,8 +78,43 @@ public class ClubService implements IService<Club> {
         return arr;
     }
 
-   
+    public List<Integer> recuperer_id_clubs() throws SQLException {
+        List<Integer> arr = new ArrayList<>();
+        ste = cnx.createStatement();
+        ResultSet rs = ste.executeQuery("select DISTINCT(club.idClub) from club INNER JOIN evenement on club.idClub=evenement.idClub");
+        while (rs.next()) {
+        int c=rs.getInt("idClub");
+            arr.add(c);
+        }
+        return arr;
+    }
+    public Club RecupererClb(int idd) throws SQLException
+    {
+    
+     ste = cnx.createStatement();
+        ResultSet rs = ste.executeQuery("select * from club where idClub='"+idd+"'");
+        Club c=new Club();
+        while (rs.next()) {
+        int id=rs.getInt("idClub");
+        int idResp=rs.getInt("idResponsable");
+        String nom=rs.getString("nomClub");
+        String Domaie=rs.getString("domaine");
+        c=new Club(id, idResp, nom, Domaie);
+        }
+    return c;
+    }
+    public int recuperer_id_club(int id) throws SQLException {
+        List<Integer> arr = new ArrayList<>();
+        ste = cnx.createStatement();
+        int c=0;
+        ResultSet rs = ste.executeQuery("select club.idClub from club INNER JOIN users on club.idResponsable=users.idUser where users.idUser='"+id+"'  ");
+        while (rs.next()) {
+        c=rs.getInt("idClub");
+        }
+        return c;
+    }
    /* @Override
+    select club.idClub from club INNER JOIN users on club.idResponsable=users.idUser
     public List<Club> recherche(String x) throws SQLException {
 List<Club> arr = new ArrayList<>();
         ste = cnx.createStatement();

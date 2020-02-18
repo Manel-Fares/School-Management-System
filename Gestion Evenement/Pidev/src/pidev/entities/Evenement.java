@@ -18,18 +18,36 @@ public class Evenement {
     private String dateDebut;
     private String dateFin;
     private int idClub;
-    private Button update=new Button("update");
+    private String image;
+
     public Evenement() {
 
     }
 
-    public Evenement(int idEvenement, String dateDebut, String dateFin, int idClub) {
+    public Evenement(int idEvenement, String dateDebut, String dateFin, int idClub, String image) {
         this.idEvenement = idEvenement;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.idClub = idClub;
+        this.image = image;
     }
 
+    public Evenement(String dateDebut, String dateFin, int idClub, String image) {
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.idClub = idClub;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+ 
     public void setDateDebut(String dateDebut) {
         this.dateDebut = dateDebut;
     }
@@ -56,8 +74,6 @@ public class Evenement {
         return idEvenement;
     }
 
-   
-
     public int getIdClub() {
         return idClub;
     }
@@ -66,16 +82,13 @@ public class Evenement {
         this.idEvenement = idEvenement;
     }
 
-   
-
     public void setIdClub(int idClub) {
         this.idClub = idClub;
     }
 
     @Override
     public String toString() {
-        return "Evenement{" + "idEvenement=" + idEvenement + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", idClub=" + idClub + '}';
+        return "Evenement{" + "idEvenement=" + idEvenement + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", idClub=" + idClub + ", image=" + image + '}';
     }
 
-    
 }

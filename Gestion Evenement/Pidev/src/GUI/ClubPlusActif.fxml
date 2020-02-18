@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ClubPlusActifController">
+   <children>
+      <Pane prefHeight="90.0" prefWidth="800.0" styleClass="barre" stylesheets="@style.css">
+         <children>
+            <Label layoutX="37.0" layoutY="28.0" text="Les Club Plus Actifs" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="31.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="tab" layoutX="400.0" layoutY="379.0" onMouseClicked="#select" prefHeight="209.0" prefWidth="392.0" styleClass="table-column" stylesheets="@style.css">
+        <columns>
+          <TableColumn fx:id="nbr" prefWidth="207.0" text="Nombre des Evenement Organise" />
+          <TableColumn fx:id="nomClb" prefWidth="157.0" text="Nom CLub" />
+        </columns>
+      </TableView>
+      <Pane layoutX="23.0" layoutY="382.0" prefHeight="202.0" prefWidth="367.0" style="-fx-background-color: #a1d1ff;">
+         <children>
+            <Label layoutX="6.0" layoutY="14.0" text="Nom Club:" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="nom_club" layoutX="305.0" layoutY="20.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutY="78.0" prefHeight="30.0" prefWidth="299.0" text="Nombre d'evenement organiser" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="nbr_evenement_organiser" layoutX="307.0" layoutY="85.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="1.0" layoutY="140.0" prefHeight="21.0" prefWidth="291.0" text="Pourcentage par rapport les autres club :" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="pourcentage" layoutX="307.0" layoutY="142.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <BarChart fx:id="barChart" layoutX="76.0" layoutY="109.0" prefHeight="256.0" prefWidth="629.0" title="Statistique Club /Nombre Evenements Organiser">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="x" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>

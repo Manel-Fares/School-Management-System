@@ -17,16 +17,16 @@ public class DemandeEvenement {
     private String datefin;
     private String etat;
     private float budget;
+    private String image;
 
-    public DemandeEvenement(int idclub, String description, String datedebut, String datefin, float budget) {
-        this.idclub = idclub;
+    public DemandeEvenement(String description, String datedebut, String datefin, float budget) {
         this.description = description;
         this.datedebut = datedebut;
         this.datefin = datefin;
         this.budget = budget;
     }
 
-    public DemandeEvenement(int idclub, int idDemandeEvenement, String description, String datedebut, String datefin, String etat, float budget) {
+    public DemandeEvenement(int idclub, int idDemandeEvenement, String description, String datedebut, String datefin, String etat, float budget, String image) {
         this.idclub = idclub;
         this.idDemandeEvenement = idDemandeEvenement;
         this.description = description;
@@ -34,7 +34,42 @@ public class DemandeEvenement {
         this.datefin = datefin;
         this.etat = etat;
         this.budget = budget;
+        this.image = image;
     }
+
+
+
+    public DemandeEvenement(int idDemandeEvenement, String description, String datedebut, String datefin, String etat, float budget) {
+        this.idDemandeEvenement = idDemandeEvenement;
+        this.description = description;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.etat = etat;
+        this.budget = budget;
+    }
+
+    public DemandeEvenement(int idclub, String description, String datedebut, String datefin, String etat, float budget, String image) {
+        this.idclub = idclub;
+        this.description = description;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.etat = etat;
+        this.budget = budget;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setBudget(float budget) {
+        this.budget = budget;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
 
     public void setDatedebut(String datedebut) {
         this.datedebut = datedebut;
@@ -139,11 +174,10 @@ public class DemandeEvenement {
 
     @Override
     public String toString() {
-        return "DemandeEvenement{" + "idclub=" + idclub + ", idDemandeEvenement=" + idDemandeEvenement + ", description=" + description + ", datedebut=" + datedebut + ", datefin=" + datefin + ", etat=" + etat + ", budget=" + budget + '}';
+        return "DemandeEvenement{" + "idclub=" + idclub + ", idDemandeEvenement=" + idDemandeEvenement + ", description=" + description + ", datedebut=" + datedebut + ", datefin=" + datefin + ", etat=" + etat + ", budget=" + budget + ", image=" + image + '}';
     }
 
-  
-    
+
    
 
    
