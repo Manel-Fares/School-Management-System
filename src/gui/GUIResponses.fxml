@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gui.GUIResponsesController">
+    <stylesheets>
+        <URL value="@guiresponses.css" />
+    </stylesheets>
+   <children>
+      <TextArea layoutX="367.0" layoutY="72.0" prefHeight="135.0" prefWidth="200.0" />
+      <Label layoutX="367.0" layoutY="45.0" text="write something" />
+      <Button layoutX="367.0" layoutY="294.0" mnemonicParsing="false" text="add" />
+      <Button layoutX="467.0" layoutY="294.0" mnemonicParsing="false" text="return" />
+      <Text layoutX="39.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nunc nec risus vitae enim" />
+      <Text layoutX="39.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phasellus pharetra velit sed" />
+      <Text layoutX="35.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Donec posuere ante ligula" />
+      <Text layoutX="39.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="eu accumsan diam vehicula molestie" />
+      <Text layoutX="35.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TSed rhoncus, tortor at viverra scelerisqueext" />
+   </children>
+</AnchorPane>
