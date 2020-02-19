@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.esprit.gui.InterfaceEtudiantNoteController">
+   <children>
+      <TableView fx:id="tableViewNotes" layoutX="75.0" layoutY="100.0" prefHeight="259.0" prefWidth="451.0">
+        <columns>
+          <TableColumn fx:id="nomMatiere" minWidth="20.0" prefWidth="128.0" text="Nom Matiere" />
+          <TableColumn fx:id="coefficient" prefWidth="68.0" text="Coefficient" />
+            <TableColumn fx:id="noteCC" prefWidth="83.0" text="Note CC" />
+            <TableColumn fx:id="noteDS" prefWidth="75.0" text="Note DS" />
+            <TableColumn fx:id="noteExam" prefWidth="94.0" text="Note Examen" />
+        </columns>
+      </TableView>
+      <TextField fx:id="idEtudiant" layoutX="167.0" layoutY="42.0" />
+      <Label layoutX="75.0" layoutY="46.0" text="ID Etudiant" />
+   </children>
+</AnchorPane>
