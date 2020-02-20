@@ -16,6 +16,8 @@ public class Question {
     private int vote;
     private int id_tag;
     private int id_personne;
+    public static int q;
+    
 
     public Question(int id_question, String body, int vote, int id_tag, int id_personne) {
         this.id_question = id_question;
@@ -23,6 +25,16 @@ public class Question {
         this.vote = vote;
         this.id_tag = id_tag;
         this.id_personne = id_personne;
+    }
+    public Question() {
+
+    }
+    public static int getQ() {
+        return q;
+    }
+
+    public static void setQ(int q) {
+        Question.q = q;
     }
 
     public Question(String body, int vote, int id_tag, int id_personne) {

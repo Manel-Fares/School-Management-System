@@ -7,12 +7,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gui.ListQuestionController">
+<AnchorPane id="AnchorPane" fx:id="rootPan" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListQuestionController">
     <stylesheets>
         <URL value="@listquestion.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tableQ" layoutX="8.0" layoutY="81.0" prefHeight="338.0" prefWidth="785.0" />
+      <TableView fx:id="tableQ" layoutX="8.0" layoutY="81.0" prefHeight="338.0" prefWidth="785.0">
+         <columns>
+            <TableColumn fx:id="col_id" prefWidth="75.0" text="id" />
+            <TableColumn fx:id="col_body" prefWidth="75.0" text="body" />
+            <TableColumn fx:id="col_vote" prefWidth="75.0" text="vote" />
+            <TableColumn fx:id="col_tag" prefWidth="75.0" text="tag" />
+            <TableColumn fx:id="col_per" prefWidth="75.0" text="pers" />
+         </columns></TableView>
       <Label layoutX="67.0" layoutY="28.0" text="Questions" />
       <Button fx:id="btn2Q" layoutX="53.0" layoutY="435.0" mnemonicParsing="false" text="list responses" />
    </children>

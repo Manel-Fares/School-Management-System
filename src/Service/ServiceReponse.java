@@ -83,4 +83,34 @@ public class ServiceReponse {
 
     }
     
+    public List<Reponse> findResponseByQuestion(int i) throws SQLException {
+        List<Reponse> arr = new ArrayList<>();
+        ste = con.createStatement();
+        ResultSet rs = ste.executeQuery("SELECT * FROM `reponse` WHERE `id_question`= "+i);
+        while (rs.next()) {
+              int id_reponse = rs.getInt(1);
+              String body = rs.getString(2);
+              int vote_reponse = rs.getInt(3);
+              int id_question = rs.getInt(4);
+              Reponse r = new Reponse(id_reponse, body, vote_reponse, id_question);
+              arr.add(r);
+        }
+        return arr;
+    }
+    
+//    public List<Reponse> findResponseByQuestionUser(int i, int u) throws SQLException {
+//        List<Reponse> arr = new ArrayList<>();
+//        ste = con.createStatement();
+//        ResultSet rs = ste.executeQuery("SELECT * FROM `reponse` WHERE `id_question`= "+i+" AND `personne_id`= "+u);
+//        while (rs.next()) {
+//              int id_reponse = rs.getInt(1);
+//              String body = rs.getString(2);
+//              int vote_reponse = rs.getInt(3);
+//              int id_question = rs.getInt(4);
+//              Reponse r = new Reponse(id_reponse, body, vote_reponse, id_question);
+//              arr.add(r);
+//        }
+//        return arr;
+//    }
+    
 }

@@ -14,6 +14,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -77,5 +80,16 @@ public class ServiceTag {
         ste = con.createStatement();
         String requeteInsert = "INSERT INTO `tag` (`id_tag`, `nom`, `description`) VALUES ('"+t.getId_tag()+"', '"+t.getNom()+"', '"+t.getDescription()+"');";
         ste.executeUpdate(requeteInsert);
+    }
+    
+        public ObservableList<String> readNom() throws SQLException {
+        ObservableList<String> arr = FXCollections.observableArrayList();
+        ste = con.createStatement();
+        ResultSet rs = ste.executeQuery("select nom from tag");
+        while (rs.next()) {
+
+              arr.add(rs.getString("nom"));
+        }
+        return arr;
     }
 }

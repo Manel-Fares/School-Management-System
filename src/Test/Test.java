@@ -49,7 +49,7 @@ public class Test {
             //System.out.println(listQ);
             //serQ.update(3, "ques3", 0, 0, 0);
             //serQ.ajouter(q1);
-            serQ.readAll();
+            //serQ.readAll();
             
             //System.out.println(listR);
             //serR.ajouter(r1);
@@ -60,7 +60,9 @@ public class Test {
             //serT.update(4, "mob", "mobdex");
             
             //System.out.println(serQ.readAll());
-            //System.out.println(serR.readAll());
+            System.out.println(serR.readAll());
+            
+            System.out.println(serR.findResponseByQuestion(1));
             //System.out.println(serT.readAll());
         } catch (SQLException ex) {
             System.out.println(ex);

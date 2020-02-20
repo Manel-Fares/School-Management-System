@@ -7,11 +7,18 @@ package gui;
 
 import Entite.Question;
 import Service.ServiceQuestion;
+import Service.ServiceTag;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -23,6 +30,14 @@ public class AddQuestionController implements Initializable {
     
     @FXML
     public TextArea txtQBody;
+    @FXML
+    private Button btnAddQ;
+    @FXML
+    private TextField txtQTitle;
+    @FXML
+    private ComboBox<String> combotag;
+    
+    
     
     
     /**
@@ -31,9 +46,18 @@ public class AddQuestionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        txtQTitle.setText(String.valueOf(Question.q));
+        ServiceTag tq= new ServiceTag();
+        try {
+            combotag.setItems(tq.readNom());
+        } catch (SQLException ex) {
+            Logger.getLogger(AddQuestionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }    
     
     
+    @FXML
     public void GUIAddQ() {
         try {
             
