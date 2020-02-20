@@ -29,7 +29,7 @@ public class Test {
         ServiceTag serT = new ServiceTag();
         
         Personne p1 = new Personne("sana", "ben fadhel", 10);
-        Question q1 = new Question(10, "bodyq4", 4, 2, 1);
+        Question q1 = new Question("body 22", 2, 2, 2, "title2 test", "tagtest2");
         Reponse r1 = new Reponse(6, "body 6", 2, 1);
         Tag t1 = new Tag(4, "mobile", "desc mobile");
         
@@ -46,9 +46,10 @@ public class Test {
             //ser.delete(2);
             //ser.update(2, "wajihii", "ben slamaii", 35);
             
-            //System.out.println(listQ);
+            System.out.println(listQ);
             //serQ.update(3, "ques3", 0, 0, 0);
             //serQ.ajouter(q1);
+            serQ.ajouter2(q1);
             //serQ.readAll();
             
             //System.out.println(listR);
@@ -59,10 +60,10 @@ public class Test {
             //serT.ajouter(t1);
             //serT.update(4, "mob", "mobdex");
             
-            //System.out.println(serQ.readAll());
-            System.out.println(serR.readAll());
+            System.out.println(serQ.readAll());
+            //System.out.println(serR.readAll());
             
-            System.out.println(serR.findResponseByQuestion(1));
+            //System.out.println(serR.findResponseByQuestion(1));
             //System.out.println(serT.readAll());
         } catch (SQLException ex) {
             System.out.println(ex);

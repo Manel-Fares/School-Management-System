@@ -61,6 +61,10 @@ public class ListQuestionController implements Initializable {
     private TableColumn<Question, String> col_per;
     @FXML
     private AnchorPane rootPan;
+    @FXML
+    private TableColumn<Question, String> col_title;
+    @FXML
+    private TableColumn<Question, String> col_tagname;
     
     
     
@@ -76,6 +80,8 @@ public class ListQuestionController implements Initializable {
         col_vote.setCellValueFactory(new PropertyValueFactory<>("vote"));
         col_tag.setCellValueFactory(new PropertyValueFactory<>("id_tag"));
         col_per.setCellValueFactory(new PropertyValueFactory<>("id_personne"));
+        col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        col_tagname.setCellValueFactory(new PropertyValueFactory<>("tag_name"));
         ServiceQuestion a = new ServiceQuestion();
         try {
             observableQL.addAll(a.readAll());
@@ -101,8 +107,8 @@ public class ListQuestionController implements Initializable {
         @Override
         public void handle(Event event) {
                     //Question q= tableQ.getSelectionModel().getSelectedItem();
-                   Question.q=tableQ.getSelectionModel().getSelectedIndex()+1;
-                    
+            Question.q=tableQ.getSelectionModel().getSelectedIndex()+1;
+                   
         
         }
     });
