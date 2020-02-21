@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -19,12 +21,15 @@ import pidev.service.DemandeEvenementService;
  *
  * @author asus
  */
-public class Demande_clubController implements Initializable {
+public class sondageController implements Initializable {
 
+  
     @FXML
-    private Pane pane;
+    private JFXTextArea desc;
     @FXML
-    private Label nbr_notif;
+    private JFXTextField Titre;
+    @FXML
+    private JFXTextField id_club;
 
     /**
      * Initializes the controller class.
@@ -32,15 +37,15 @@ public class Demande_clubController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        pane.setVisible(false);
-        DemandeEvenementService dvs = new DemandeEvenementService();
+     
 
     }
 
-    @FXML
-    private void afficher_notification(MouseEvent event) {
-        pane.setVisible(true);
+  
 
+    @FXML
+    private void ajouter(MouseEvent event) {
+        
     }
 
 }

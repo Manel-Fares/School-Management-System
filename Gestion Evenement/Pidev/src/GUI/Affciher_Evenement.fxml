@@ -12,10 +12,10 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="bck" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Affciher_EvenementController">
+<AnchorPane id="AnchorPane" fx:id="bck" prefHeight="600.0" prefWidth="700.0" styleClass="bck" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Affciher_EvenementController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a1d1ff" height="432.0" layoutX="14.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="242.0" />
-      <TableView fx:id="tab_evenement" layoutX="261.0" layoutY="143.0" onMouseClicked="#Selectonne" prefHeight="457.0" prefWidth="530.0">
+      <TableView fx:id="tab_evenement" layoutX="261.0" layoutY="143.0" onMouseClicked="#Selectonne" prefHeight="432.0" prefWidth="530.0" stylesheets="@style.css">
         <columns>
           <TableColumn fx:id="id_evenement" prefWidth="120.0" text="id Evenement" />
           <TableColumn fx:id="id_club" prefWidth="84.0" text="ID Oraganisant" />
@@ -33,7 +33,7 @@
             </Label>
          </children>
       </Pane>
-      <JFXTextField fx:id="text" layoutX="380.0" layoutY="105.0" maxWidth="85.0" minWidth="85.0" prefHeight="31.0" prefWidth="85.0" promptText="ID Evenement" />
+      <JFXTextField fx:id="search" layoutX="257.0" layoutY="105.0" maxWidth="149.0" minWidth="85.0" onKeyReleased="#chercher" prefHeight="31.0" prefWidth="149.0" promptText="ID Evenement" />
       <Button layoutX="171.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#supprimer" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: red;" text="Supprimer" textFill="WHITE" />
       <JFXTextField fx:id="idclub" layoutX="46.0" layoutY="205.0" promptText="Identifiant Club" />
       <JFXDatePicker fx:id="dd" layoutX="43.0" layoutY="282.0" promptText="Date Debut" />

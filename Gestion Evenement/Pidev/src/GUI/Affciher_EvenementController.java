@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static GUI.Page2Controller.nomm;
 import pidev.*;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
@@ -13,6 +14,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,9 +23,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -37,11 +43,6 @@ import pidev.service.EvenementService;
  */
 public class Affciher_EvenementController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    @FXML
-    private JFXTextField text;
     @FXML
     private TableView<Evenement> tab_evenement;
     @FXML
@@ -71,6 +72,8 @@ public class Affciher_EvenementController implements Initializable {
     private JFXTextField listView;
     @FXML
     private TableColumn<Evenement, String> image;
+    @FXML
+    private JFXTextField search;
 
     public void affichee() {
         try {
@@ -120,12 +123,22 @@ public class Affciher_EvenementController implements Initializable {
     @FXML
     void supprimer(MouseEvent event) throws SQLException {
      final ObservableList<Evenement> listEvenement2 = FXCollections.observableArrayList();
+  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setHeaderText(null);
+    alert.setContentText("Vous voulez supprimer club"+nomm+"?");
 
+    ButtonType deleteGame = new ButtonType("Supprimer Club)");
+    ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+    alert.getButtonTypes().setAll(deleteGame, buttonTypeCancel);
+
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() == deleteGame){
         cs.supprimer(valeurID());
         listEvenement2.addAll(cs.affciher());
 
         tab_evenement.setItems(listEvenement2);
-    }
+    }}
 
     @FXML
     void modifier(MouseEvent event) {
@@ -171,5 +184,21 @@ public class Affciher_EvenementController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(Affciher_EvenementController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void chercher(KeyEvent event) {
+         final ObservableList<Evenement> listEvenement2 = FXCollections.observableArrayList();
+
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                System.out.println(newValue);
+                listEvenement2.addAll(cs.recherche(newValue));
+                tab_evenement.setItems(listEvenement2);
+            } catch (SQLException ex) {
+                Logger.getLogger(Page2Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        });
     }
 }

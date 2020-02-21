@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -21,10 +20,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
-import pidev.service.DemandeEvenementService;
 import pidev.service.EvenementService;
 
 /**
@@ -41,9 +38,12 @@ public class Affichage_evenement_etudiantController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       // pagination.getCurrentPageIndex();
         EvenementService dev = new EvenementService();
         ArrayList<String> images = new ArrayList<>();
         try {

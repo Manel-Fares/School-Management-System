@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ClubPlusActifController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="bck" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ClubPlusActifController">
    <children>
-      <Pane prefHeight="90.0" prefWidth="800.0" styleClass="barre" stylesheets="@style.css">
+      <Pane layoutX="7.0" prefHeight="90.0" prefWidth="793.0" styleClass="barre" stylesheets="@style.css">
          <children>
             <Label layoutX="37.0" layoutY="28.0" text="Les Club Plus Actifs" textFill="WHITE">
                <font>
@@ -29,32 +29,32 @@
       </TableView>
       <Pane layoutX="23.0" layoutY="382.0" prefHeight="202.0" prefWidth="367.0" style="-fx-background-color: #a1d1ff;">
          <children>
-            <Label layoutX="6.0" layoutY="14.0" text="Nom Club:" textFill="WHITE">
+            <Label layoutX="14.0" layoutY="41.0" text="Nom Club:" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="nom_club" layoutX="305.0" layoutY="20.0" text="Label" textFill="WHITE">
+            <Label fx:id="nom_club" layoutX="287.0" layoutY="41.0" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutY="78.0" prefHeight="30.0" prefWidth="299.0" text="Nombre d'evenement organiser" textFill="WHITE">
+            <Label layoutX="13.0" layoutY="78.0" prefHeight="30.0" prefWidth="232.0" text="Nombre d'evenement organiser" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="nbr_evenement_organiser" layoutX="307.0" layoutY="85.0" text="Label" textFill="WHITE">
+            <Label fx:id="nbr_evenement_organiser" layoutX="288.0" layoutY="81.0" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="1.0" layoutY="140.0" prefHeight="21.0" prefWidth="291.0" text="Pourcentage par rapport les autres club :" textFill="WHITE">
+            <Label layoutX="14.0" layoutY="122.0" prefHeight="21.0" prefWidth="273.0" text="Pourcentage par rapport les autres club :" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="pourcentage" layoutX="307.0" layoutY="142.0" text="Label" textFill="WHITE">
+            <Label fx:id="pourcentage" layoutX="287.0" layoutY="120.0" maxHeight="25.0" maxWidth="45.0" minHeight="25.0" minWidth="45.0" prefHeight="25.0" prefWidth="45.0" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>

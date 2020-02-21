@@ -41,14 +41,13 @@ public class EventUIController implements Initializable {
      * Initializes the controller class.
      */
     private JFXTextField domaine;
-
+    
     private JFXTextField nom_club;
-
+    
     private JFXTextField idResponsable;
-
+    
     ClubService cs = new ClubService();
-    @FXML
-    private AnchorPane page_creer_club;
+    
     @FXML
     private Pane bck;
     @FXML
@@ -58,9 +57,7 @@ public class EventUIController implements Initializable {
     private Label consulter_demande_club;
     @FXML
     private Label demande_evenement_club;
-    private Label club_affichage;
-    private Label demandeEvenementaAfichage;
-    private Label evenement_affichage;
+    
     @FXML
     private ImageView affichage;
     @FXML
@@ -69,13 +66,11 @@ public class EventUIController implements Initializable {
     private ImageView demande;
     @FXML
     private Pane sidebarClub;
-
+    
     @FXML
     private Pane area;
-    @FXML
-    private Pane barre;
+    
     DemandeEvenementService devs = new DemandeEvenementService();
-    @FXML
     private ImageView notif_admin;
     @FXML
     private Label nbr_notif_admin;
@@ -83,12 +78,7 @@ public class EventUIController implements Initializable {
     private Label desc_notif;
     @FXML
     private Pane notification_area;
-    @FXML
-    private ImageView affichage1;
-    @FXML
-    private ImageView demande1;
-    @FXML
-    private ImageView affichage11;
+    
     @FXML
     private JFXButton evenement_organiser;
     @FXML
@@ -101,51 +91,71 @@ public class EventUIController implements Initializable {
     private JFXButton clubEvenement;
     @FXML
     private ImageView stat;
-
+    @FXML
+    private AnchorPane page_creer_club;
+    @FXML
+    private ImageView notif_icon;
+    @FXML
+    private ImageView affichage1;
+    @FXML
+    private ImageView demande1;
+    @FXML
+    private ImageView affichage11;
+    @FXML
+    private Pane barre;
+    
     public void setRolle(String rolle) {
         this.rolle = rolle;
     }
-
+    
     public String getRolle() {
         return rolle;
     }
-DemandeEvenementService dvs = new DemandeEvenementService();
+    DemandeEvenementService dvs = new DemandeEvenementService();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        notif_admin.setVisible(false);
-        nbr_notif_admin.setVisible(false);
-        stat.setVisible(false);
-        notification_area.setVisible(false);
-        clubEvenement.setVisible(false);
-        affichage.setVisible(false);
-        btn_consulter_club.setVisible(false);
-        sidebarClub.setVisible(false);
-        evenement_organiser.setVisible(false);
-        demande_evenement_club.setVisible(false);
-        consulter_demande_club.setVisible(false);
-        affichage2.setVisible(false);
-        btn_demande_evenemnt.setVisible(false);
-        btn_eveneemnt.setVisible(false);
-        demande.setVisible(false);
-
+        if (FXML1Controller.getIdentifiant()==0) {
+            sidebarClub.setVisible(false);
+            notif_icon.setVisible(true);
+            notification_area.setVisible(false);
+            nbr_notif_admin.setVisible(true);
+            affichage.setVisible(true);
+            stat.setVisible(true);
+            affichage2.setVisible(true);
+            demande.setVisible(true);
+            btn_consulter_club.setVisible(true);
+            btn_demande_evenemnt.setVisible(true);
+            btn_eveneemnt.setVisible(true);
+            sidebar.setVisible(true);
+            clubEvenement.setVisible(true);
+            nbr_notif_admin.setText("" + devs.nombre_demande());
+        } else {
+            notification_area.setVisible(false);
+            notif_icon.setVisible(false);
+            sidebarClub.setVisible(true);
+            evenement_organiser.setVisible(true);
+            demande_evenement_club.setVisible(true);
+            consulter_demande_club.setVisible(true);
+        }
         
     }
-
+    
     void affichage() {
         Parent fxml;
-
+        
         try {
-
+            
             fxml = FXMLLoader.load(getClass().getResource("DemandeEvenement.fxml"));
             bck.getChildren().removeAll();
             bck.getChildren().setAll(fxml);
-
+            
         } catch (IOException ex) {
             Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     void ajouter_club(MouseEvent event) {
         int id = Integer.parseInt(idResponsable.getText());
         Club t = new Club(id, nom_club.getText(), domaine.getText());
@@ -155,24 +165,24 @@ DemandeEvenementService dvs = new DemandeEvenementService();
             Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     void afficher_club(MouseEvent event) {
         Parent fxml;
         try {
             System.out.println(getRolle());
-
+            
             fxml = FXMLLoader.load(getClass().getResource("DemandeEvenement.fxml"));
-
+            
             area.getChildren().removeAll();
             area.getChildren().setAll(fxml);
-
+            
             System.out.println(getRolle());
         } catch (IOException ex) {
             Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
     @FXML
     void demandeEvenement(MouseEvent event) {
         Parent fxml;
@@ -183,9 +193,9 @@ DemandeEvenementService dvs = new DemandeEvenementService();
         } catch (IOException ex) {
             Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
     @FXML
     void Evenement(MouseEvent event) {
         Parent fxml;
@@ -197,7 +207,7 @@ DemandeEvenementService dvs = new DemandeEvenementService();
             Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @FXML
     void affiche_demabde_evenement(MouseEvent event) {
         Parent fxml;
@@ -206,12 +216,12 @@ DemandeEvenementService dvs = new DemandeEvenementService();
             bck.getChildren().removeAll();
             bck.getChildren().setAll(fxml);
             sidebarClub.setVisible(true);
-
+            
         } catch (IOException ex) {
             Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @FXML
     void ajouterEvenement(MouseEvent event) {
         Parent fxml;
@@ -224,7 +234,7 @@ DemandeEvenementService dvs = new DemandeEvenementService();
         }
     }
 
-    @FXML
+    /* @FXML
     private void cllub(MouseEvent event) {
         System.out.println(getRolle());
         if (getRolle().equals("root")) {
@@ -278,8 +288,7 @@ DemandeEvenementService dvs = new DemandeEvenementService();
 
         }
 
-    }
-
+    }*/
     @FXML
     private void evenement_organiser(ActionEvent event) {
         Parent fxml;
@@ -288,12 +297,12 @@ DemandeEvenementService dvs = new DemandeEvenementService();
             bck.getChildren().removeAll();
             bck.getChildren().setAll(fxml);
             sidebarClub.setVisible(true);
-
+            
         } catch (IOException ex) {
             Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @FXML
     private void afficher_notif(MouseEvent event) {
         int i;
@@ -305,9 +314,9 @@ DemandeEvenementService dvs = new DemandeEvenementService();
               System.out.println(devs.notifiction().get(i));
         {    desc_notif.setText(devs.notifiction().get(i));
         }*/
-
+        
     }
-
+    
     @FXML
     private void notification_demande_affichage(MouseEvent event) {
         Parent fxml;
@@ -316,18 +325,18 @@ DemandeEvenementService dvs = new DemandeEvenementService();
             bck.getChildren().removeAll();
             bck.getChildren().setAll(fxml);
             notification_area.setVisible(false);
-
+            
         } catch (IOException ex) {
             Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @FXML
     private void femer_area_notification(MouseEvent event) {
         notification_area.setVisible(false);
-
+        
     }
-
+    
     @FXML
     private void Demande_organisation_event_club(MouseEvent event) {
         Parent fxml;
@@ -336,14 +345,14 @@ DemandeEvenementService dvs = new DemandeEvenementService();
             bck.getChildren().removeAll();
             bck.getChildren().setAll(fxml);
             sidebarClub.setVisible(true);
-
+            
             notification_area.setVisible(false);
-
+            
         } catch (IOException ex) {
             Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @FXML
     private void affcihe_stat_clubEvenement(MouseEvent event) {
         Parent fxml;
@@ -352,25 +361,52 @@ DemandeEvenementService dvs = new DemandeEvenementService();
             bck.getChildren().removeAll();
             bck.getChildren().setAll(fxml);
             notification_area.setVisible(false);
-
+            
+        } catch (IOException ex) {
+            Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @FXML
+    private void afficher_donne_Club(MouseEvent event) {
+        Parent fxml;
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("Afficher_donneClub.fxml"));
+            bck.getChildren().removeAll();
+            bck.getChildren().setAll(fxml);
+            notification_area.setVisible(false);
+            
         } catch (IOException ex) {
             Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    private void afficher_donne_Club(MouseEvent event) {
-         Parent fxml;
+    private void deconecte(MouseEvent event) {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML1.fxml"));
+            Parent root;
         try {
-            fxml = FXMLLoader.load(getClass().getResource("Afficher_donneClub.fxml"));
-            bck.getChildren().removeAll();
-            bck.getChildren().setAll(fxml);
-            notification_area.setVisible(false);
-
+            root = loader.load();
+              page_creer_club.getChildren().removeAll();        
+        page_creer_club.getChildren().setAll(root);
+         
         } catch (IOException ex) {
             Logger.getLogger(EventUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
+           /* EventUIController ev=loader.getController();
+            ev.setRolle(user_name.getText());*/
+      
     }
+
+    @FXML
+    private void cllub(MouseEvent event) {
+    }
+
+    @FXML
+    private void evenement(MouseEvent event) {
+    }
+    
+
 }
 
 

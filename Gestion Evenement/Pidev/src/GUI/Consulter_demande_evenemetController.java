@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static GUI.Page2Controller.nomm;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
@@ -13,6 +14,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +22,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -75,15 +80,16 @@ public class Consulter_demande_evenemetController implements Initializable {
     private JFXButton modifier;
     DemandeEvenementService cs = new DemandeEvenementService();
 ClubService c=new ClubService();
-int identifiant=1;
+int identifiant=FXML1Controller.getIdentifiant();
     @FXML
     private TableColumn<DemandeEvenement, String> image;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         try {
+            System.out.println(identifiant);
             int x=c.recuperer_id_club(identifiant);
-           
+            System.out.println(x);
             List<DemandeEvenement> oo = cs.afficherDemandeSpecifique(x);
             l.addAll(oo);
             for (DemandeEvenement d : oo) {
@@ -123,6 +129,17 @@ int identifiant=1;
              final ObservableList<DemandeEvenement> l2 = FXCollections.observableArrayList();
   
         DemandeEvenement dev = tab.getSelectionModel().getSelectedItem();
+          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setHeaderText(null);
+    alert.setContentText("Vous voulez supprimer club"+nomm+"?");
+
+    ButtonType deleteGame = new ButtonType("Supprimer Club)");
+    ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+    alert.getButtonTypes().setAll(deleteGame, buttonTypeCancel);
+
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() == deleteGame){
         cs.supprimer(dev.getIdDemandeEvenement());
         int x=c.recuperer_id_club(identifiant);
            
@@ -130,7 +147,7 @@ int identifiant=1;
             l2.addAll(o);
         tab.setItems(l2);
 
-    }
+    }}
 
     @FXML
     private void modifier_demande(MouseEvent event) {

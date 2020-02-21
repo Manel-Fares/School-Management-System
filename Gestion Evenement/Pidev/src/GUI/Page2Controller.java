@@ -6,10 +6,10 @@
 package GUI;
 
 import com.jfoenix.controls.JFXButton;
-import pidev.*;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,9 +17,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import pidev.entities.Club;
@@ -55,12 +60,22 @@ public class Page2Controller implements Initializable {
     private AnchorPane page2;
     @FXML
     private JFXTextField search;
-    @FXML
     private JFXTextField select;
     @FXML
     private JFXButton supprimer;
-
+    static int idd;
+    static String nomm;
     ClubService cs = new ClubService();
+    @FXML
+    private JFXTextField ID_clb;
+    @FXML
+    private JFXTextField ID_resp;
+    @FXML
+    private JFXTextField nom_clb;
+    @FXML
+    private JFXTextField doma;
+    @FXML
+    private JFXButton aj;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -82,19 +97,63 @@ public class Page2Controller implements Initializable {
     @FXML
     void selection(MouseEvent event) {
         Club ev = tab_club.getSelectionModel().getSelectedItem();
-        select.setText("" + ev.getIdClub());
+     
+        idd = ev.getIdClub();
+        nomm=ev.getNomClub();
     }
 
     @FXML
     void supprimer_club(MouseEvent event) {
         final ObservableList<Club> listClub2 = FXCollections.observableArrayList();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+    alert.setHeaderText(null);
+    alert.setContentText("Vous voulez supprimer club"+nomm+"?");
 
+    ButtonType deleteGame = new ButtonType("Supprimer Club)");
+    ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+    alert.getButtonTypes().setAll(deleteGame, buttonTypeCancel);
+
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() == deleteGame){
         try {
-            cs.supprimer(Integer.parseInt(select.getText()));
-                        listClub2.addAll(cs.affciher());
-
+            cs.supprimer(idd);
+            listClub2.addAll(cs.affciher());
             tab_club.setItems(listClub2);
 
+        } catch (SQLException ex) {
+            Logger.getLogger(Page2Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+    }
+
+    @FXML
+    private void cherche(KeyEvent event) {
+        final ObservableList<Club> listClub2 = FXCollections.observableArrayList();
+
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                System.out.println(newValue);
+                listClub2.addAll(cs.recherche(newValue));
+                tab_club.setItems(listClub2);
+            } catch (SQLException ex) {
+                Logger.getLogger(Page2Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        });
+    }
+
+    @FXML
+    private void ajouter(MouseEvent event) {
+                final ObservableList<Club> listClub2 = FXCollections.observableArrayList();
+
+       int  id_resp=Integer.parseInt(ID_resp.getText());
+       String nom=nom_clb.getText();
+       String domainee=doma.getText();
+       Club c=new Club(id_resp, nom, domainee);
+        try {
+            cs.ajouter(c);
+             listClub2.addAll(cs.affciher());
+            tab_club.setItems(listClub2);
         } catch (SQLException ex) {
             Logger.getLogger(Page2Controller.class.getName()).log(Level.SEVERE, null, ex);
         }

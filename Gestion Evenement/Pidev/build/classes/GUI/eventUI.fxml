@@ -16,7 +16,7 @@
       <Pane fx:id="sidebar" prefHeight="600.0" prefWidth="205.0" styleClass="parent">
          <children>
             <Line endX="100.0" layoutX="104.0" layoutY="119.0" startX="-100.0" stroke="#f5efef" />
-            <Label layoutX="44.0" layoutY="88.0" text="Jmai Omar" textFill="#fcfcfc">
+            <Label layoutX="76.0" layoutY="88.0" text="Jmai Omar" textFill="#fcfcfc">
                <font>
                   <Font name="Franklin Gothic Medium" size="21.0" />
                </font>
@@ -31,13 +31,13 @@
                   <Image url="@../pidev/img/demande.png" />
                </image>
             </ImageView>
-            <Circle fill="DODGERBLUE" layoutX="89.0" layoutY="46.0" radius="42.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fitHeight="72.0" fitWidth="84.0" layoutX="52.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <Circle fill="DODGERBLUE" layoutX="121.0" layoutY="46.0" radius="42.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fitHeight="72.0" fitWidth="84.0" layoutX="84.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../pidev/img/userr.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="notif_admin" fitHeight="26.0" fitWidth="20.0" layoutX="15.0" layoutY="138.0" onMouseClicked="#afficher_notif" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="notif_icon" fitHeight="26.0" fitWidth="20.0" layoutX="15.0" layoutY="138.0" onMouseClicked="#afficher_notif" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../pidev/img/notif.png" />
                </image>
@@ -86,7 +86,8 @@
                   <JFXButton fx:id="evenement_organiser" layoutX="33.0" layoutY="137.0" onAction="#evenement_organiser" text="Evenement Organsie" textFill="#f5f0f0">
                      <font>
                         <Font size="15.0" />
-                     </font></JFXButton>
+                     </font>
+                  </JFXButton>
                   <ImageView fx:id="affichage1" fitHeight="35.0" fitWidth="30.0" layoutX="5.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../pidev/img/affichage.png" />
@@ -114,6 +115,12 @@
                   </ImageView>
                </children>
             </Pane>
+            <JFXButton layoutX="-3.0" layoutY="39.0" text="Deconnecté" textFill="WHITE" />
+            <ImageView fitHeight="30.0" fitWidth="52.0" layoutX="22.0" layoutY="9.0" onMouseClicked="#deconecte" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pidev/img/iconelogout.png" />
+               </image>
+            </ImageView>
          </children>
          <stylesheets>
             <URL value="@s" />
@@ -122,14 +129,14 @@
       </Pane>
       <Pane fx:id="bck" layoutX="199.0" prefHeight="600.0" prefWidth="800.0">
          <children>
-            <Pane fx:id="area" layoutX="-14.0" layoutY="90.0" maxHeight="510.0" maxWidth="800.0" minHeight="510.0" minWidth="800.0" prefHeight="510.0" prefWidth="800.0" styleClass="forgetBtn" stylesheets="@style.css">
+            <Pane fx:id="area" layoutX="3.0" layoutY="90.0" maxHeight="510.0" maxWidth="800.0" minHeight="510.0" minWidth="783.0" prefHeight="510.0" prefWidth="800.0" styleClass="bck" stylesheets="@style.css">
                <children>
                   <ImageView fitHeight="237.0" fitWidth="380.0" layoutX="107.0" layoutY="109.0" onMouseClicked="#cllub" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../pidev/img/clubs.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="253.0" layoutY="25.0" prefHeight="44.0" prefWidth="272.0" text="Bienvenu Omar">
+                  <Label layoutX="253.0" layoutY="40.0" prefHeight="44.0" prefWidth="272.0" text="Bienvenu Omar">
                      <font>
                         <Font name="Franklin Gothic Medium" size="38.0" />
                      </font>
@@ -141,7 +148,7 @@
                   <Image url="@../pidev/img/eventicone.png" />
                </image>
             </ImageView>
-            <Pane fx:id="barre" layoutX="6.0" prefHeight="90.0" prefWidth="795.0" styleClass="barre" stylesheets="@style.css">
+            <Pane fx:id="barre" layoutX="6.0" prefHeight="120.0" prefWidth="795.0" styleClass="barre" stylesheets="@style.css">
                <children>
                   <Label layoutX="49.0" layoutY="20.0" text="accueil" textFill="WHITE">
                      <font>

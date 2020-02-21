@@ -16,7 +16,7 @@
    <children>
       <Pane prefHeight="600.0" prefWidth="800.0">
          <children>
-            <Pane layoutY="86.0" prefHeight="510.0" prefWidth="800.0" style="-fx-background-color: ffff;" />
+            <Pane layoutY="86.0" prefHeight="510.0" prefWidth="800.0" styleClass="bck" stylesheets="@style.css" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a1d1ff" height="401.0" layoutX="30.0" layoutY="168.0" stroke="BLACK" strokeType="INSIDE" width="762.0" />
             <Pane prefHeight="90.0" prefWidth="800.0" styleClass="barre" stylesheets="@style.css">
                <children>

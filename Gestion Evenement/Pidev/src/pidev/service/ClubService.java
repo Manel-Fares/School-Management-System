@@ -16,7 +16,7 @@ import java.util.List;
 
 import pidev.BD.Database;
 import pidev.entities.Club;
-import IService.*;
+
 /**
  *
  * @author asus
@@ -35,20 +35,19 @@ public class ClubService implements IService<Club> {
     @Override
     public void ajouter(Club t) throws SQLException {
         String req = "INSERT INTO club (nomClub,idResponsable,domaine) values(?,?,?)";
-       
+
         pst = cnx.prepareStatement(req);
         pst.setString(1, t.getNomClub());
         pst.setInt(2, t.getIdResponsable());
-         System.out.println("aaa");
+        System.out.println("aaa");
         pst.setString(3, t.getDomaine());
         pst.execute();
     }
 
     @Override
     public void modifier(Club t, int id) throws SQLException {
-     
 
-        String req = "UPDATE `club` SET `domaine` ='" + t.getDomaine() + "', `nomClub`= '" + t.getNomClub()+ "' WHERE `club`.`idClub`=" + id + "";
+        String req = "UPDATE `club` SET `domaine` ='" + t.getDomaine() + "', `nomClub`= '" + t.getNomClub() + "' WHERE `club`.`idClub`=" + id + "";
         pst = cnx.prepareStatement(req);
         pst.execute();
     }
@@ -71,8 +70,8 @@ public class ClubService implements IService<Club> {
             int id = rs.getInt("idClub");
             String nomClub = rs.getString("nomClub");
             int idResponsable = rs.getInt("idResponsable");
-            String domaine =rs.getString("domaine");
-            Club c = new Club(id, idResponsable, nomClub,domaine);
+            String domaine = rs.getString("domaine");
+            Club c = new Club(id, idResponsable, nomClub, domaine);
             arr.add(c);
         }
         return arr;
@@ -83,37 +82,57 @@ public class ClubService implements IService<Club> {
         ste = cnx.createStatement();
         ResultSet rs = ste.executeQuery("select DISTINCT(club.idClub) from club INNER JOIN evenement on club.idClub=evenement.idClub");
         while (rs.next()) {
-        int c=rs.getInt("idClub");
+            int c = rs.getInt("idClub");
             arr.add(c);
         }
         return arr;
     }
-    public Club RecupererClb(int idd) throws SQLException
-    {
-    
-     ste = cnx.createStatement();
-        ResultSet rs = ste.executeQuery("select * from club where idClub='"+idd+"'");
-        Club c=new Club();
-        while (rs.next()) {
-        int id=rs.getInt("idClub");
-        int idResp=rs.getInt("idResponsable");
-        String nom=rs.getString("nomClub");
-        String Domaie=rs.getString("domaine");
-        c=new Club(id, idResp, nom, Domaie);
-        }
-    return c;
-    }
-    public int recuperer_id_club(int id) throws SQLException {
-        List<Integer> arr = new ArrayList<>();
+
+    public Club RecupererClb(int idd) throws SQLException {
+
         ste = cnx.createStatement();
-        int c=0;
-        ResultSet rs = ste.executeQuery("select club.idClub from club INNER JOIN users on club.idResponsable=users.idUser where users.idUser='"+id+"'  ");
+        ResultSet rs = ste.executeQuery("select * from club where idClub='" + idd + "'");
+        Club c = new Club();
         while (rs.next()) {
-        c=rs.getInt("idClub");
+            int id = rs.getInt("idClub");
+            int idResp = rs.getInt("idResponsable");
+            String nom = rs.getString("nomClub");
+            String Domaie = rs.getString("domaine");
+            c = new Club(id, idResp, nom, Domaie);
         }
         return c;
     }
-   /* @Override
+
+    public int recuperer_id_club(int id) throws SQLException {
+        List<Integer> arr = new ArrayList<>();
+        ste = cnx.createStatement();
+        int c = 0;
+        ResultSet rs = ste.executeQuery("select club.idClub from club INNER JOIN users on club.idResponsable=users.idUser where users.idUser='" + id + "'  ");
+        while (rs.next()) {
+            c = rs.getInt("idClub");
+        }
+        return c;
+    }
+    // select club.idClub from club INNER JOIN users on club.idResponsable=users.idUser
+
+    public List<Club> recherche(String x) throws SQLException {
+        List<Club> arr = new ArrayList<>();
+        ste = cnx.createStatement();
+                    System.out.println("bbbbbbbbbb");
+
+        ResultSet rs = ste.executeQuery("select * from club where nomClub like '%" + x + "%'");
+        while (rs.next()) {
+            System.out.println("aaaaaaaaa");
+            int id = rs.getInt("idClub");
+            String nomClub = rs.getString("nomClub");
+            int idResponsable = rs.getInt("idResponsable");
+            String domaine = rs.getString("domaine");
+            Club c = new Club(id, idResponsable, nomClub, domaine);
+            arr.add(c);
+        }
+        return arr;
+    }
+    /* @Override
     select club.idClub from club INNER JOIN users on club.idResponsable=users.idUser
     public List<Club> recherche(String x) throws SQLException {
 List<Club> arr = new ArrayList<>();
@@ -126,7 +145,8 @@ List<Club> arr = new ArrayList<>();
             Club c = new Club(id, idEtudiant, nomClub);
             arr.add(c);
         }
-        return arr;    */}
+        return arr;    */
+}
 //}
 /*public void afficherClubcv ()
     { //List<Club> l=new Vector<>();

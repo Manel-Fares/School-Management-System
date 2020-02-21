@@ -150,6 +150,29 @@ public class EvenementService implements IService<Evenement> {
     public List<Evenement> recherche(String x) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
+
+    @Override
+    public List<Evenement> recherche(String x) throws SQLException {
+ List<Evenement> arr = new ArrayList<>();
+        ste = cnx.createStatement();
+                    System.out.println("bbbbbbbbbb");
+
+        ResultSet rs = ste.executeQuery("select * from evenement where idEvenement like '%" + x + "%'");
+        while (rs.next()) {
+           int id = rs.getInt("idEvenement");
+            int idClub = rs.getInt("idClub");
+
+            Date dd = rs.getDate("dateDebut");
+            Date df = rs.getDate("dateFin");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String ddd = dateFormat.format(dd);
+            DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
+            String dff = dateFormat0.format(df);
+            String img = rs.getString("image");
+            Evenement e = new Evenement(id, ddd, dff, idClub, img);
+            arr.add(e);
+        }
+        return arr;    }
 }
 /* public void ajouterEvenemet(Evenement ev) {
  DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

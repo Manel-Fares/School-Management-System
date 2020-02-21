@@ -172,6 +172,11 @@ try {
         System.out.println(arr);
     return arr;
     }
+
+    @Override
+    public List<DemandeEvenement> recherche(String x) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
 }
 

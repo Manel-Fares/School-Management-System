@@ -7,7 +7,6 @@ package GUI;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import java.io.File;
@@ -52,7 +51,7 @@ public class DemandeEvenementController implements Initializable {
     private JFXButton select_img;
     @FXML
     private JFXTextField listView;
-int identifiant=1;
+int identifiant=FXML1Controller.getIdentifiant();
 ClubService c=new ClubService();
 
     @Override

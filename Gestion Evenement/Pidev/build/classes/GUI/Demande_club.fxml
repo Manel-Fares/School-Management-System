@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Demande_clubController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="bck" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.sondageController">
    <children>
-      <Pane layoutX="109.0" layoutY="71.0" prefHeight="523.0" prefWidth="559.0">
+      <Pane layoutX="14.0" layoutY="86.0" prefHeight="500.0" prefWidth="327.0" style="-fx-background-color: #a1d1ff;">
          <children>
-            <JFXTextArea layoutX="24.0" layoutY="262.0" />
+            <JFXTextArea fx:id="desc" layoutX="24.0" layoutY="190.0" maxWidth="276.0" minWidth="276.0" prefHeight="252.0" prefWidth="276.0" promptText="Description" />
+            <JFXTextField fx:id="Titre" layoutX="24.0" layoutY="113.0" maxWidth="215.0" minWidth="215.0" prefHeight="31.0" prefWidth="215.0" promptText="Titre" />
+            <JFXTextField fx:id="id_club" layoutX="24.0" layoutY="65.0" maxWidth="238.0" minWidth="238.0" prefHeight="31.0" prefWidth="238.0" promptText="ID Club" />
+            <Label layoutX="74.0" layoutY="14.0" prefHeight="36.0" prefWidth="158.0" text="Sondage " textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="25.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="72.0" layoutY="461.0" onMouseClicked="#ajouter" prefHeight="25.0" prefWidth="143.0" style="-fx-background-color: green;" text="Envoyer" textFill="WHITE" />
          </children>
       </Pane>
-      <JFXTextField layoutX="251.0" layoutY="176.0" maxWidth="215.0" minWidth="215.0" prefHeight="31.0" prefWidth="215.0" />
-      <JFXTextField layoutX="252.0" layoutY="223.0" maxWidth="215.0" minWidth="215.0" prefHeight="31.0" prefWidth="215.0" />
-      <JFXTextField layoutX="253.0" layoutY="275.0" maxWidth="215.0" minWidth="215.0" prefHeight="31.0" prefWidth="215.0" />
+      <TableView fx:id="tab" layoutX="350.0" layoutY="86.0" prefHeight="500.0" prefWidth="445.0">
+        <columns>
+          <TableColumn fx:id="id_s" prefWidth="75.0" text="ID Sondage" />
+          <TableColumn fx:id="id_c" prefWidth="75.0" text="ID Club" />
+            <TableColumn fx:id="t" prefWidth="75.0" text="Titre" />
+            <TableColumn fx:id="d" prefWidth="100.0" text="Description" />
+            <TableColumn fx:id="r" prefWidth="119.0" text="Reponse" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

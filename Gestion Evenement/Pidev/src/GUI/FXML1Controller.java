@@ -6,8 +6,7 @@
 package GUI;
 
 import com.jfoenix.controls.JFXTextField;
-import pidev.BD.*;
-import pidev.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,8 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,20 +40,26 @@ public class FXML1Controller implements Initializable {
     private ImageView left_img;
     @FXML
     private JFXTextField user_name;
-
+    static int identifiant;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     } 
       @FXML
     void affiche_tab(MouseEvent event) throws IOException {
+        identifiant=Integer.parseInt(user_name.getText());
               FXMLLoader loader = new FXMLLoader(getClass().getResource("eventUI.fxml"));
             Parent root = loader.load();
-            EventUIController ev=loader.getController();
-            ev.setRolle(user_name.getText());
+           /* EventUIController ev=loader.getController();
+            ev.setRolle(user_name.getText());*/
         login_page.getChildren().removeAll();        
         login_page.getChildren().setAll(root);
          
     }
- 
+
+    public static int getIdentifiant() {
+        return identifiant;
+    }
+
+    
 }
