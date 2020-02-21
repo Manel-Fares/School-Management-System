@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIResponsesController">
+    <stylesheets>
+        <URL value="@guiresponses.css" />
+    </stylesheets>
+   <children>
+      <TextArea layoutX="367.0" layoutY="72.0" prefHeight="135.0" prefWidth="200.0" />
+      <Label layoutX="367.0" layoutY="45.0" text="write something" />
+      <Button layoutX="367.0" layoutY="294.0" mnemonicParsing="false" text="add" />
+      <Button layoutX="467.0" layoutY="294.0" mnemonicParsing="false" text="return" />
+   </children>
+</AnchorPane>

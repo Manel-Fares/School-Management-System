@@ -7,17 +7,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gui.AddQuestionController">
+<AnchorPane id="AnchorPane" fx:id="rootPan" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AddQuestionController">
     <stylesheets>
         <URL value="@addquestion.css" />
     </stylesheets>
    <children>
       <TextArea fx:id="txtQBody" layoutX="93.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
       <Button fx:id="btnAddQ" layoutX="160.0" layoutY="324.0" mnemonicParsing="false" onAction="#GUIAddQ" text="add" />
-      <ComboBox layoutX="429.0" layoutY="85.0" prefWidth="150.0" />
+      <ComboBox fx:id="combotag" layoutX="429.0" layoutY="85.0" prefWidth="150.0" />
       <TextField fx:id="txtQTitle" layoutX="99.0" layoutY="46.0" />
       <Label layoutX="386.0" layoutY="90.0" text="Tag" />
       <Label layoutX="31.0" layoutY="51.0" text="Title" />
       <Label layoutX="28.0" layoutY="106.0" text="body" />
+      <Button fx:id="btnReturn" layoutX="228.0" layoutY="324.0" mnemonicParsing="false" text="return" />
    </children>
 </AnchorPane>

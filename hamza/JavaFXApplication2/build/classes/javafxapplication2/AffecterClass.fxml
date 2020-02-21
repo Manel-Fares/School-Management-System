@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication2.AffecterClassController">
+   <children>
+      <TableView fx:id="tableUser" layoutX="377.0" layoutY="94.0" prefHeight="282.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="NomCol" prefWidth="199.0" text="Nom" />
+        </columns>
+      </TableView>
+      <JFXComboBox fx:id="SelectRole" layoutX="80.0" layoutY="110.0" prefHeight="33.0" prefWidth="184.0" />
+      <JFXComboBox fx:id="SelectClass" layoutX="80.0" layoutY="192.0" prefHeight="33.0" prefWidth="184.0" />
+      <Label fx:id="RoleLabel" layoutX="452.0" layoutY="51.0" prefHeight="33.0" prefWidth="74.0" />
+      <JFXButton fx:id="Add" layoutX="203.0" layoutY="286.0" onAction="#AddAction" prefHeight="33.0" prefWidth="74.0" text="Add" />
+      <JFXButton fx:id="Get" layoutX="86.0" layoutY="290.0" onAction="#GetAction" prefHeight="25.0" prefWidth="74.0" text="Get" />
+   </children>
+</AnchorPane>

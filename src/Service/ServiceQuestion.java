@@ -37,8 +37,10 @@ public class ServiceQuestion {
               int vote_question = rs.getInt(3);
               int id_tag = rs.getInt(4);
               int id_personne = rs.getInt(5);
+              String title = rs.getString(6);
+              String tag_name = rs.getString(7);
 
-            Question q = new Question(id_question, body, vote_question, id_tag, id_personne);
+            Question q = new Question(id_question, body, vote_question, id_tag, id_personne, title, tag_name);
             arr.add(q);
         }
         return arr;
@@ -75,13 +77,13 @@ public class ServiceQuestion {
     
     public void ajouter(Question q) throws SQLException {
         ste = con.createStatement();
-        String requeteInsert = "INSERT INTO `question` (`id_question`, `body`, `vote_question`, `id_tag`, `id_personne`) VALUES ('"+q.getId_question()+"', '"+q.getBody()+"', '"+q.getVote()+"', '"+q.getId_tag()+"', '"+q.getId_personne()+"');";
+        String requeteInsert = "INSERT INTO `question` (`id_question`, `body`, `vote_question`, `id_tag`, `id_personne`, `title`, `tag_name`) VALUES ('"+q.getId_question()+"', '"+q.getBody()+"', '"+q.getVote()+"', '"+q.getId_tag()+"', '"+q.getId_personne()+"', '"+q.getTitle()+"', '"+q.getTag_name()+"');";
         ste.executeUpdate(requeteInsert);
     }
     
     public void ajouter2(Question q) throws SQLException {
         ste = con.createStatement();
-        String requeteInsert = "INSERT INTO `question` (`body`, `vote_question`, `id_tag`, `id_personne`) VALUES ('"+q.getBody()+"', '"+q.getVote()+"', '"+q.getId_tag()+"', '"+q.getId_personne()+"');";
+        String requeteInsert = "INSERT INTO `question` (`body`, `vote_question`, `id_tag`, `id_personne`, `title`, `tag_name`) VALUES ('"+q.getBody()+"', '"+q.getVote()+"', '"+q.getId_tag()+"', '"+q.getId_personne()+"', '"+q.getTitle()+"', '"+q.getTag_name()+"');";
         ste.executeUpdate(requeteInsert);
     }
     

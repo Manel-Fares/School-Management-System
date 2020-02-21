@@ -26,6 +26,8 @@ public class HomePage extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("listQuestion.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("GUIResponses.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("addQuestion.fxml"));
             
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
@@ -42,5 +44,6 @@ public class HomePage extends Application {
     public static void main(String[] args) throws SQLException {
         launch(args);
     }
+    
     
 }
