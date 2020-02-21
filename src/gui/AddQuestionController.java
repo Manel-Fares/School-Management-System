@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -21,9 +22,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Popup;
 
 /**
  * FXML Controller class
@@ -54,7 +57,7 @@ public class AddQuestionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        txtQTitle.setText(String.valueOf(Question.q));
+        //txtQTitle.setText(String.valueOf(Question.q));
         ServiceTag tq= new ServiceTag();
         try {
             combotag.setItems(tq.readNom());
@@ -63,6 +66,9 @@ public class AddQuestionController implements Initializable {
         }
         
         passage();
+        
+        
+ 
         
     }    
     
@@ -79,6 +85,7 @@ public class AddQuestionController implements Initializable {
             Question q2 = new Question(txtBody, 1, 1, 1, txtTitle, txtTagName);
             //serQ.ajouter(q2);
             serQ.ajouter2(q2);
+
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -98,5 +105,7 @@ public class AddQuestionController implements Initializable {
         }
     });
     }
+    
+
     
 }

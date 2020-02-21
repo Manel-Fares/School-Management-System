@@ -24,5 +24,6 @@
          </columns></TableView>
       <Label layoutX="67.0" layoutY="28.0" text="Questions" />
       <Button fx:id="btn2Q" layoutX="53.0" layoutY="435.0" mnemonicParsing="false" text="add question" />
+      <Button fx:id="btnListR" layoutX="193.0" layoutY="435.0" mnemonicParsing="false" text="list responses" />
    </children>
 </AnchorPane>

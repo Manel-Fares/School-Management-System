@@ -65,6 +65,8 @@ public class ListQuestionController implements Initializable {
     private TableColumn<Question, String> col_title;
     @FXML
     private TableColumn<Question, String> col_tagname;
+    @FXML
+    private Button btnListR;
     
     
     
@@ -93,6 +95,7 @@ public class ListQuestionController implements Initializable {
 
         
         passage();
+        passageToResponses();
        get();
         
         
@@ -124,6 +127,20 @@ public class ListQuestionController implements Initializable {
         public void handle(Event event) {
             try {
                 AnchorPane pane =FXMLLoader.load(getClass().getResource("addQuestion.fxml"));
+                rootPan.getChildren().setAll(pane);
+            } catch (IOException ex) {
+                Logger.getLogger(ListQuestionController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    });
+    }
+    
+    public void passageToResponses(){
+    btnListR.setOnAction(new EventHandler() {
+        @Override
+        public void handle(Event event) {
+            try {
+                AnchorPane pane =FXMLLoader.load(getClass().getResource("GUIResponses.fxml"));
                 rootPan.getChildren().setAll(pane);
             } catch (IOException ex) {
                 Logger.getLogger(ListQuestionController.class.getName()).log(Level.SEVERE, null, ex);

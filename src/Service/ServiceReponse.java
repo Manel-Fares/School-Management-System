@@ -55,6 +55,12 @@ public class ServiceReponse {
         ste.executeUpdate(requeteInsert);
     }
     
+    public void ajouter2(Reponse r) throws SQLException {
+        ste = con.createStatement();
+        String requeteInsert = "INSERT INTO `reponse` (`body`, `vote_reponse`, `id_question`) VALUES ('"+r.getBody()+"', '"+r.getVote_reponse()+"', '"+r.getId_question()+"');";
+        ste.executeUpdate(requeteInsert);
+    }
+    
     public void update(int pid_reponse, String pbody, int pvote_reponse, int pid_question) throws SQLException {
         String query = "UPDATE `reponse` SET `body`=?,`vote_reponse`=?,`id_question`=? WHERE `id_reponse`=?";
 
@@ -83,25 +89,10 @@ public class ServiceReponse {
 
     }
     
-    public List<Reponse> findResponseByQuestion(int i) throws SQLException {
-        List<Reponse> arr = new ArrayList<>();
-        ste = con.createStatement();
-        ResultSet rs = ste.executeQuery("SELECT * FROM `reponse` WHERE `id_question`= "+i);
-        while (rs.next()) {
-              int id_reponse = rs.getInt(1);
-              String body = rs.getString(2);
-              int vote_reponse = rs.getInt(3);
-              int id_question = rs.getInt(4);
-              Reponse r = new Reponse(id_reponse, body, vote_reponse, id_question);
-              arr.add(r);
-        }
-        return arr;
-    }
-    
-//    public List<Reponse> findResponseByQuestionUser(int i, int u) throws SQLException {
+//    public List<Reponse> findResponseByQuestion(int i) throws SQLException {
 //        List<Reponse> arr = new ArrayList<>();
 //        ste = con.createStatement();
-//        ResultSet rs = ste.executeQuery("SELECT * FROM `reponse` WHERE `id_question`= "+i+" AND `personne_id`= "+u);
+//        ResultSet rs = ste.executeQuery("SELECT * FROM `reponse` WHERE `id_question`= "+i);
 //        while (rs.next()) {
 //              int id_reponse = rs.getInt(1);
 //              String body = rs.getString(2);
@@ -112,5 +103,33 @@ public class ServiceReponse {
 //        }
 //        return arr;
 //    }
+    
+    
+    
+//    public List<Reponse> findResponseByQuestionUser(int i, int u) throws SQLException {
+//        List<Reponse> arr = new ArrayList<>();
+//        ste = con.createStatement();
+//        ResultSet rs = ste.executeQuery("SELECT * FROM `reponse` WHERE `id_question`= "+i);
+//        while (rs.next()) {
+//              int id_reponse = rs.getInt(1);
+//              String body = rs.getString(2);
+//              int vote_reponse = rs.getInt(3);
+//              int id_question = rs.getInt(4);
+//              Reponse r = new Reponse(id_reponse, body, vote_reponse, id_question);
+//              arr.add(r);
+//        }
+//        return arr;
+//    }
+    
+        public List<String> findResponseByQuestion(int i) throws SQLException {
+        List<String> arr = new ArrayList<>();
+        ste = con.createStatement();
+        ResultSet rs = ste.executeQuery("SELECT `body` FROM `reponse` WHERE `id_question`= "+i);
+        while (rs.next()) {
+              String body = rs.getString(1);
+              arr.add(body);
+        }
+        return arr;
+    }
     
 }
