@@ -25,6 +25,7 @@ import javax.mail.internet.MimeMessage;
 import weboss.BD.Database;
 import weboss.Entities.Enseignant;
 import weboss.Entities.Etudiant;
+import weboss.Entities.UserParent;
 import weboss.Entities.Personnel;
 import weboss.Entities.User;
 
@@ -83,10 +84,16 @@ public class UserService {
                 Personnel per = new Personnel(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser,motDePasseUser,roleUser,statutUser,dateEmbaucheUser,salaireUser,domaineUser);  
                 Personnel.pr=(Personnel) per;
                 return Personnel.pr;
-            }/*else{
-                 u = new User(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser, roleUser);
-                 return u;
-            }*/
+            }else if(roleUser.equals("Parent")){
+                 UserParent parent = new UserParent(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser, roleUser);
+                 UserParent.parent=parent;
+                 return UserParent.parent;
+            }else{
+                 User user = new User(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser, roleUser);
+                 return user;
+                
+            }
+                
                 
                        
                         

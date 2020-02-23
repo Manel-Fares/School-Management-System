@@ -23,7 +23,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import weboss.BD.Database;
 import weboss.Entities.Etudiant;
-import weboss.Entities.Parent;
+import weboss.Entities.UserParent;
 
 /**
  *
@@ -158,7 +158,7 @@ public class EtudiantService implements IService1<Etudiant> {
             
          
              // motDePasseUser= decrypt(motDePasseUser, "45");
-            Parent p = new Parent(idUserP, cinUserP, nomUserP, prenomUserP, emailUserP, adresseUserP, numTelUserP, dateNaissanceUserP, sexeUserP, motDePasseUserP, roleUserP);
+            UserParent p = new UserParent(idUserP, cinUserP, nomUserP, prenomUserP, emailUserP, adresseUserP, numTelUserP, dateNaissanceUserP, sexeUserP, motDePasseUserP, roleUserP);
             
            // System.out.println(p);
             Etudiant u = new Etudiant(idUser, cinUser,nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser, classeEtd, inscriptionEtd,specialiteEtd,p);
@@ -214,7 +214,7 @@ public class EtudiantService implements IService1<Etudiant> {
             
          
              // motDePasseUser= decrypt(motDePasseUser, "45");
-            Parent p = new Parent(idUserP, cinUserP, nomUserP, prenomUserP, emailUserP, adresseUserP, numTelUserP, dateNaissanceUserP, sexeUserP, motDePasseUserP, roleUserP);
+            UserParent p = new UserParent(idUserP, cinUserP, nomUserP, prenomUserP, emailUserP, adresseUserP, numTelUserP, dateNaissanceUserP, sexeUserP, motDePasseUserP, roleUserP);
             
            // System.out.println(p);
             Etudiant u = new Etudiant(idUser, cinUser,nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser, classeEtd, inscriptionEtd,specialiteEtd,p);

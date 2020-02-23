@@ -16,11 +16,11 @@ public class Etudiant extends User {
     
     private String classeEtd;
     private Date inscriptionEtd;
-    private Parent parent;
+    private UserParent parent;
 public static Etudiant etd=null;
     private String specialiteEtd;
 
-    public Etudiant(String idUser, int cinUser, String nomUser, String prenomUser, String emailUser, String adresseUser, int numTelUser, Date dateNaissanceUser, String sexeUser, String motDePasseUser,String roleUser,String classeEtd,Date inscriptionEtd,String specialiteEtd,Parent p) {
+    public Etudiant(String idUser, int cinUser, String nomUser, String prenomUser, String emailUser, String adresseUser, int numTelUser, Date dateNaissanceUser, String sexeUser, String motDePasseUser,String roleUser,String classeEtd,Date inscriptionEtd,String specialiteEtd,UserParent p) {
         super(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser);
         this.classeEtd = classeEtd;
         this.inscriptionEtd = inscriptionEtd;       
@@ -57,11 +57,11 @@ public static Etudiant etd=null;
         this.specialiteEtd = specialiteEtd;
     }
 
-    public Parent getParent() {
+    public UserParent getParent() {
         return parent;
     }
 
-    public void setParent(Parent p) {
+    public void setParent(UserParent p) {
         this.parent = p;
     }
 

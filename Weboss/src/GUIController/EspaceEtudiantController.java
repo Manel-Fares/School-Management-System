@@ -13,7 +13,6 @@ import com.teknikindustries.bulksms.SMS;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.sql.SQLException;
@@ -28,8 +27,8 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -41,12 +40,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javax.mail.MessagingException;
 import weboss.Entities.*;
 import weboss.Service.EtudiantService;
-import weboss.Service.ParentService;
+import weboss.Service.UserParentService;
+
 import weboss.Service.UserService;
 import weboss.Service.ValidationChamps;
 
@@ -170,13 +169,13 @@ public class EspaceEtudiantController implements Initializable {
         //Date d = new Date(12,12,2012);
      UserService ser3 = new UserService();
         EtudiantService ser = new EtudiantService();
-        ParentService ser1 = new ParentService();
+        UserParentService ser1 = new UserParentService();
         if(Gender.getSelectedToggle().equals(H))
             sexe="Homme";
         else if(Gender.getSelectedToggle().equals(F))
             sexe="femme";
             
-         Parent parent = new Parent("",parseInt(idParent.getText()), nomR.getText(), "", "", adresse.getText(),parseInt(numTR.getText()),d,"",cin.getText(),"Parent");
+         UserParent parent = new UserParent("",parseInt(idParent.getText()), nomR.getText(), "", "", adresse.getText(),parseInt(numTR.getText()),d,"",cin.getText(),"Parent");
          System.out.println(parent);
         Etudiant etd = new Etudiant("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),Date.valueOf(dateN.getValue()),sexe,cin.getText(),"Etudiant", "",d, domain.getValue(),parent);
         System.out.println(etd);

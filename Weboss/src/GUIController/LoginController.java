@@ -9,8 +9,6 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +22,8 @@ import javafx.scene.layout.Pane;
 import weboss.Entities.Enseignant;
 import weboss.Entities.Etudiant;
 import weboss.Entities.Personnel;
+import weboss.Entities.UserParent;
+
 import weboss.Service.UserService;
 
 /**
@@ -195,6 +195,14 @@ try{
                 AcceuilPersonelController apc = loader.getController();
                 
                 email.getScene().setRoot(root);
+            }else if(ser.login(email.getText(), mdp.getText()) instanceof UserParent) {
+                FXMLLoader loader = new FXMLLoader(getClass()
+                        .getResource("/GUIInterface/AcceuilPersonel.fxml"));
+                Parent root = loader.load();
+                AcceuilPersonelController apc = loader.getController();
+                
+                email.getScene().setRoot(root);
+            } else {
             }
             /* Etudiant.etd=(Etudiant) ser.login(email.getText(), mdp.getText());
             
