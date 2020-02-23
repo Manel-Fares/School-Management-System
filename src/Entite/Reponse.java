@@ -22,6 +22,13 @@ public class Reponse {
         this.id_question = id_question;
     }
 
+    public Reponse(String body, int vote_reponse, int id_question) {
+        this.body = body;
+        this.vote_reponse = vote_reponse;
+        this.id_question = id_question;
+    }
+    
+
     public int getId_reponse() {
         return id_reponse;
     }

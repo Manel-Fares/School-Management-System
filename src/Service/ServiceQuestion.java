@@ -87,6 +87,25 @@ public class ServiceQuestion {
         ste.executeUpdate(requeteInsert);
     }
     
+    public List<Question> readRecherche(String s) throws SQLException {
+        List<Question> arr = new ArrayList<>();
+        ste = con.createStatement();
+        ResultSet rs = ste.executeQuery("select * from question WHERE `body` LIKE '"+ s +"%'");
+        while (rs.next()) {
+              int id_question = rs.getInt(1);
+              String body = rs.getString(2);
+              int vote_question = rs.getInt(3);
+              int id_tag = rs.getInt(4);
+              int id_personne = rs.getInt(5);
+              String title = rs.getString(6);
+              String tag_name = rs.getString(7);
+
+            Question q = new Question(id_question, body, vote_question, id_tag, id_personne, title, tag_name);
+            arr.add(q);
+        }
+        return arr;
+    }
+    
     
     
 }

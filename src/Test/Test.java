@@ -46,10 +46,10 @@ public class Test {
             //ser.delete(2);
             //ser.update(2, "wajihii", "ben slamaii", 35);
             
-            System.out.println(listQ);
+            //System.out.println(listQ);
             //serQ.update(3, "ques3", 0, 0, 0);
             //serQ.ajouter(q1);
-            serQ.ajouter2(q1);
+            //serQ.ajouter2(q1);
             //serQ.readAll();
             
             //System.out.println(listR);
@@ -61,6 +61,10 @@ public class Test {
             //serT.update(4, "mob", "mobdex");
             
             System.out.println(serQ.readAll());
+            System.out.println(serQ.readRecherche("body 1"));
+            System.out.println(serR.findResponseByQuestion(1));
+            
+            
             //System.out.println(serR.readAll());
             
             //System.out.println(serR.findResponseByQuestion(1));
