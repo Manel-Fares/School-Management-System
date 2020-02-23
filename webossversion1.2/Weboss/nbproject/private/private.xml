@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/CodeLoginController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AfficherController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/Afficher_Demande_EvenementController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/AcceuilEtudiant.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/CalendarEventController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/add_event.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/Affciher_Evenement.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/ReclamationController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Weboss.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/Absence.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Service/UserService.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AfficherEController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/Ajouter.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/NewPasswordController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/AbsenceShowUser.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/nbproject/jfx-impl.xml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AjouterEController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/afficher_Demande_Evenement.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AcceuilController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/ForgetPasswordController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/CSS/style.css</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/Consulter_demande_evenemetController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/NewPassword.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/LoginController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/AjouterE.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AcceuilEtudiantController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/GetAllEtudiant.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Service/ClubService.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/Reclamation.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AcceuilPersonelController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/ForgetPassword.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/CodeLogin.fxml</file>
+        </group>
+    </open-files>
+</project-private>
