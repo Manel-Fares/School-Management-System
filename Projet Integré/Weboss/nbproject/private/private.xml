@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/listQuestion.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/InterfaceEtudiantResultatController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Entities/Reponse.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/Afficher_Demande_EvenementController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/InterfaceEtudiantNoteController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Service/ServiceReponse.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/InterfaceParentNote.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/GestionNoteEnseignantController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Entities/Personnel.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/CreditEtudiantController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/addQuestion.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/GUIResponses.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AjouterResultatController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Weboss.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/InterfaceParentCredit.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/UpdateDeleteCalendar.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Service/ServiceQuestion.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/InterfaceParentNoteController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/InterfaceParentResultatController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/GUIResponsesController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Entities/Question.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AddQuestionController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Entities/Tag.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AjouterEvenementController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/Consulter_demande_evenemetController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIInterface/InterfaceParentResultat.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AjouterNoteController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AcceuilEtudiantController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Entities/User.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Entities/Parent.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/ListQuestionController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/InterfaceParentCreditController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/weboss/Service/ServiceTag.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AcceuilEnseignantController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/Weboss/src/GUIController/AcceuilParentController.java</file>
+        </group>
+    </open-files>
+</project-private>

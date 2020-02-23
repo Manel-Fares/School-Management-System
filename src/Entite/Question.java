@@ -19,6 +19,7 @@ public class Question {
     private String title;
     private String tag_name;
     public static int q;
+    public static String qName;
     
 
     public Question(int id_question, String body, int vote, int id_tag, int id_personne, String title, String tag_name) {
@@ -33,6 +34,9 @@ public class Question {
     public Question() {
 
     }
+    
+    
+    
     public static int getQ() {
         return q;
     }

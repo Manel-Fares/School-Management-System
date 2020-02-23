@@ -60,9 +60,10 @@ public class Test {
             //serT.ajouter(t1);
             //serT.update(4, "mob", "mobdex");
             
-            System.out.println(serQ.readAll());
-            System.out.println(serQ.readRecherche("body 1"));
-            System.out.println(serR.findResponseByQuestion(1));
+            //System.out.println(serQ.readAll());
+            //System.out.println(serQ.readRecherche("body 1"));
+            //System.out.println(serR.findResponseByQuestion(1));
+            System.out.println(serQ.readQTitle(4));
             
             
             //System.out.println(serR.readAll());

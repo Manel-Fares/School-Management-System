@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -87,10 +89,10 @@ public class ServiceQuestion {
         ste.executeUpdate(requeteInsert);
     }
     
-    public List<Question> readRecherche(String s) throws SQLException {
-        List<Question> arr = new ArrayList<>();
+    public ObservableList<Question> readRecherche(String s) throws SQLException {
+        ObservableList<Question> arr = FXCollections.observableArrayList();
         ste = con.createStatement();
-        ResultSet rs = ste.executeQuery("select * from question WHERE `body` LIKE '"+ s +"%'");
+        ResultSet rs = ste.executeQuery("select * from question WHERE `title` LIKE '%"+ s +"%'");
         while (rs.next()) {
               int id_question = rs.getInt(1);
               String body = rs.getString(2);
@@ -104,6 +106,28 @@ public class ServiceQuestion {
             arr.add(q);
         }
         return arr;
+    }
+    
+    public String readQTitle(int index) throws SQLException {
+        
+        String r=null;
+        ste = con.createStatement();
+        ResultSet rs = ste.executeQuery("select `title` from `question` WHERE `id_question`="+index);
+        while (rs.next()) {
+            r = rs.getString("title");
+        }
+        return r;
+    }
+    
+    public String readQBody(int index) throws SQLException {
+        
+        String r=null;
+        ste = con.createStatement();
+        ResultSet rs = ste.executeQuery("select `body` from `question` WHERE `id_question`="+index);
+        while (rs.next()) {
+            r = rs.getString("body");
+        }
+        return r;
     }
     
     
