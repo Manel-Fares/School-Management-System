@@ -20,6 +20,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -85,6 +86,12 @@ public class AddQuestionController implements Initializable {
             Question q2 = new Question(txtBody, 1, 1, 1, txtTitle, txtTagName);
             //serQ.ajouter(q2);
             serQ.ajouter2(q2);
+            
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setTitle("Question Add");
+            info.setHeaderText(null);
+            info.setContentText("Question Added");
+            info.show();
 
             
         } catch (Exception e) {

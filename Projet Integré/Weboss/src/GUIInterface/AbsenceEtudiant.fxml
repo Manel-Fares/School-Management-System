@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="605.0" prefWidth="1101.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.AbsenceEtudiantController">
+   <children>
+      <TableView fx:id="TableMatiere" layoutX="215.0" layoutY="163.0" prefHeight="309.0" prefWidth="656.0">
+        <columns>
+          <TableColumn fx:id="MatiereCol" prefWidth="172.66665649414062" text="Subject" />
+          <TableColumn fx:id="DateCol" prefWidth="156.33334350585938" text="Date" />
+            <TableColumn fx:id="TimeDebCol" prefWidth="169.33331298828125" text="TimeDeb" />
+            <TableColumn fx:id="TimeFinCol" prefWidth="160.33331298828125" text="TimeFin" />
+        </columns>
+      </TableView>
+      <Label fx:id="label" layoutX="477.0" layoutY="107.0" prefHeight="40.0" prefWidth="163.0" text="Toltal Number :" />
+   </children>
+</AnchorPane>
