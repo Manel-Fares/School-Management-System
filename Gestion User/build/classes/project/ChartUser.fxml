@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.ChartUserController">
+   <children>
+      <BarChart fx:id="salary" layoutX="522.0" layoutY="240.0" prefHeight="357.0" prefWidth="478.0" title="Teachers Salary">
+        <xAxis>
+          <CategoryAxis label="Name" side="BOTTOM" fx:id="x" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" label="Salary" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <PieChart fx:id="User" layoutY="145.0" />
+      <ImageView fitHeight="65.0" fitWidth="67.0" layoutX="20.0" layoutY="14.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@arrow_6-512.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
