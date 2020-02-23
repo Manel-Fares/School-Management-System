@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -49,16 +50,16 @@ public class ListQuestionController implements Initializable {
 //    private TableColumn<Question, String> colBody;
     
     ObservableList<Question> observableQL = FXCollections.observableArrayList();
-    @FXML
-    private TableColumn<Question, String> col_id;
-    @FXML
-    private TableColumn<Question, String> col_body;
-    @FXML
-    private TableColumn<Question, String> col_vote;
-    @FXML
-    private TableColumn<Question, String> col_tag;
-    @FXML
-    private TableColumn<Question, String> col_per;
+//    @FXML
+//    private TableColumn<Question, String> col_id;
+//    @FXML
+//    private TableColumn<Question, String> col_body;
+//    @FXML
+//    private TableColumn<Question, String> col_vote;
+//    @FXML
+//    private TableColumn<Question, String> col_tag;
+//    @FXML
+//    private TableColumn<Question, String> col_per;
     @FXML
     private AnchorPane rootPan;
     @FXML
@@ -67,6 +68,8 @@ public class ListQuestionController implements Initializable {
     private TableColumn<Question, String> col_tagname;
     @FXML
     private Button btnListR;
+    @FXML
+    private TextField txtSearch;
     
     
     
@@ -77,11 +80,11 @@ public class ListQuestionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
  
-        col_id.setCellValueFactory(new PropertyValueFactory<>("id_question"));
-        col_body.setCellValueFactory(new PropertyValueFactory<>("body"));
-        col_vote.setCellValueFactory(new PropertyValueFactory<>("vote"));
-        col_tag.setCellValueFactory(new PropertyValueFactory<>("id_tag"));
-        col_per.setCellValueFactory(new PropertyValueFactory<>("id_personne"));
+        //col_id.setCellValueFactory(new PropertyValueFactory<>("id_question"));
+        //col_body.setCellValueFactory(new PropertyValueFactory<>("body"));
+        //col_vote.setCellValueFactory(new PropertyValueFactory<>("vote"));
+        //col_tag.setCellValueFactory(new PropertyValueFactory<>("id_tag"));
+        //col_per.setCellValueFactory(new PropertyValueFactory<>("id_personne"));
         col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
         col_tagname.setCellValueFactory(new PropertyValueFactory<>("tag_name"));
         ServiceQuestion a = new ServiceQuestion();
@@ -96,7 +99,9 @@ public class ListQuestionController implements Initializable {
         
         passage();
         passageToResponses();
-       get();
+        get();
+        search();
+        //getName();
         
         
     }
@@ -119,7 +124,19 @@ public class ListQuestionController implements Initializable {
     
     }
     
-
+    public void getName(){
+       // int q;
+        tableQ.setOnMouseClicked(new EventHandler() {
+        
+        @Override
+        public void handle(Event event) {
+                    //Question q= tableQ.getSelectionModel().getSelectedItem();
+            Question.qName=tableQ.getSelectionModel().getSelectedItem().getTitle();
+        }
+        });
+        System.out.println(Question.qName);
+    
+    }
     
     public void passage(){
     btn2Q.setOnAction(new EventHandler() {
@@ -148,5 +165,18 @@ public class ListQuestionController implements Initializable {
         }
     });
     }
+    public void search(){
+         ServiceQuestion a = new ServiceQuestion();
+         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+             try {
+                 tableQ.setItems(a.readRecherche(newValue));
+             } catch (SQLException ex) {
+                 Logger.getLogger(ListQuestionController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            tableQ.refresh();
+         });
+        
+        
+    } 
 }
 

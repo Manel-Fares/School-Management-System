@@ -8,6 +8,7 @@ package gui;
 import Entite.Reponse;
 import Entite.Question;
 import Service.ServiceReponse;
+import Service.ServiceQuestion;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,6 +23,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
@@ -48,6 +50,10 @@ public class GUIResponsesController implements Initializable {
     private VBox vboxR;
     @FXML
     private Pagination pagR;
+    @FXML
+    private Label lblR;
+    @FXML
+    private Label lblQBody;
 
     /**
      * Initializes the controller class.
@@ -58,9 +64,21 @@ public class GUIResponsesController implements Initializable {
         //String qIndex = String.valueOf(Question.q);
         int qIndex = Question.q;
         
-        
+        //lblR.setText(Question.qName);
         //System.out.println("");
+        ServiceQuestion serQ = new ServiceQuestion();
         
+        try {
+            lblR.setText(serQ.readQTitle(qIndex));
+        } catch (SQLException ex) {
+            Logger.getLogger(GUIResponsesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            lblQBody.setText(serQ.readQBody(qIndex));
+        } catch (SQLException ex) {
+            Logger.getLogger(GUIResponsesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         ServiceReponse serR = new ServiceReponse();
         
@@ -100,19 +118,30 @@ public class GUIResponsesController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(GUIResponsesController.class.getName()).log(Level.SEVERE, null, ex);
         }*/
-       ServiceReponse dev = new ServiceReponse();
+       
+        //pagR.setPageFactory(n -> new TextArea(content.get(n)));
+        //System.out.println(content);
+        Refresh();
+        passageReturn();
+        //passageRefresh();
+    } 
+    
+    public void Refresh() {
+        ServiceReponse dev = new ServiceReponse();
         ArrayList<String> images = new ArrayList<>();
         try {
-            System.out.println("image path:" + dev.findResponseByQuestion(Question.q));
+            System.out.println("responses:" + dev.findResponseByQuestion(Question.q));
 
             //images.addAll(dev.recpererImage());
             //System.out.println(images);
-            for (int i = 0; i < dev.findResponseByQuestion(Question.q).size(); i++) {
+            if (dev.findResponseByQuestion(Question.q).size() > 0) {
+                for (int i = 0; i < dev.findResponseByQuestion(Question.q).size(); i++) {
                 
                // final String imageURI = new File(dev.recpererImage().get(i)).toURI().toString();
               //  System.out.println(imageURI);
-                images.add(dev.findResponseByQuestion(Question.q).get(i).toString());
+                    images.add(dev.findResponseByQuestion(Question.q).get(i).toString());
                 // images.add(imageURI);
+                }
             }
             /*images.add("/GUI/1.jpg");
             images.add("/GUI/1.jpg");*/
@@ -121,13 +150,18 @@ public class GUIResponsesController implements Initializable {
         }
 
         pagR.setPageCount(images.size());
-        pagR.setPageFactory(n -> new Label(images.get(n)));
-
-        //pagR.setPageFactory(n -> new TextArea(content.get(n)));
-        //System.out.println(content);
         
-        passageReturn();
-    }    
+        try {
+            if (dev.findResponseByQuestion(Question.q).size() > 0) {
+                pagR.setPageFactory(n -> new Label(images.get(n)));
+            } else {
+                pagR.setPageCount(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GUIResponsesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     @FXML
     private void GUIAddR(ActionEvent event) throws SQLException {
@@ -136,6 +170,12 @@ public class GUIResponsesController implements Initializable {
         ServiceReponse serR = new ServiceReponse();
         Reponse r1 = new Reponse(txtBody, 0, qIndex);
         serR.ajouter2(r1);
+        Alert info = new Alert(Alert.AlertType.INFORMATION);
+        info.setTitle("Response Add");
+        info.setHeaderText(null);
+        info.setContentText("Add Done");
+        info.show();
+        Refresh();
     }
     
     public void passageReturn(){
@@ -152,9 +192,26 @@ public class GUIResponsesController implements Initializable {
     });
     }
     
+    public void passageRefresh(){
+    btnRadd.setOnAction(new EventHandler() {
+        @Override
+        public void handle(Event event) {
+            try {
+                
+                AnchorPane pane =FXMLLoader.load(getClass().getResource("GUIResponses.fxml"));
+                rootPan.getChildren().setAll(pane);
+            } catch (IOException ex) {
+                Logger.getLogger(ListQuestionController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    });
+    }
+    
     int qIndex = Question.q;
     ServiceReponse serR = new ServiceReponse();
     public int sizeR() throws SQLException {
             return serR.findResponseByQuestion(qIndex).size();
     }
+
+    
 }
