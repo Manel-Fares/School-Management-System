@@ -67,7 +67,9 @@ public class UserService {
             String specialiteEtd = rs.getString("specialiteEtd");
             String statutUser = rs.getString("statutUser");
             String domaineUser = rs.getString("domaineUser");
+            String picUser = rs.getString("picUser");
             Double salaireUser = rs.getDouble("salaireUser");
+<<<<<<< HEAD:versio1.4/Weboss/src/weboss/Service/UserService.java
             Double idParent = rs.getDouble("idParent");
             if(roleUser.equals("Etudiant")){      
                 System.out.println("etd");
@@ -87,6 +89,38 @@ public class UserService {
                  u = new User(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser, roleUser);
                  return u;
             }*/
+=======
+            int idParent = rs.getInt("idParent");
+            switch (roleUser) {
+                case "Etudiant":
+                   
+                    u = new Etudiant(idUser, cinUser,nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser,picUser, classeEtd, inscriptionEtd,specialiteEtd,null);
+                    Etudiant.etd=(Etudiant) u;
+                    return Etudiant.etd;
+                case "Enseignant":
+                   
+                    Enseignant  ens = new Enseignant(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser, roleUser,picUser, statutUser,salaireUser,dateEmbaucheUser,domaineUser);
+                    Enseignant.ensg=(Enseignant) ens;
+                    return Enseignant.ensg;
+                case "Personnel":
+                    Personnel per = new Personnel(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser,motDePasseUser,roleUser,picUser,statutUser,dateEmbaucheUser,salaireUser,domaineUser);
+                    Personnel.pr= per;
+               
+                    return Personnel.pr;
+                case "Parent":
+                    UserParent parent = new UserParent(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser, roleUser,picUser);
+                    UserParent.parent=parent;
+                    return UserParent.parent;
+                case "root":
+                    User user = new User(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser, roleUser,picUser);
+                    User.user=user;
+                    System.out.println(user);
+                    return User.user;
+                default:
+                    break;
+            }
+                
+>>>>>>> be491afefe56576ceb1d1ea16807200dbee4e183:Weboss/src/weboss/Service/UserService.java
                 
                        
                         
@@ -156,8 +190,9 @@ public class UserService {
             int numTelUser = rs.getInt("numTelUser");           
             String motDePasseUser = rs.getString("motDePasseUser");
             String roleUser = rs.getString("roleUser");
+            String picUser = rs.getString("picUser");
             
-     User.user = new User(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser, roleUser);
+     User.user = new User(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser, roleUser,picUser);
         }
         return User.user;
     }

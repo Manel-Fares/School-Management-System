@@ -24,6 +24,7 @@ public class User {
     protected String sexeUser;
     protected String motDePasseUser;
     protected String roleUser;
+    protected String picUser;
     public static User user=null;
     public static int code;
 
@@ -38,7 +39,7 @@ public class User {
 
     
     
-    public User(String idUser,int cinUser,String nomUser,String prenomUser,String emailUser,String adresseUser,int numTelUser,Date dateNaissanceUser,String sexeUser,String motDePasseUser,String roleUser){
+    public User(String idUser,int cinUser,String nomUser,String prenomUser,String emailUser,String adresseUser,int numTelUser,Date dateNaissanceUser,String sexeUser,String motDePasseUser,String roleUser,String picUser){
         this.cinUser = cinUser;
         this.idUser = idUser;
         this.nomUser = nomUser;
@@ -50,6 +51,7 @@ public class User {
         this.sexeUser = sexeUser;
         this.motDePasseUser = motDePasseUser;
         this.roleUser = roleUser;
+        this.roleUser = picUser;
     }
 
     public User(String idUser, String nomUser, String prenomUser, String roleUser) {
@@ -62,6 +64,14 @@ public class User {
     public User(String nomUser, String prenomUser) {
         this.nomUser = nomUser;
         this.prenomUser = prenomUser;
+    }
+
+    public String getPicUser() {
+        return picUser;
+    }
+
+    public void setPicUser(String picUser) {
+        this.picUser = picUser;
     }
     
 

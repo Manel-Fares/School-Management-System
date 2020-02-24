@@ -94,6 +94,8 @@ public class EspaceEnseignantController implements Initializable {
     private Button print;
     @FXML
     private TextField search;
+    @FXML
+    private TextField img;
 
    
     @Override
@@ -139,7 +141,7 @@ public class EspaceEnseignantController implements Initializable {
             sexe="Homme";
         else if(Gender.getSelectedToggle().equals(F))
             sexe="femme";
-            Enseignant ens = new Enseignant("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),d, sexe, cin.getText(),"Enseignant", statut.getValue(),Double.valueOf(salaire.getText()),d, domain.getValue());
+            Enseignant ens = new Enseignant("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),d, sexe, cin.getText(),"Enseignant",img.getText(), statut.getValue(),Double.valueOf(salaire.getText()),d, domain.getValue());
       
        try {
             UserService.sendMail(email.getText(),"Congrats ","Your Password :"+cin.getText());
@@ -305,6 +307,17 @@ ex.getMessage();        }
           });
         
         
+    }
+
+    @FXML
+    private void img(ActionEvent event) {
+         FileChooser fc=new FileChooser();
+        File selectedFile= fc.showSaveDialog(null);
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter ("IMAGE Files","*.png"));
+        if(selectedFile !=null)
+        {
+            img.setText(selectedFile.getAbsolutePath());
+        }
     }
    
     

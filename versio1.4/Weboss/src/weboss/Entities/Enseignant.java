@@ -20,8 +20,8 @@ public class Enseignant extends User{
     private Date dateEmbaucheEnsg;
     public static Enseignant ensg=null;
     
-    public Enseignant(String idUser, int cinUser, String nomUser, String prenomUser, String emailUser, String adresseUser, int numTelUser, Date dateNaissanceUser, String sexeUser, String motDePasseUser,String roleUser,String statutEnsg,Double salaireEnsg,Date dateEmbaucheEnsg,String domaineEnsg) {
-        super(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser);
+    public Enseignant(String idUser, int cinUser, String nomUser, String prenomUser, String emailUser, String adresseUser, int numTelUser, Date dateNaissanceUser, String sexeUser, String motDePasseUser,String roleUser,String picUser,String statutEnsg,Double salaireEnsg,Date dateEmbaucheEnsg,String domaineEnsg) {
+        super(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser,picUser);
         this.statutEnsg = statutEnsg;
         this.salaireEnsg = salaireEnsg;
         this.dateEmbaucheEnsg = dateEmbaucheEnsg;

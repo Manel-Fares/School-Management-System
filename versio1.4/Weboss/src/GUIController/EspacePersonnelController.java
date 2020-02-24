@@ -9,6 +9,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -91,6 +92,8 @@ public class EspacePersonnelController implements Initializable {
     ObservableList<String> stat = FXCollections.observableArrayList("Conge","En cours");
     @FXML
     private TextField search;
+    @FXML
+    private JFXTextField img;
     
 
    
@@ -134,13 +137,9 @@ public class EspacePersonnelController implements Initializable {
             sexe="Homme";
         else if(Gender.getSelectedToggle().equals(F))
             sexe="femme";
-            Personnel pr = new Personnel("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),d, sexe, cin.getText(),"Enseignant", statut.getValue(),d,Double.valueOf(salaire.getText()), domain.getValue());
+            Personnel pr = new Personnel("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),d, sexe, cin.getText(),"Enseignant","", statut.getValue(),d,Double.valueOf(salaire.getText()), domain.getValue());
       
-       try {
-            UserService.sendMail(email.getText(),"Congrats ","Your Password :"+cin.getText());
-        } catch (MessagingException ex) {
-            Logger.getLogger(EspaceEtudiantController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+     
         try {
             ser.ajouter(pr);
             loadData();
@@ -149,6 +148,11 @@ public class EspacePersonnelController implements Initializable {
             
         } catch (SQLException ex) {
             System.out.println("add error");
+        }
+          try {
+            UserService.sendMail(email.getText(),"Congrats ","Your Password :"+cin.getText());
+        } catch (MessagingException ex) {
+            Logger.getLogger(EspaceEtudiantController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }
@@ -296,6 +300,17 @@ FileChooser fileChooser = new FileChooser();
         
         doc.close();
         
+    }
+
+    @FXML
+    private void img(ActionEvent event) {
+         FileChooser fc=new FileChooser();
+        File selectedFile= fc.showSaveDialog(null);
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter ("IMAGE Files","*.png"));
+        if(selectedFile !=null)
+        {
+            img.setText(selectedFile.getAbsolutePath());
+        }
     }
        
 

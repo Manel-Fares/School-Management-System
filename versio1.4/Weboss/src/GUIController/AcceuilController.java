@@ -33,24 +33,27 @@ public class AcceuilController implements Initializable {
    
     @FXML
     private AnchorPane background;
+    @FXML
     private Pane user_charts;
+    @FXML
     private Pane chartClub;
-    private Label nbr_notif_admin;
 
     DemandeEvenementService devs = new DemandeEvenementService();
-    private Pane notification_area;
-    private Label desc_notif;
+    @FXML
     private Pane nbrEtudiantClass;
+    @FXML
+    private JFXButton etudiant;
+    @FXML
+    private JFXButton enseignant;
+    @FXML
+    private JFXButton personnel;
 
-    /**
-     * Initializes the controller class.
-     */
+  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
          Parent fxml,fxml1;
-         nbr_notif_admin.setText("" + devs.nombre_demande());
-         notification_area.setVisible(false);
+   
         try {
 
             fxml = FXMLLoader.load(getClass().getResource("/GUIInterface/ChartUser.fxml"));
@@ -106,29 +109,30 @@ public class AcceuilController implements Initializable {
         }
     }
 
+    @FXML
     private void EspaceEtudiant(ActionEvent event) {
         affichage("/GUIInterface/EspaceEtudiant.fxml");
     }
 
+    @FXML
     private void EspaceEnseignant(ActionEvent event) {
                 affichage("/GUIInterface/EspaceEnseignant.fxml");
 
     }
 
+    @FXML
     private void EspacePersonnel(ActionEvent event) {
                 affichage("/GUIInterface/EspacePersonnel.fxml");
 
     }
 
-    private void afficherNotification(MouseEvent event) {
-         notification_area.setVisible(true);
-desc_notif.setText(devs.notifiction().toString());      
-    }
 
+    @FXML
     private void demandeEvenement(MouseEvent event) {
          affichage("/GUIInterface/DemandeEvenement.fxml");
     }
 
+    @FXML
     private void GestionClub(MouseEvent event) {
                  affichage("/GUIInterface/Afficher_Club.fxml");
 

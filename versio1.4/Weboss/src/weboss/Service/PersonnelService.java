@@ -108,9 +108,10 @@ PreparedStatement pre=con.prepareStatement("update users set nomUser='"+t.getNom
             Date dateEmbauchePr = rs.getDate("dateEmbaucheUser");
             String fonctionPr = rs.getString("domaineUser");
             String statutPr = rs.getString("statutUser");
+            String picUser = rs.getString("picUser");
             Double salairePr = rs.getDouble("salaireUser");
 
-                Personnel p = new Personnel(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser, statutPr, dateEmbauchePr, salairePr, fonctionPr);
+                Personnel p = new Personnel(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser,picUser, statutPr, dateEmbauchePr, salairePr, fonctionPr);
             arr.add(p);
         }
         return arr;
@@ -135,9 +136,10 @@ PreparedStatement pre=con.prepareStatement("update users set nomUser='"+t.getNom
             Date dateEmbauchePr = rs.getDate("dateEmbaucheUser");
             String fonctionPr = rs.getString("domaineUser");
             String statutPr = rs.getString("statutUser");
+            String picUser = rs.getString("picUser");
             Double salairePr = rs.getDouble("salaireUser");
 
-                Personnel p = new Personnel(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser, statutPr, dateEmbauchePr, salairePr, fonctionPr);
+                Personnel p = new Personnel(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser,picUser, statutPr, dateEmbauchePr, salairePr, fonctionPr);
             arr.add(p);
         }
         return arr;

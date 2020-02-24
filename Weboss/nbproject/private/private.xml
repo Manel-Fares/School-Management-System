@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/weboss/Service/UserService.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/weboss/Service/UserParentService.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/GUIController/EspacePersonnelController.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/weboss/Entities/Enseignant.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/weboss/Entities/User.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/GUIController/AcceuilController.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/weboss/Service/EtudiantService.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/weboss/Entities/Etudiant.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/weboss/Service/ReclamationService.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/weboss/Service/PersonnelService.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/CSS/style.css</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/GUIController/DemandeEvenementController.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/GUIController/EspaceEnseignantController.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/weboss/Entities/UserParent.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/GUIInterface/Acceuil.fxml</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/weboss/Service/EnseignantService.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/GUIController/EspaceEtudiantController.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/weboss/Entities/Personnel.java</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/GUIInterface/AcceuilEtudiant.fxml</file>
+            <file>file:/C:/Users/Neifos/Documents/GitHub/School-Management-System/Weboss/src/GUIController/LoginController.java</file>
+        </group>
+    </open-files>
+</project-private>

@@ -24,6 +24,12 @@ import javafx.scene.layout.Pane;
 import weboss.Entities.Enseignant;
 import weboss.Entities.Etudiant;
 import weboss.Entities.Personnel;
+<<<<<<< HEAD:versio1.4/Weboss/src/GUIController/LoginController.java
+=======
+import weboss.Entities.User;
+import weboss.Entities.UserParent;
+
+>>>>>>> be491afefe56576ceb1d1ea16807200dbee4e183:Weboss/src/GUIController/LoginController.java
 import weboss.Service.UserService;
 
 /**
@@ -177,9 +183,9 @@ try{
         
         try {
             
-            System.out.println(ser.login(email.getText(), mdp.getText()));
-            System.out.println(Enseignant.ensg);
-            if (ser.login(email.getText(), mdp.getText()) instanceof Etudiant) {
+            User u=ser.login(email.getText(), mdp.getText());
+            System.out.println(Personnel.pr);
+            if (u instanceof Etudiant) {
                 FXMLLoader loader = new FXMLLoader(getClass()
                         .getResource("/GUIInterface/AcceuilEtudiant.fxml"));
                 Parent root = loader.load();
@@ -187,14 +193,14 @@ try{
                 
                 email.getScene().setRoot(root);
                 
-            } else if (ser.login(email.getText(), mdp.getText()) instanceof Personnel) {
-                System.out.println(Personnel.pr);
+            } else if (u instanceof Personnel) {            
                 FXMLLoader loader = new FXMLLoader(getClass()
                         .getResource("/GUIInterface/AcceuilPersonel.fxml"));
                 Parent root = loader.load();
                 AcceuilPersonelController apc = loader.getController();
                 
                 email.getScene().setRoot(root);
+<<<<<<< HEAD:versio1.4/Weboss/src/GUIController/LoginController.java
             }
             /* Etudiant.etd=(Etudiant) ser.login(email.getText(), mdp.getText());
             
@@ -224,10 +230,29 @@ try{
               Parent root = loader.load();
                 HomeController apc = loader.getController();
                
+=======
+            }else if(u instanceof UserParent) {
+                System.out.println("salutttttttttt");
+                FXMLLoader loader = new FXMLLoader(getClass()
+                        .getResource("/GUIInterface/AcceuilParent.fxml"));
+                Parent root = loader.load();
+                AcceuilPersonelController apc = loader.getController();
                 
                 email.getScene().setRoot(root);
+            } else if(u instanceof User){
+                System.out.println("hiii");
+                  FXMLLoader loader = new FXMLLoader(getClass()
+                        .getResource("/GUIInterface/Acceuil.fxml"));
+                Parent root = loader.load();
+                AcceuilController apc = loader.getController();
+>>>>>>> be491afefe56576ceb1d1ea16807200dbee4e183:Weboss/src/GUIController/LoginController.java
                 
-            }*/
+                email.getScene().setRoot(root);
+                System.out.println("p22");
+                        
+                
+            }
+          
             
         } catch (Exception ex) {
             System.out.println("login error");

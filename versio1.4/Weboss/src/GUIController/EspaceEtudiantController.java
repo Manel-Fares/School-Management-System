@@ -9,6 +9,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.jfoenix.controls.JFXTextField;
 import com.teknikindustries.bulksms.SMS;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -122,6 +123,8 @@ public class EspaceEtudiantController implements Initializable {
     private Label error_adR;
     @FXML
     private Label error_cinR;
+    @FXML
+    private JFXTextField img;
 
    
     @Override
@@ -175,30 +178,37 @@ public class EspaceEtudiantController implements Initializable {
             sexe="Homme";
         else if(Gender.getSelectedToggle().equals(F))
             sexe="femme";
+<<<<<<< HEAD:versio1.4/Weboss/src/GUIController/EspaceEtudiantController.java
             
          Parent parent = new Parent("",parseInt(idParent.getText()), nomR.getText(), "", "", adresse.getText(),parseInt(numTR.getText()),d,"",cin.getText(),"Parent");
+=======
+           // System.out.println(img.getText());
+         UserParent parent = new UserParent("",parseInt(idParent.getText()), nomR.getText(), "", "", adresse.getText(),parseInt(numTR.getText()),d,"",cin.getText(),"Parent","");
+>>>>>>> be491afefe56576ceb1d1ea16807200dbee4e183:Weboss/src/GUIController/EspaceEtudiantController.java
          System.out.println(parent);
-        Etudiant etd = new Etudiant("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),Date.valueOf(dateN.getValue()),sexe,cin.getText(),"Etudiant", "",d, domain.getValue(),parent);
+        Etudiant etd = new Etudiant("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),Date.valueOf(dateN.getValue()),sexe,cin.getText(),"Etudiant","", null,d, domain.getValue(),parent);
         System.out.println(etd);
       SMS smsTn = new SMS();
-        try {
-            UserService.sendMail(email.getText(),"Congrats ","Your Password :"+cin.getText());
-        } catch (MessagingException ex) {
-            Logger.getLogger(EspaceEtudiantController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
         //smsTn.SendSMS("argoubisofien", "Neifos13235258", "Your Account :"+cin.getText()+"Password"+cin.getText(), "+216"+numTR.getText(), "https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
         //System.out.println(parent);
         try {
            // if(!isAdresseEmpty && !isCinEmpty && !isCinREmpty && !isEmailEmpty && !isNomREmpty && !isPhoneREmpty && !isPrenomEmpty && !isTelEmpty && !isadressREmpty){
             ser1.ajouter(parent);
             
+            //ser.ajouter(etd);
             ser.ajouter(etd,idParent.getText());
             loadData();
             clearData();
             
             
-        } catch (SQLException ex) {
-            System.out.println("add error");
+        } catch (Exception ex) {
+            System.out.println("error add");
+        }
+          try {
+            UserService.sendMail(email.getText(),"Congrats ","Your Password :"+cin.getText());
+        } catch (MessagingException ex) {
+            Logger.getLogger(EspaceEtudiantController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }
@@ -359,6 +369,17 @@ FileChooser fileChooser = new FileChooser();
           });
         
         
+    }
+
+    @FXML
+    private void image(ActionEvent event) {
+         FileChooser fc=new FileChooser();
+        File selectedFile= fc.showSaveDialog(null);
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter ("IMAGE Files","*.png"));
+        if(selectedFile !=null)
+        {
+            img.setText(selectedFile.getAbsolutePath());
+        }
     }
        
 
