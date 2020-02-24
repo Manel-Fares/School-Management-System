@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.AfficherAbsenceController">
+   <children>
+      <TableView fx:id="TableAbsence" layoutX="42.0" layoutY="81.0" prefHeight="249.0" prefWidth="519.0">
+        <columns>
+          <TableColumn fx:id="IdCol" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="NomCol" prefWidth="81.0" text="Nom" />
+            <TableColumn fx:id="MatiereCol" prefWidth="93.0" text="Matiere" />
+            <TableColumn fx:id="DateCol" prefWidth="94.0" text="Date" />
+            <TableColumn fx:id="TimeDebCol" prefWidth="79.0" text="TimeDeb" />
+            <TableColumn fx:id="TimeFinCol" prefWidth="96.0" text="TimeFin" />
+        </columns>
+      </TableView>
+      <JFXTextField fx:id="SearchInput" layoutX="209.0" layoutY="35.0" promptText="Search..." />
+      <JFXButton fx:id="Add" layoutX="494.0" layoutY="347.0" onAction="#AddAction" prefHeight="31.0" prefWidth="67.0" text="Add" />
+      <JFXButton fx:id="Reload" layoutX="268.0" layoutY="347.0" onAction="#ReloadAction" prefHeight="31.0" prefWidth="67.0" text="Reload" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="605.0" prefWidth="1100.0" styleClass="bck" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.InterfaceParentCreditController">
+   <children>
+      <Label layoutX="408.0" layoutY="24.0" prefHeight="58.0" prefWidth="207.0" text="Crédit" textAlignment="CENTER" textFill="#9a1816" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="Arial Bold" size="38.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableViewNotes" layoutX="203.0" layoutY="155.0" prefHeight="324.0" prefWidth="583.0">
+         <columns>
+            <TableColumn fx:id="infoMatiere" minWidth="20.0" prefWidth="197.0" text="Subject informations" />
+            <TableColumn fx:id="noteCC" prefWidth="71.0" text="Note CC" />
+            <TableColumn fx:id="noteDS" prefWidth="106.0" text="Note DS" />
+            <TableColumn fx:id="noteExam" prefWidth="103.0" text="Note Examen" />
+            <TableColumn fx:id="moyenne" prefWidth="105.0" text="Moyenne" />
+         </columns>
+      </TableView>
+      <TextField fx:id="idEtudiant" layoutX="422.0" layoutY="109.0" />
+      <Label layoutX="307.0" layoutY="113.0" text="ID Etudiant" />
+   </children>
+</AnchorPane>
