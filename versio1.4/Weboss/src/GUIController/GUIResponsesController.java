@@ -137,7 +137,7 @@ public class GUIResponsesController implements Initializable {
 
             //images.addAll(dev.recpererImage());
             //System.out.println(images);
-            if (dev.findResponseByQuestion(Question.q).size() > 0) {
+            //if (dev.findResponseByQuestion(Question.q).size() > 0) {
                 for (int i = 0; i < dev.findResponseByQuestion(Question.q).size(); i++) {
                 
                // final String imageURI = new File(dev.recpererImage().get(i)).toURI().toString();
@@ -145,7 +145,7 @@ public class GUIResponsesController implements Initializable {
                     images.add(dev.findResponseByQuestion(Question.q).get(i).toString());
                 // images.add(imageURI);
                 }
-            }
+            //}
             /*images.add("/GUI/1.jpg");
             images.add("/GUI/1.jpg");*/
         } catch (SQLException ex) {
@@ -157,7 +157,8 @@ public class GUIResponsesController implements Initializable {
         try {
             if (dev.findResponseByQuestion(Question.q).size() > 0) {
                 pagR.setPageFactory(n -> new Label(images.get(n)));
-            } else {
+            }
+            else {
                 pagR.setPageCount(1);
             }
         } catch (SQLException ex) {
@@ -168,7 +169,7 @@ public class GUIResponsesController implements Initializable {
 
     @FXML
     private void GUIAddR(ActionEvent event) throws SQLException {
-        int qIndex = Question.q;
+        //int qIndex = Question.q;
         String txtBody = txtAreaR.getText();
         ServiceReponse serR = new ServiceReponse();
         Reponse r1 = new Reponse(txtBody, 0, qIndex);
@@ -186,7 +187,7 @@ public class GUIResponsesController implements Initializable {
         @Override
         public void handle(Event event) {
             try {
-                AnchorPane pane =FXMLLoader.load(getClass().getResource("listQuestion.fxml"));
+                AnchorPane pane =FXMLLoader.load(getClass().getResource("/GUIInterface/listQuestion.fxml"));
                 rootPan.getChildren().setAll(pane);
             } catch (IOException ex) {
                 Logger.getLogger(ListQuestionController.class.getName()).log(Level.SEVERE, null, ex);
