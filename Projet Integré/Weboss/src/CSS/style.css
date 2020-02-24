@@ -133,7 +133,9 @@
 	-fx-text-fill:white;
 }*/
 
-
+.lblR{
+    -fx-text-fill:linear-gradient(to top, #ff7f50, #6a5acd);
+}
 
 
 
