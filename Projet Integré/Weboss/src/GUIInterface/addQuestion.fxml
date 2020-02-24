@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPan" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.AddQuestionController">
+<AnchorPane id="AnchorPane" fx:id="rootPan" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.AddQuestionController">
     <stylesheets>
         <URL value="@addquestion.css" />
     </stylesheets>
