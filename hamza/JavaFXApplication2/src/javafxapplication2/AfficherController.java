@@ -5,6 +5,7 @@
  */
 package javafxapplication2;
 
+import com.jfoenix.controls.JFXButton;
 import com.sun.javaws.Main;
 import javafx.scene.chart.PieChart.Data;
 import java.net.URL;
@@ -70,6 +71,9 @@ public class AfficherController implements Initializable {
     @FXML
     private TextField Recherche;
     ClassService us =new ClassService();
+    @FXML
+    private JFXButton Add;
+    int nbr=0;
 
     /**
      * Initializes the controller class.
@@ -97,138 +101,78 @@ public class AfficherController implements Initializable {
             @Override
             public void handle(Event event) {
                 Class c=TableViewClass.getSelectionModel().getSelectedItem();
-                try {
-                    popup(c);
-                } catch (IOException ex) {
-                    Logger.getLogger(AfficherController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
+                if(nbr==2)
+                    UpdateDeleteClass(c);
+                else if(nbr>=2)
+                    nbr=0;
+                nbr++;              
             }
         });
         
     }
-    
-    private void OnUpdateClickAction()  {
-     /*  TableViewClass.setOnMouseClicked(new EventHandler() {
-           @Override
-           public void handle(Event event) {
-              try {
-            FXMLLoader loader =new FXMLLoader(getClass().getResource("Modifier.fxml"));
-              Class dataList = TableViewClass.getSelectionModel().getSelectedItem();
-           
-            Parent root =loader.load(); 
-                  ModifierController controller = loader.getController();
-                   System.out.println(dataList);
-                   System.out.println("ssss"+controller.getData());
-                 controller.setData(dataList);
-                  TableViewClass.getScene().setRoot(root);
-                  
-   
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-       });*/
-               }
 
-    @FXML
+
     private void ReloadAction(ActionEvent event) {
-        ClassService us =new ClassService();
-        
+        ClassService us =new ClassService();       
         TableViewClass.setItems(us.GetClass()); 
         TableViewClass.refresh();
       
-        
-        
-        
     }
 
  
-     private void Recherche() {
-         
-         Recherche.textProperty().addListener((observable, oldValue, newValue) -> {
-            
+     private void Recherche() {        
+         Recherche.textProperty().addListener((observable, oldValue, newValue) -> {           
         TableViewClass.setItems(us.SearchClass(newValue)); 
         TableViewClass.refresh();
             
 });
     }
      
-     
-     private void popup(Class data) throws IOException {                     
-         Stage stage = (Stage) AnchorPaneUpdate.getScene().getWindow();         
-         final Popup popup = new Popup();
-        Button leave = new Button("X"); 
-        Button update = new Button("Update"); 
-        Button delete = new Button("Delete"); 
-         Label label = new Label(); 
-        TextField tf1 =new TextField();
-        TextField tf2 =new TextField();
-        TextArea DescModClass= new TextArea();
-       popup.centerOnScreen();
-        tf1.setText(data.getName());
-        tf2.setText(String.valueOf(data.getNbr_Etudiant()));
-         ObservableList<String> optionsNiv = 
-    FXCollections.observableArrayList("1","2","3","4","5");
-        ObservableList<String> optionsSpec = 
-    FXCollections.observableArrayList("A","B","TWIN","DS","BI","GL","INFOB");
-        ComboBox<String> ModNivClass =new ComboBox<>();
-        ComboBox<String> SpecNivClass=new ComboBox<>();
-         ModNivClass.getItems().clear();
-        SpecNivClass.getItems().clear();
-        ModNivClass.setItems(optionsNiv);
-        SpecNivClass.setItems(optionsSpec);
-        DescModClass.setText(data.getDescription());
-   // popup.getContent().addAll(new Circle(25, 25, 50, Color.AQUAMARINE));
-       label.setStyle(" -fx-background-color: rgba(53,157,243,0.5);-fx-pref-height:350px;-fx-pref-width:300px;");
-       leave.setLayoutX(270);
-       leave.setLayoutY(10);
-       update.setLayoutX(90);
-       update.setLayoutY(270);
-       delete.setLayoutX(170);
-       delete.setLayoutY(270);
-       tf1.setLayoutX(70);
-       tf1.setLayoutY(50);
-       tf2.setLayoutX(70);
-       tf2.setLayoutY(150);
-        ModNivClass.setLayoutX(70);
-       ModNivClass.setLayoutY(100);
-       SpecNivClass.setLayoutX(170);
-       SpecNivClass.setLayoutY(100);
-       DescModClass.setLayoutX(70);
-       DescModClass.setLayoutY(200);
-       DescModClass.setStyle("-fx-pref-height:50px;-fx-pref-width:150px;");
-       leave.setOnAction((ActionEvent event) -> {
-           popup.hide();
-        });
-       update.setOnAction((ActionEvent event) -> {
-           popup.hide();
-           String niv=ModNivClass.getValue()+SpecNivClass.getValue();
-               Class u =new Class(data.getId(),tf1.getText(),ModNivClass.getValue(),SpecNivClass.getValue(),Integer.parseInt(tf2.getText()),DescModClass.getText());;
-        ClassService us =new ClassService();
-        us.UpdateClass(u);
-           TableViewClass.setItems(us.GetClass()); 
-           TableViewClass.refresh();
-        });
-       delete.setOnAction((ActionEvent event) -> {
-           popup.hide();
-           us.DeleteClass(data.getId());
-        System.out.println("Deleted");
-           TableViewClass.setItems(us.GetClass()); 
-           TableViewClass.refresh();
-        });
-       
-       popup.getContent().addAll(label,leave,tf1,tf2,update,delete,ModNivClass,SpecNivClass,DescModClass);
-   
-    TableViewClass.setOnMouseClicked(new EventHandler() {
-             @Override
-             public void handle(Event event) {
-                 popup.show(stage);
-             }               
-         });
-   
+
+    @FXML
+    private void AddAction(ActionEvent event) {
+        addClass();
+        
+    }
+    
+    
+         private void addClass() {
+            try {
+               FXMLLoader loader = new FXMLLoader();
+               loader.setLocation(getClass().getResource("Ajouter.fxml"));
+               AnchorPane rootLayout = (AnchorPane) loader.load();
+               Stage stage = new Stage();
+               stage.initModality(Modality.APPLICATION_MODAL); 
+               Scene scene = new Scene(rootLayout);               
+               stage.setScene(scene);
+               stage.show();
+           } catch (IOException ex) {
+               Logger.getLogger(AfficherController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }
+         
+         
+    private void UpdateDeleteClass(Class c) {
+            try {
+               FXMLLoader loaderr = new FXMLLoader();
+               loaderr.setLocation(getClass().getResource("Modifier.fxml"));
+               AnchorPane rootLayout = (AnchorPane) loaderr.load();
+               Stage stage = new Stage();
+               stage.initModality(Modality.APPLICATION_MODAL); 
+               ModifierController eventController = loaderr.getController();
+               eventController.setMainController(this);
+               eventController.setData(String.valueOf(c.getId()),c.getName(),c.getNiveau(),c.getSpec(),String.valueOf(c.getNbr_Etudiant()),c.getDescription()); 
+               Scene scene = new Scene(rootLayout);               
+               stage.setScene(scene);
+               stage.show();
+           } catch (IOException ex) {
+               Logger.getLogger(AfficherController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }
+      
   
-   
-     }
+      
+     
+ 
     
 }

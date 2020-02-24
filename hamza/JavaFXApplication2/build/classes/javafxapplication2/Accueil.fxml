@@ -9,7 +9,7 @@
       <Button fx:id="Class" layoutX="177.0" layoutY="164.0" mnemonicParsing="false" onAction="#ClassAction" prefHeight="44.0" prefWidth="89.0" text="Class" />
       <Button fx:id="Calendar" layoutX="161.0" layoutY="237.0" mnemonicParsing="false" onAction="#CalendarAction" prefHeight="44.0" prefWidth="105.0" text="Calendar Annuel" />
       <Button fx:id="AffEtud" layoutX="354.0" layoutY="237.0" mnemonicParsing="false" onAction="#AffEtudAction" prefHeight="44.0" prefWidth="105.0" text="Affecter Etudiant" />
-      <Button fx:id="AffEns" layoutX="361.0" layoutY="303.0" mnemonicParsing="false" onAction="#AffEnsAction" prefHeight="44.0" prefWidth="114.0" text="Affecter Enseigant" />
       <Button fx:id="Absence" layoutX="157.0" layoutY="303.0" mnemonicParsing="false" onAction="#AbsenceAction" prefHeight="44.0" prefWidth="114.0" text="Add Absence" />
+      <Button fx:id="Stat" layoutX="256.0" layoutY="103.0" mnemonicParsing="false" onAction="#StatAction" prefHeight="44.0" prefWidth="89.0" text="Stat" />
    </children>
 </AnchorPane>
