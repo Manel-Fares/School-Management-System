@@ -131,13 +131,14 @@ public class ReclamationService implements IService1<Reclamation> {
            int numTelUser = rs.getInt("us.numTelUser");
             String motDePasseUser = rs.getString("us.motDePasseUser");
             String roleUser = rs.getString("us.roleUser");
+            String picUser = rs.getString("us.picUser");
             
             String classeEtd = rs.getString("us.classeEtd");
             java.sql.Date inscriptionEtd = rs.getDate("us.inscriptionEtd");
             String specialiteEtd = rs.getString("us.specialiteEtd");
             String idParent = rs.getString("us.idParent");
             
-            Etudiant etd = new Etudiant(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser, roleUser, classeEtd, inscriptionEtd, specialiteEtd, null);
+            Etudiant etd = new Etudiant(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser, roleUser,picUser, classeEtd, inscriptionEtd, specialiteEtd, null);
             
             
             Reclamation r = new Reclamation(idReclamation, sujetReclamation, descriptionReclamation, statutReclamation, dateCreation,etd);

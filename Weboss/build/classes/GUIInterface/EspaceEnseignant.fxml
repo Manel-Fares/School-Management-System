@@ -10,7 +10,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.EspaceEnseignantController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.EspaceEnseignantController">
    <children>
       <TextField fx:id="nom" layoutX="64.0" layoutY="135.0" prefHeight="25.0" prefWidth="187.0" promptText="First Name .." />
       <TextField fx:id="prenom" layoutX="294.0" layoutY="135.0" prefHeight="25.0" prefWidth="187.0" promptText="Last Name .." />
@@ -40,5 +40,7 @@
       <ComboBox fx:id="statut" layoutX="294.0" layoutY="259.0" prefHeight="25.0" prefWidth="187.0" promptText="Status.." />
       <Button fx:id="print" layoutX="429.0" layoutY="484.0" mnemonicParsing="false" onAction="#print" styleClass="loginBtn" stylesheets="@../CSS/style.css" text="Print" />
       <TextField fx:id="search" layoutX="758.0" layoutY="74.0" promptText="Search.." />
+      <Button layoutX="357.0" layoutY="354.0" mnemonicParsing="false" onAction="#img" text="Button" />
+      <TextField fx:id="img" layoutX="309.0" layoutY="388.0" visible="false" />
    </children>
 </AnchorPane>

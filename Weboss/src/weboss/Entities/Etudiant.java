@@ -20,8 +20,8 @@ public class Etudiant extends User {
 public static Etudiant etd=null;
     private String specialiteEtd;
 
-    public Etudiant(String idUser, int cinUser, String nomUser, String prenomUser, String emailUser, String adresseUser, int numTelUser, Date dateNaissanceUser, String sexeUser, String motDePasseUser,String roleUser,String classeEtd,Date inscriptionEtd,String specialiteEtd,UserParent p) {
-        super(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser);
+    public Etudiant(String idUser, int cinUser, String nomUser, String prenomUser, String emailUser, String adresseUser, int numTelUser, Date dateNaissanceUser, String sexeUser, String motDePasseUser,String roleUser,String picUser,String classeEtd,Date inscriptionEtd,String specialiteEtd,UserParent p) {
+        super(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser,picUser);
         this.classeEtd = classeEtd;
         this.inscriptionEtd = inscriptionEtd;       
         this.specialiteEtd = specialiteEtd;

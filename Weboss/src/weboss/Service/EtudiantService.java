@@ -41,8 +41,30 @@ public class EtudiantService implements IService1<Etudiant> {
 
     @Override
     public void ajouter(Etudiant e) throws SQLException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        PreparedStatement pre = con.prepareStatement("INSERT INTO `users` (`idUser`, `cinUser`,`nomUser`,`prenomUser`,`dateNaissanceUser`,`sexeUser`,`emailUser`,`adresseUser`,`numTelUser`,`roleUser`,`motDePasseUser`,`classeEtd`,`inscriptionEtd`,`specialiteEtd`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+      
+        PreparedStatement pre = con.prepareStatement("INSERT INTO `users` (`idUser`, `cinUser`,`nomUser`,`prenomUser`,`dateNaissanceUser`,`sexeUser`,`emailUser`,`adresseUser`,`numTelUser`,`roleUser`,`picUser`,`motDePasseUser`,`classeEtd`,`inscriptionEtd`,`specialiteEtd`,`idParent`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+        pre.setString(1, null);
+        pre.setInt(2, e.getCinUser());
+        pre.setString(3, e.getNomUser());
+        pre.setString(4, e.getPrenomUser());
+        pre.setDate(5, e.getDateNaissanceUser());
+        pre.setString(6, e.getSexeUser());
+        pre.setString(7, e.getEmailUser());
+        pre.setString(8, e.getAdresseUser());
+        pre.setInt(9, e.getNumTelUser());
+        pre.setString(10, "Etudiant");
+        pre.setString(11, null);
+        pre.setString(12, e.getMotDePasseUser());
+        pre.setString(13, e.getClasseEtd());
+        pre.setDate(14, e.getInscriptionEtd());
+        pre.setString(15, e.getSpecialiteEtd());
+        pre.setString(16, e.getParent().getIdUser());
+
+        pre.executeUpdate();
+    }
+  public void ajouter(Etudiant e,String id) throws SQLException {
+       
+        PreparedStatement pre = con.prepareStatement("INSERT INTO `users` (`idUser`, `cinUser`,`nomUser`,`prenomUser`,`dateNaissanceUser`,`sexeUser`,`emailUser`,`adresseUser`,`numTelUser`,`roleUser`,`motDePasseUser`,`classeEtd`,`inscriptionEtd`,`specialiteEtd`,`idParent`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
         pre.setString(1, null);
         pre.setInt(2, e.getCinUser());
         pre.setString(3, e.getNomUser());
@@ -54,30 +76,11 @@ public class EtudiantService implements IService1<Etudiant> {
         pre.setInt(9, e.getNumTelUser());
         pre.setString(10, "Etudiant");
         pre.setString(11, e.getMotDePasseUser());
-        pre.setString(12, e.getClasseEtd());
+        pre.setString(12, null);
         pre.setDate(13, e.getInscriptionEtd());
         pre.setString(14, e.getSpecialiteEtd());
-
-        pre.executeUpdate();
-    }
-  public void ajouter(Etudiant e,String id) throws SQLException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        PreparedStatement pre = con.prepareStatement("INSERT INTO `users` (`idUser`, `cinUser`,`nomUser`,`prenomUser`,`dateNaissanceUser`,`sexeUser`,`emailUser`,`adresseUser`,`numTelUser`,`roleUser`,`motDePasseUser`,`classeEtd`,`inscriptionEtd`,`specialiteEtd`,`idParent`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
-        pre.setString(1, null);
-        pre.setInt(2, e.getCinUser());
-        pre.setString(3, e.getNomUser());
-        pre.setString(4, e.getPrenomUser());
-        pre.setString(5, dateFormat.format(e.getDateNaissanceUser()));
-        pre.setString(6, e.getSexeUser());
-        pre.setString(7, e.getEmailUser());
-        pre.setString(8, e.getAdresseUser());
-        pre.setInt(9, e.getNumTelUser());
-        pre.setString(10, "Etudiant");
-        pre.setString(11, e.getMotDePasseUser());
-        pre.setString(12, e.getClasseEtd());
-        pre.setString(13, dateFormat.format(e.getInscriptionEtd()));
-        pre.setString(14, e.getSpecialiteEtd());
         pre.setString(15, id);
+      //  pre.setString(16, e.getPicUser());
 
         pre.executeUpdate();
     }
@@ -134,6 +137,7 @@ public class EtudiantService implements IService1<Etudiant> {
            int numTelUser = rs.getInt("us.numTelUser");
             String motDePasseUser = rs.getString("us.motDePasseUser");
             String roleUser = rs.getString("us.roleUser");
+            String picUser = rs.getString("us.picUser");
             
             String classeEtd = rs.getString("us.classeEtd");
             Date inscriptionEtd = rs.getDate("us.inscriptionEtd");
@@ -151,6 +155,7 @@ public class EtudiantService implements IService1<Etudiant> {
            int numTelUserP = rs.getInt("u.numTelUser");
             String motDePasseUserP = rs.getString("u.motDePasseUser");
             String roleUserP = rs.getString("u.roleUser");
+            String picUserP = rs.getString("u.picUser");
         
     
         
@@ -158,10 +163,10 @@ public class EtudiantService implements IService1<Etudiant> {
             
          
              // motDePasseUser= decrypt(motDePasseUser, "45");
-            UserParent p = new UserParent(idUserP, cinUserP, nomUserP, prenomUserP, emailUserP, adresseUserP, numTelUserP, dateNaissanceUserP, sexeUserP, motDePasseUserP, roleUserP);
+            UserParent p = new UserParent(idUserP, cinUserP, nomUserP, prenomUserP, emailUserP, adresseUserP, numTelUserP, dateNaissanceUserP, sexeUserP, motDePasseUserP, roleUserP,picUserP);
             
            // System.out.println(p);
-            Etudiant u = new Etudiant(idUser, cinUser,nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser, classeEtd, inscriptionEtd,specialiteEtd,p);
+            Etudiant u = new Etudiant(idUser, cinUser,nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser,picUser, classeEtd, inscriptionEtd,specialiteEtd,p);
                        
                          
             arr.add(u);
@@ -190,6 +195,7 @@ public class EtudiantService implements IService1<Etudiant> {
            int numTelUser = rs.getInt("us.numTelUser");
             String motDePasseUser = rs.getString("us.motDePasseUser");
             String roleUser = rs.getString("us.roleUser");
+            String picUser = rs.getString("us.picUser");
             
             String classeEtd = rs.getString("us.classeEtd");
             Date inscriptionEtd = rs.getDate("us.inscriptionEtd");
@@ -207,6 +213,7 @@ public class EtudiantService implements IService1<Etudiant> {
            int numTelUserP = rs.getInt("u.numTelUser");
             String motDePasseUserP = rs.getString("u.motDePasseUser");
             String roleUserP = rs.getString("u.roleUser");
+            String picUserP = rs.getString("u.picUser");
         
     
         
@@ -214,10 +221,10 @@ public class EtudiantService implements IService1<Etudiant> {
             
          
              // motDePasseUser= decrypt(motDePasseUser, "45");
-            UserParent p = new UserParent(idUserP, cinUserP, nomUserP, prenomUserP, emailUserP, adresseUserP, numTelUserP, dateNaissanceUserP, sexeUserP, motDePasseUserP, roleUserP);
+            UserParent p = new UserParent(idUserP, cinUserP, nomUserP, prenomUserP, emailUserP, adresseUserP, numTelUserP, dateNaissanceUserP, sexeUserP, motDePasseUserP, roleUserP,picUserP);
             
            // System.out.println(p);
-            Etudiant u = new Etudiant(idUser, cinUser,nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser, classeEtd, inscriptionEtd,specialiteEtd,p);
+            Etudiant u = new Etudiant(idUser, cinUser,nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser,picUser, classeEtd, inscriptionEtd,specialiteEtd,p);
                        
                          
             arr.add(u);

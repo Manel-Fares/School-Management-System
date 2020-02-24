@@ -22,6 +22,7 @@ import javafx.scene.layout.Pane;
 import weboss.Entities.Enseignant;
 import weboss.Entities.Etudiant;
 import weboss.Entities.Personnel;
+import weboss.Entities.User;
 import weboss.Entities.UserParent;
 
 import weboss.Service.UserService;
@@ -177,9 +178,9 @@ try{
         
         try {
             
-            System.out.println(ser.login(email.getText(), mdp.getText()));
-            System.out.println(Enseignant.ensg);
-            if (ser.login(email.getText(), mdp.getText()) instanceof Etudiant) {
+            User u=ser.login(email.getText(), mdp.getText());
+            System.out.println(Personnel.pr);
+            if (u instanceof Etudiant) {
                 FXMLLoader loader = new FXMLLoader(getClass()
                         .getResource("/GUIInterface/AcceuilEtudiant.fxml"));
                 Parent root = loader.load();
@@ -187,55 +188,34 @@ try{
                 
                 email.getScene().setRoot(root);
                 
-            } else if (ser.login(email.getText(), mdp.getText()) instanceof Personnel) {
-                System.out.println(Personnel.pr);
+            } else if (u instanceof Personnel) {            
                 FXMLLoader loader = new FXMLLoader(getClass()
                         .getResource("/GUIInterface/AcceuilPersonel.fxml"));
                 Parent root = loader.load();
                 AcceuilPersonelController apc = loader.getController();
                 
                 email.getScene().setRoot(root);
-            }else if(ser.login(email.getText(), mdp.getText()) instanceof UserParent) {
+            }else if(u instanceof UserParent) {
+                System.out.println("salutttttttttt");
                 FXMLLoader loader = new FXMLLoader(getClass()
-                        .getResource("/GUIInterface/AcceuilPersonel.fxml"));
+                        .getResource("/GUIInterface/AcceuilParent.fxml"));
                 Parent root = loader.load();
                 AcceuilPersonelController apc = loader.getController();
                 
                 email.getScene().setRoot(root);
-            } else {
+            } else if(u instanceof User){
+                System.out.println("hiii");
+                  FXMLLoader loader = new FXMLLoader(getClass()
+                        .getResource("/GUIInterface/Acceuil.fxml"));
+                Parent root = loader.load();
+                AcceuilController apc = loader.getController();
+                
+                email.getScene().setRoot(root);
+                System.out.println("p22");
+                        
+                
             }
-            /* Etudiant.etd=(Etudiant) ser.login(email.getText(), mdp.getText());
-            
-            if(Etudiant.etd.getRoleUser().equals("Etudiant")){
-             FXMLLoader loader = new FXMLLoader
-                        (getClass()
-                         .getResource("Etudiant.fxml"));
-              Parent root = loader.load();
-                EtudiantController apc = loader.getController();
-                
-                email.getScene().setRoot(root);
-           // System.out.println(User.user);
-            }else if(Enseignant.ensg.getRoleUser().equals("Enseignant")){
-                  FXMLLoader loader = new FXMLLoader
-                        (getClass()
-                         .getResource("EspaceEnseignant.fxml"));
-              Parent root = loader.load();
-                EspaceEnseignantController apc = loader.getController();
-                
-                email.getScene().setRoot(root);
-            }/*
-            else if(User.user.getRoleUser().equals("Personnel")){}*/
- /*  else{
-                FXMLLoader loader = new FXMLLoader
-                        (getClass()
-                         .getResource("Home.fxml"));
-              Parent root = loader.load();
-                HomeController apc = loader.getController();
-               
-                
-                email.getScene().setRoot(root);
-                
-            }*/
+          
             
         } catch (Exception ex) {
             System.out.println("login error");

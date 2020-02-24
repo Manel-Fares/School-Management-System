@@ -20,8 +20,8 @@ public class Personnel extends User{
     public static Personnel pr=null;
     
     
-    public Personnel(String idUser, int cinUser, String nomUser, String prenomUser, String emailUser, String adresseUser, int numTelUser, Date dateNaissanceUser, String sexeUser, String motDePasseUser,String roleUser,String statutPr,Date dateEmbauchePr,double  salairePr,String fonctionPr) {
-        super(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser);
+    public Personnel(String idUser, int cinUser, String nomUser, String prenomUser, String emailUser, String adresseUser, int numTelUser, Date dateNaissanceUser, String sexeUser, String motDePasseUser,String roleUser,String picUser,String statutPr,Date dateEmbauchePr,double  salairePr,String fonctionPr) {
+        super(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser,picUser);
         this.salairePr = salairePr;
         this.dateEmbauchePr = dateEmbauchePr;
         this.fonctionPr = fonctionPr;
