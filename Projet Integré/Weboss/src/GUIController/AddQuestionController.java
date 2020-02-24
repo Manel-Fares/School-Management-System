@@ -85,7 +85,7 @@ public class AddQuestionController implements Initializable {
             String txtTagName = combotag.getValue();
             ServiceQuestion serQ = new ServiceQuestion();
             //Question q = new Question(8, txtBody, 4, 2, 1);
-            Question q2 = new Question(txtBody, 1, 1, 1, txtTitle, txtTagName);
+            Question q2 = new Question(txtBody, 1, 1, 137, txtTitle, txtTagName);
             //serQ.ajouter(q2);
             serQ.ajouter2(q2);
             
@@ -106,7 +106,7 @@ public class AddQuestionController implements Initializable {
         @Override
         public void handle(Event event) {
             try {
-                AnchorPane pane =FXMLLoader.load(getClass().getResource("listQuestion.fxml"));
+                AnchorPane pane =FXMLLoader.load(getClass().getResource("/GUIInterface/listQuestion.fxml"));
                 rootPan.getChildren().setAll(pane);
             } catch (IOException ex) {
                 System.out.println("");
