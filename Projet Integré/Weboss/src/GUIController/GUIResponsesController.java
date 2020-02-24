@@ -31,6 +31,7 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javax.mail.MessagingException;
 import weboss.Entities.Reponse;
 import weboss.Service.ServiceReponse;
 
@@ -126,6 +127,7 @@ public class GUIResponsesController implements Initializable {
         //System.out.println(content);
         Refresh();
         passageReturn();
+        
         //passageRefresh();
     } 
     
@@ -174,12 +176,22 @@ public class GUIResponsesController implements Initializable {
         ServiceReponse serR = new ServiceReponse();
         Reponse r1 = new Reponse(txtBody, 0, qIndex);
         serR.ajouter2(r1);
+        
         Alert info = new Alert(Alert.AlertType.INFORMATION);
         info.setTitle("Response Add");
         info.setHeaderText(null);
         info.setContentText("Add Done");
         info.show();
+        
         Refresh();
+        
+        try {
+            serR.sendMail("wajih.benslama1@esprit.tn", "response ntification", "your question has been answered");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        
     }
     
     public void passageReturn(){
