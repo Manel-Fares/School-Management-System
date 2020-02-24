@@ -51,7 +51,7 @@ public class User {
         this.sexeUser = sexeUser;
         this.motDePasseUser = motDePasseUser;
         this.roleUser = roleUser;
-        this.roleUser = picUser;
+        this.picUser = picUser;
     }
 
     public User(String idUser, String nomUser, String prenomUser, String roleUser) {

@@ -195,7 +195,15 @@ try{
                 AcceuilPersonelController apc = loader.getController();
                 
                 email.getScene().setRoot(root);
-            }else if(u instanceof UserParent) {
+            } else if (u instanceof Enseignant) {            
+                FXMLLoader loader = new FXMLLoader(getClass()
+                        .getResource("/GUIInterface/AcceuilEnseignant.fxml"));
+                Parent root = loader.load();
+                AcceuilEnseignantController apc = loader.getController();
+                
+                email.getScene().setRoot(root);
+            }
+            else if(u instanceof UserParent) {
                 System.out.println("salutttttttttt");
                 FXMLLoader loader = new FXMLLoader(getClass()
                         .getResource("/GUIInterface/AcceuilParent.fxml"));

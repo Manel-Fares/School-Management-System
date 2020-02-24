@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.EspaceEnseignantController">
@@ -42,5 +43,6 @@
       <TextField fx:id="search" layoutX="758.0" layoutY="74.0" promptText="Search.." />
       <Button layoutX="357.0" layoutY="354.0" mnemonicParsing="false" onAction="#img" text="Button" />
       <TextField fx:id="img" layoutX="309.0" layoutY="388.0" visible="false" />
+      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="458.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
