@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -56,7 +58,7 @@ public class AbsenceService {
     
    public ObservableList<User> GetRole(String role) {
       
-        String req = "select * from user where role='"+role+"' ";
+        String req = "select * from user where role='"+role+"' and classe is NULL ";
         
        
         ObservableList<User> list = FXCollections.observableArrayList();
@@ -130,6 +132,42 @@ public class AbsenceService {
         }
        
         return 0;
+    }
+        
+                public ObservableList<Integer> StatNbrAbsence() {
+      
+        String req = "select count(*) from user u inner join classe c on u.classe=c.Name GROUP by u.classe  ";
+        ObservableList<Integer> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+          
+            while (rs.next()) {                 
+                 list.add(rs.getInt(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AbsenceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        return list;
+    }
+    
+                    public ObservableList<String> StatNomAbsence() {
+      
+        String req = "select c.Name from user u inner join classe c on u.classe=c.Name GROUP by u.classe  ";
+        ObservableList<String> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+          
+            while (rs.next()) {                 
+                 list.add(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AbsenceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        return list;
     }
             
             

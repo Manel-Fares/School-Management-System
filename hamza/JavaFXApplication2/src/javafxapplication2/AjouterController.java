@@ -5,6 +5,7 @@
  */
 package javafxapplication2;
 
+import com.jfoenix.controls.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import  entity.Class;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -34,21 +36,19 @@ public class AjouterController implements Initializable {
     @FXML
     private AnchorPane AddClassAnchorPane;
     @FXML
-    private Button AddClass;
+    private JFXButton AddClass;
     @FXML
     private Label label;
     @FXML
-    private TextField NameClass;
+    private JFXTextField NameClass;
     @FXML
-    private TextField NbrEtudClass;
+    private JFXTextField NbrEtudClass;
     @FXML
-    private ComboBox<String> NiveauClass;
+    private JFXComboBox<String> NiveauClass;
     @FXML
-    private ComboBox<String> SpecClass;
+    private JFXComboBox<String> SpecClass;
     @FXML
-    private TextArea DescriptionClass;
-    @FXML
-    private Button GetClass;
+    private JFXTextArea DescriptionClass;
     
 
     /**
@@ -65,6 +65,7 @@ public class AjouterController implements Initializable {
         SpecClass.getItems().clear();
         NiveauClass.setItems(optionsNiv);
         SpecClass.setItems(optionsSpec);
+        
     
     }    
 
@@ -73,18 +74,14 @@ public class AjouterController implements Initializable {
         String niv=NiveauClass.getValue()+SpecClass.getValue();
         Class u =new Class(NameClass.getText(),NiveauClass.getValue(),SpecClass.getValue(),Integer.parseInt(NbrEtudClass.getText()),DescriptionClass.getText());
         ClassService us =new ClassService();
-       us.AddClass(u);
+        us.AddClass(u);
         System.out.println("Done");
-        //table.setItems(us.getAll());
-        AnchorPane pane= FXMLLoader.load(getClass().getResource("Afficher.fxml"));
-        AddClassAnchorPane.getChildren().setAll(pane);
+        Stage stage = (Stage) AddClassAnchorPane.getScene().getWindow();
+        stage.close();
+        
     }
 
-    @FXML
-    private void GetClassAction(ActionEvent event) throws IOException {
-        AnchorPane pane= FXMLLoader.load(getClass().getResource("Afficher.fxml"));
-        AddClassAnchorPane.getChildren().setAll(pane);
-    }
+
 
    
     

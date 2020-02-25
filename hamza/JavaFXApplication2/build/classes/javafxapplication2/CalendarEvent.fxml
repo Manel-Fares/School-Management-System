@@ -61,8 +61,13 @@
                            <content>
                               <VBox prefWidth="863.0">
                                  <children>
-                                    <JFXButton fx:id="pdf" onAction="#pdfAction" text="PDF" />
-                                    <JFXButton fx:id="excel" onAction="#excelAction" text="Excel" />
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <JFXButton fx:id="Reload" onAction="#ReloadAction" text="Reload" />
+                                          <JFXButton fx:id="pdf" onAction="#pdfAction" text="PDF" />
+                                          <JFXButton fx:id="excel" onAction="#excelAction" text="Excel" />
+                                       </children>
+                                    </HBox>
                                     <HBox fx:id="weekdayHeader" minHeight="-Infinity" prefHeight="80.0" prefWidth="873.0" />
                                     <GridPane fx:id="calendarGrid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="863.0" styleClass="calendar_pane" VBox.vgrow="ALWAYS">
                                       <columnConstraints>

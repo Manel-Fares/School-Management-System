@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -49,13 +50,10 @@ public class AddEventController implements Initializable {
     private JFXComboBox<String> termSelect;
     @FXML
     private JFXDatePicker date;
-    @FXML
-    private JFXButton saveButton;
-    @FXML
-    private JFXButton cancelButton;
     CalendarEventController mainController;
     String getDay,GetMonth,GetYear;
     boolean back=false;
+
 
     public void setData(String day,String month,String year) {
         date.setValue(LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day)));
@@ -111,20 +109,7 @@ public class AddEventController implements Initializable {
         // Close the window
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
-/*                            FXMLLoader loader = new FXMLLoader();
-               loader.setLocation(getClass().getResource("CalendarEvent.fxml"));
-               CalendarEventController eventController = loader.getController();
-               eventController.setMainController(this);
-               String k=String.valueOf(this.date.getValue());
-               eventController.getVBox().setStyle("-fx-background-color:rgba(255,0,0,0.7);");
-               Label b = new Label(subject.getText());
-               Label bb = new Label(termSelect.getValue());
-               Label bbb = new Label(k);
-               eventController.getVBox().getChildren().add(b); 
-               eventController.getVBox().getChildren().add(bb); 
-               eventController.getVBox().getChildren().add(bbb); 
-               System.out.println("here222");
-            */    
+   
         
     }
 
@@ -133,5 +118,7 @@ public class AddEventController implements Initializable {
          Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
     }
+
+
     
 }

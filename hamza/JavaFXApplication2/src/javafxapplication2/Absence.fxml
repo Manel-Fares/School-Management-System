@@ -9,20 +9,19 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication2.AbsenceController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="372.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication2.AbsenceController">
    <children>
-      <JFXComboBox fx:id="SelectRole" layoutX="69.0" layoutY="50.0" prefHeight="25.0" prefWidth="174.0" />
-      <JFXButton layoutX="164.0" layoutY="343.0" onAction="#AddAction" prefHeight="25.0" prefWidth="104.0" text="Add" />
-      <JFXComboBox fx:id="SelectMatiere" layoutX="65.0" layoutY="108.0" prefHeight="25.0" prefWidth="182.0" />
-      <JFXTimePicker fx:id="TimeFin" layoutX="65.0" layoutY="278.0" prefHeight="25.0" prefWidth="182.0" />
-      <JFXTimePicker fx:id="TimeDebut" layoutX="65.0" layoutY="221.0" prefHeight="25.0" prefWidth="182.0" />
-      <JFXDatePicker fx:id="DateAb" layoutX="65.0" layoutY="170.0" prefHeight="25.0" prefWidth="182.0" />
-      <Label fx:id="IdRole" layoutX="431.0" layoutY="31.0" prefHeight="25.0" prefWidth="75.0" />
-      <TableView fx:id="ListEtuEns" layoutX="368.0" layoutY="63.0" prefHeight="292.0" prefWidth="200.0">
+      <JFXComboBox fx:id="SelectRole" layoutX="42.0" layoutY="31.0" prefHeight="25.0" prefWidth="174.0" promptText="Role" />
+      <JFXButton layoutX="62.0" layoutY="324.0" onAction="#AddAction" prefHeight="25.0" prefWidth="104.0" text="Add" />
+      <JFXComboBox fx:id="SelectMatiere" layoutX="38.0" layoutY="89.0" prefHeight="25.0" prefWidth="182.0" promptText="Matiere" />
+      <JFXTimePicker fx:id="TimeFin" layoutX="38.0" layoutY="259.0" prefHeight="25.0" prefWidth="182.0" promptText="Time" />
+      <JFXTimePicker fx:id="TimeDebut" layoutX="38.0" layoutY="202.0" prefHeight="25.0" prefWidth="182.0" promptText="Time" />
+      <JFXDatePicker fx:id="DateAb" layoutX="38.0" layoutY="151.0" prefHeight="25.0" prefWidth="182.0" promptText="Date" />
+      <Label fx:id="IdRole" layoutX="319.0" layoutY="14.0" prefHeight="25.0" prefWidth="75.0" />
+      <TableView fx:id="ListEtuEns" layoutX="242.0" layoutY="44.0" prefHeight="292.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="UserNomCol" prefWidth="199.0" text="Nom" />
         </columns>
       </TableView>
-      <JFXButton fx:id="Get" layoutX="52.0" layoutY="343.0" onAction="#GetAction" prefHeight="25.0" prefWidth="104.0" text="Get" />
    </children>
 </AnchorPane>

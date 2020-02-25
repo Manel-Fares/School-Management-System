@@ -5,18 +5,27 @@
  */
 package javafxapplication2;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import entity.Absence;
 import entity.Matiere;
 import entity.User;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import service.AbsenceService;
 import service.EmploisService;
 
@@ -45,6 +54,10 @@ public class AfficherAbsenceController implements Initializable {
     private TableColumn<Absence, String> TimeFinCol;
     @FXML
     private JFXTextField SearchInput;
+    @FXML
+    private JFXButton Add;
+    @FXML
+    private JFXButton Reload;
 
     /**
      * Initializes the controller class.
@@ -72,6 +85,33 @@ public class AfficherAbsenceController implements Initializable {
         TableAbsence.refresh();
     
 });
+    }
+     
+                  private void addAbsence() {
+            try {
+               FXMLLoader loader = new FXMLLoader();
+               loader.setLocation(getClass().getResource("Absence.fxml"));
+               AnchorPane rootLayout = (AnchorPane) loader.load();
+               Stage stage = new Stage();
+               stage.initModality(Modality.APPLICATION_MODAL); 
+               Scene scene = new Scene(rootLayout);               
+               stage.setScene(scene);
+               stage.show();
+           } catch (IOException ex) {
+               Logger.getLogger(AfficherAbsenceController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }
+
+    @FXML
+    private void AddAction(ActionEvent event) {
+        addAbsence();
+    }
+
+    @FXML
+    private void ReloadAction(ActionEvent event) {
+        AbsenceService as=new AbsenceService();
+        TableAbsence.setItems(as.GetAbsence()); 
+        TableAbsence.refresh();
     }
     
 }

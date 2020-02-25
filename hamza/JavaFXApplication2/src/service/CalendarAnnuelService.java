@@ -12,6 +12,7 @@ import entity.Class;
 import entity.Emplois;
 import entity.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -68,6 +69,50 @@ public class CalendarAnnuelService {
             Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+                        public ObservableList<CalendarAnnuel> GetDateCalendar() {
+        String req = "select * from calendarannuel ";
+        ObservableList<CalendarAnnuel> list = FXCollections.observableArrayList();
+        CalendarAnnuel ca=new CalendarAnnuel();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+              list.add(new CalendarAnnuel(rs.getInt("id"),rs.getString("subject"), rs.getString("term"), rs.getDate("DateC")));
+               
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+                        
+        public void DeleteCalendar(int id) {
+        String req = "delete from calendarannuel where id = "+id+" ";
+        try {
+            ste = cnx.createStatement();
+            //pst.setInt(1,id);
+            ste.executeUpdate(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(CalendarAnnuelService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+       
+           
+         public void UpdateCalendar(CalendarAnnuel t) {
+        String req = "update calendarannuel set subject =?,term =?,datec=? where id =? ";
+        try {
+            pst = cnx.prepareStatement(req);
+             pst.setString(1,t.getSubject());
+             pst.setString(2,t.getTerm());
+             pst.setDate(3,t.getDateC());
+             pst.setInt(4,t.getId());
+
+            pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CalendarAnnuelService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

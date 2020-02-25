@@ -65,8 +65,6 @@ public class AbsenceController implements Initializable {
     @FXML
     private JFXDatePicker DateAb;
     @FXML
-    private JFXButton Get;
-    @FXML
     private AnchorPane rootPane;
 
     /**
@@ -143,6 +141,7 @@ public class AbsenceController implements Initializable {
         });
     }
 
+
     @FXML
     private void AddAction(ActionEvent event) throws IOException {
         AbsenceService as=new AbsenceService();  
@@ -155,15 +154,11 @@ public class AbsenceController implements Initializable {
         System.out.println("aaaa");
         as.AddAbsence(t);
         System.out.println("aaaaa");
-        AnchorPane pane= FXMLLoader.load(getClass().getResource("AfficherAbsence.fxml"));
-        rootPane.getChildren().setAll(pane);
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
     }
 
-    @FXML
-    private void GetAction(ActionEvent event) throws IOException {       
-        AnchorPane pane= FXMLLoader.load(getClass().getResource("AfficherAbsence.fxml"));
-        rootPane.getChildren().setAll(pane);
-    }
+
     
 }
 

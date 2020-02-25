@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication2.SendEmploisController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="240.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication2.SendEmploisController">
    <children>
-      <JFXTextField fx:id="mail" layoutX="202.0" layoutY="104.0" prefHeight="30.0" prefWidth="200.0" promptText="Mail .." />
-      <JFXButton fx:id="Upload" layoutX="202.0" layoutY="188.0" onAction="#UploadAction" prefHeight="30.0" prefWidth="200.0" text="Upload" />
-      <JFXButton fx:id="Send" layoutX="216.0" layoutY="248.0" onAction="#SendAction" prefHeight="44.0" prefWidth="168.0" text="Send">
+      <JFXTextField fx:id="mail" layoutX="22.0" layoutY="29.0" prefHeight="30.0" prefWidth="200.0" promptText="Mail .." />
+      <JFXButton fx:id="Upload" layoutX="22.0" layoutY="113.0" onAction="#UploadAction" prefHeight="30.0" prefWidth="200.0" text="Upload" />
+      <JFXButton fx:id="Send" layoutX="36.0" layoutY="173.0" onAction="#SendAction" prefHeight="44.0" prefWidth="168.0" text="Send">
          <font>
-            <Font size="22.0" />
+            <Font size="18.0" />
          </font>
       </JFXButton>
    </children>

@@ -48,9 +48,9 @@ public class AccueilController implements Initializable {
     @FXML
     private Button AffEtud;
     @FXML
-    private Button AffEns;
-    @FXML
     private Button Absence;
+    @FXML
+    private Button Stat;
 
     /**
      * Initializes the controller class.
@@ -64,13 +64,13 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void EmploisAction(ActionEvent event) throws IOException {
-        AnchorPane pane= FXMLLoader.load(getClass().getResource("AjouterE.fxml"));
+        AnchorPane pane= FXMLLoader.load(getClass().getResource("AfficherE.fxml"));
         PaneAccueil.getChildren().setAll(pane);
     }
 
     @FXML
     private void ClassAction(ActionEvent event) throws IOException {
-        AnchorPane pane= FXMLLoader.load(getClass().getResource("Ajouter.fxml"));
+        AnchorPane pane= FXMLLoader.load(getClass().getResource("Afficher.fxml"));
         PaneAccueil.getChildren().setAll(pane);
     }
 
@@ -82,19 +82,19 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void AffEtudAction(ActionEvent event) throws IOException {
-               AnchorPane pane= FXMLLoader.load(getClass().getResource("AffecterClass.fxml"));
-        PaneAccueil.getChildren().setAll(pane);
-    }
-
-    @FXML
-    private void AffEnsAction(ActionEvent event) throws IOException {
-               AnchorPane pane= FXMLLoader.load(getClass().getResource("AffecterClass.fxml"));
+               AnchorPane pane= FXMLLoader.load(getClass().getResource("GetAllEtudiant.fxml"));
         PaneAccueil.getChildren().setAll(pane);
     }
 
     @FXML
     private void AbsenceAction(ActionEvent event) throws IOException {
-        AnchorPane pane= FXMLLoader.load(getClass().getResource("Absence.fxml"));
+        AnchorPane pane= FXMLLoader.load(getClass().getResource("AfficherAbsence.fxml"));
+        PaneAccueil.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void StatAction(ActionEvent event) throws IOException {
+        AnchorPane pane= FXMLLoader.load(getClass().getResource("Stat.fxml"));
         PaneAccueil.getChildren().setAll(pane);
     }
     

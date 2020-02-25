@@ -5,6 +5,9 @@
  */
 package javafxapplication2;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
@@ -18,6 +21,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -54,8 +59,6 @@ public class AjouterEController implements Initializable {
     @FXML
     private JFXButton AddEmplois;
     @FXML
-    private JFXButton GetEmplois;
-    @FXML
     private AnchorPane PaneAdd;
     
     private String  listview,Path;
@@ -70,28 +73,15 @@ public class AjouterEController implements Initializable {
     }    
 
     @FXML
-    private void AddEmploisAction(ActionEvent event) {
+    private void AddEmploisAction(ActionEvent event) throws IOException {
          
         Emplois u =new Emplois(Date.valueOf(DateEmplois.getValue()),Time.valueOf(HeureEmplois.getValue()),listview);
         EmploisService us =new EmploisService();
-        File file =new File(Path);
-        File copyfile = new File("C:\\Users\\Pytrooooo\\Documents\\NetBeansProjects\\JavaFXApplication2\\src\\PDFimport\\"+listview);
-        BufferedReader reader;
-        PrintWriter writer;
-        String line; 
-        try{
-            if(copyfile.createNewFile() || !copyfile.createNewFile()) {
-                reader= new BufferedReader(new FileReader(file));
-                writer = new PrintWriter(new FileWriter(copyfile));
-                while((line=reader.readLine())!=null){
-                    writer.println(line);
-                }
-                reader.close();
-                writer.close();
-            }
-        }catch(IOException e) {
-            System.out.println("error");
-        }
+        String PathTo= "C:\\Users\\Pytrooooo\\Documents\\NetBeansProjects\\JavaFXApplication2\\src\\PDFimport\\"+listview; 
+        //Paths.get("").toAbsolutePath().toString();
+        File org=new File(Path);
+        File news=new File(PathTo);
+        Files.copy(org.toPath(), news.toPath(), StandardCopyOption.REPLACE_EXISTING);
         us.AddEmplois(u);
         System.out.println("Done");
     }  
@@ -105,6 +95,7 @@ public class AjouterEController implements Initializable {
     FileChooser fc = new FileChooser();
     fc.getExtensionFilters().addAll(
             new ExtensionFilter("PDF Files","*.PDF"),
+            new ExtensionFilter("TXT Files","*.txt"),
             new ExtensionFilter("XLSX files (*.xlsx)", "*.xlsx"),
             new ExtensionFilter("XLS files (*.xls)", "*.xls"),
             new ExtensionFilter("ODS files (*.ods)", "*.ods"),
@@ -123,14 +114,7 @@ public class AjouterEController implements Initializable {
         System.out.println("file is not valid");
     }
 }
-   
-    
 
-    @FXML
-    private void GetEmploisAction(ActionEvent event) throws IOException  {
-        AnchorPane pane= FXMLLoader.load(getClass().getResource("AfficherE.fxml"));
-        PaneAdd.getChildren().setAll(pane);
-    }
     
 }
     

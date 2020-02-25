@@ -67,7 +67,37 @@ public class ClassService implements IService{
         return list;
     }
        
-       
+               
+                           public ObservableList<User> GetEnseNom(String role) {
+        String req = "select m.* from enseignantmatiere as u inner join user as m on u.id_user=m.id where m.role='"+role+"' ";
+        ObservableList<User> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+             list.add(new User (rs.getInt("m.id"),rs.getString("m.nom"),rs.getString("m.prenom"),rs.getString("m.role")));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+            public ObservableList<String> GetEnseNomMatiere() {
+        String req = "select m.nom from enseignantmatiere as u inner join matiere as m on u.id_matiere=m.id ";
+        ObservableList<String> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                String nom=rs.getString(1);
+                list.add(nom);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }   
         public ObservableList<String> GetNomClass() {
         String req = "select name from classe";
         ObservableList<String> list = FXCollections.observableArrayList();
@@ -83,6 +113,53 @@ public class ClassService implements IService{
         }
         return list;
     }
+                public ObservableList<String> GetEns() {
+        String req = "select c.Name from classeenseignantmatiere as ce inner join classe as c on ce.id_class=c.Id ";
+        ObservableList<String> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                String nom=rs.getString(1);
+                list.add(nom);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+                public ObservableList<String> GetMatiere() {
+        String req = "select nom from matiere";
+        ObservableList<String> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                String nom=rs.getString(1);
+                list.add(nom);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+                
+                    public String GetIDMatiere(String lol) {
+        String req = "select id from matiere where nom = '"+lol+"'";
+        //ObservableList<String> list = FXCollections.observableArrayList();
+        String nom="";
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                nom=rs.getString(1);
+               // list.add(nom);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nom;
+    }            
         
        
        @Override  
@@ -104,10 +181,10 @@ public class ClassService implements IService{
             pst = cnx.prepareStatement(req);
              pst.setString(1,t.getName());
              pst.setString(2,t.getNiveau());
-             pst.setString(2,t.getSpec());
-             pst.setInt(3,t.getNbr_Etudiant());
-             pst.setString(4,t.getDescription());
-             pst.setInt(5,t.getId());
+             pst.setString(3,t.getSpec());
+             pst.setInt(4,t.getNbr_Etudiant());
+             pst.setString(5,t.getDescription());
+             pst.setInt(6,t.getId());
             pst.executeUpdate();
             
         } catch (SQLException ex) {
@@ -116,7 +193,7 @@ public class ClassService implements IService{
     }
          
              public void AffecteClass(int id,String classe) {
-        String req = "update user set classe =? where id =? ";
+        String req = "update user set classe =? where id =?  ";
         try {
             pst = cnx.prepareStatement(req);
              pst.setString(1,classe);
@@ -129,27 +206,28 @@ public class ClassService implements IService{
     }   
              
         public ObservableList<User> GetEtudFromClass(String classe) {
-        String req = "select nom,prenom from user where classe = "+classe+" ";
+        String req = "select nom,prenom from user where classe = '"+classe+"' ";
         ObservableList<User> list = FXCollections.observableArrayList();
         try {
             ste = cnx.createStatement();
             rs = ste.executeQuery(req);
             while (rs.next()) {
                 list.add(new User(rs.getString("nom"),rs.getString("prenom")));
+                System.out.println(list);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }   
-        public ObservableList<User> GetEnseiFromClass(int id) {
-        String req = "select class from enseigantclass where id_user = "+id+" ";
+        public ObservableList<User> GetEnseiFromClass(int classe) {
+        String req = "SELECT u.* from user as u inner join classeenseignantmatiere as c on u.id=c.id_user where c.id_class='"+classe+"' ";
         ObservableList<User> list = FXCollections.observableArrayList();
         try {
             ste = cnx.createStatement();
             rs = ste.executeQuery(req);
             while (rs.next()) {
-                list.add(new User(rs.getString("class")));
+                list.add(new User(rs.getString("u.nom"),rs.getString("u.prenom")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
@@ -157,19 +235,37 @@ public class ClassService implements IService{
         return list;
     }   
              
-        public void AffecteEnseigantClass(int id,String classe) {
-        String req = "Insert into enseigantclass (id_user, class)  values (?,?)";
+        public void AffecteEnseigantClass(int   classe,int id_user,int id_mateire) {
+        String req = "Insert into classeenseignantmatiere (id_class, id_user,id_matiere)  values (?,?,?)";
         try {
             pst = cnx.prepareStatement(req);
-             pst.setInt(1,id);
-             pst.setString(2,classe);           
+             
+             pst.setInt(1,classe);
+             pst.setInt(2,id_user);
+             pst.setInt(3,id_mateire);
             pst.executeUpdate();
            // System.out.println(pst.executeQuery());
             
         } catch (SQLException ex) {
             Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }          
+    }    
+        
+            public int SearchNomClass(String id) {
+        String req = "select id from classe where name = '"+id+"' ";
+       // ObservableList<Class> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+                    
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
          
          @Override
     public ObservableList<Class> SearchClass(String nom) {
