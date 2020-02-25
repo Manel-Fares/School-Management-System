@@ -1,5 +1,4 @@
 .parent{
-    //-fx-background-color: linear-gradient(to top, #BBD4FF, #0055E8);
     -fx-background-color: linear-gradient(to top, #ff7f50, #6a5acd);
 }
 .sidebare{
@@ -117,22 +116,26 @@
     -fx-background-color: linear-gradient(to top, #ff7f50, #6a5acd);
 
 }
-.pagination{
+
+/*.pagination{
 	-fx-base:black;	
-}
+}*/
+
 .pagination .toggle-button {
 	-fx-shape:"m74.63,72.21494l14.50002,-14.49994l14.49998,14.49994l-14.49998,14.50002l-14.50002,-14.50002z";
 	-fx-background-radius:3px;
 }
 .pagination .button{
 	-fx-padding: 8 10 8 10px;
-	-fx-background-radius:0px; /* This is used for making the Arrow Button Curve*/
+	-fx-background-radius:0px;
 }
-.pagination .label {
+/*.pagination .label {
 	-fx-text-fill:white;
+}*/
+
+.lblR{
+    -fx-text-fill:linear-gradient(to top, #ff7f50, #6a5acd);
 }
-
-
 
 
 

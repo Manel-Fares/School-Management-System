@@ -94,6 +94,7 @@ public class EspacePersonnelController implements Initializable {
     private TextField search;
     @FXML
     private JFXTextField img;
+    String imgurl;
     
 
    
@@ -137,7 +138,7 @@ public class EspacePersonnelController implements Initializable {
             sexe="Homme";
         else if(Gender.getSelectedToggle().equals(F))
             sexe="femme";
-            Personnel pr = new Personnel("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),d, sexe, cin.getText(),"Enseignant","", statut.getValue(),d,Double.valueOf(salaire.getText()), domain.getValue());
+            Personnel pr = new Personnel("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),d, sexe, cin.getText(),"Enseignant",imgurl, statut.getValue(),d,Double.valueOf(salaire.getText()), domain.getValue());
       
      
         try {
@@ -309,7 +310,8 @@ FileChooser fileChooser = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter ("IMAGE Files","*.png"));
         if(selectedFile !=null)
         {
-            img.setText(selectedFile.getAbsolutePath());
+             imgurl=selectedFile.getName();
+            System.out.println(imgurl);
         }
     }
        

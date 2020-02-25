@@ -31,6 +31,7 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javax.mail.MessagingException;
 import weboss.Entities.Reponse;
 import weboss.Service.ServiceReponse;
 
@@ -126,6 +127,7 @@ public class GUIResponsesController implements Initializable {
         //System.out.println(content);
         Refresh();
         passageReturn();
+        
         //passageRefresh();
     } 
     
@@ -137,7 +139,7 @@ public class GUIResponsesController implements Initializable {
 
             //images.addAll(dev.recpererImage());
             //System.out.println(images);
-            if (dev.findResponseByQuestion(Question.q).size() > 0) {
+            //if (dev.findResponseByQuestion(Question.q).size() > 0) {
                 for (int i = 0; i < dev.findResponseByQuestion(Question.q).size(); i++) {
                 
                // final String imageURI = new File(dev.recpererImage().get(i)).toURI().toString();
@@ -145,7 +147,7 @@ public class GUIResponsesController implements Initializable {
                     images.add(dev.findResponseByQuestion(Question.q).get(i).toString());
                 // images.add(imageURI);
                 }
-            }
+            //}
             /*images.add("/GUI/1.jpg");
             images.add("/GUI/1.jpg");*/
         } catch (SQLException ex) {
@@ -157,7 +159,8 @@ public class GUIResponsesController implements Initializable {
         try {
             if (dev.findResponseByQuestion(Question.q).size() > 0) {
                 pagR.setPageFactory(n -> new Label(images.get(n)));
-            } else {
+            }
+            else {
                 pagR.setPageCount(1);
             }
         } catch (SQLException ex) {
@@ -168,17 +171,38 @@ public class GUIResponsesController implements Initializable {
 
     @FXML
     private void GUIAddR(ActionEvent event) throws SQLException {
-        int qIndex = Question.q;
+        //int qIndex = Question.q;
         String txtBody = txtAreaR.getText();
         ServiceReponse serR = new ServiceReponse();
         Reponse r1 = new Reponse(txtBody, 0, qIndex);
+        
+        if (!txtBody.isEmpty()) {
+            
+        
+        
         serR.ajouter2(r1);
+        
         Alert info = new Alert(Alert.AlertType.INFORMATION);
         info.setTitle("Response Add");
         info.setHeaderText(null);
         info.setContentText("Add Done");
         info.show();
+        
         Refresh();
+        
+        try {
+            serR.sendMail("wajih.benslama1@esprit.tn", "response ntification", "your question has been answered");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        } else {
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setTitle("Please fill all inputs");
+            info.setHeaderText(null);
+            info.setContentText("Please fill all inputs");
+            info.show();
+        }
     }
     
     public void passageReturn(){
@@ -186,7 +210,7 @@ public class GUIResponsesController implements Initializable {
         @Override
         public void handle(Event event) {
             try {
-                AnchorPane pane =FXMLLoader.load(getClass().getResource("listQuestion.fxml"));
+                AnchorPane pane =FXMLLoader.load(getClass().getResource("/GUIInterface/listQuestion.fxml"));
                 rootPan.getChildren().setAll(pane);
             } catch (IOException ex) {
                 Logger.getLogger(ListQuestionController.class.getName()).log(Level.SEVERE, null, ex);

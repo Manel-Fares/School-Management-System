@@ -5,10 +5,13 @@
  */
 package javafxapplication2;
 
+import com.jfoenix.controls.JFXButton;
 import entity.Emplois;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -51,7 +54,9 @@ public class AfficherEController implements Initializable {
     private AnchorPane PaneGet;
     @FXML
     private TextField Recherche;
-
+    @FXML
+    private JFXButton Add;
+    int nbr=0;
     /**
      * Initializes the controller class.
      */
@@ -64,10 +69,9 @@ public class AfficherEController implements Initializable {
         SourceEmploisCol.setCellValueFactory(new PropertyValueFactory<>("Source"));
         EmploisService us =new EmploisService();
         TableViewEmplois.setItems(us.GetEmplois()); 
-        OnUpdateClickAction();
         Recherche();
+        Run();
     }    
-
     @FXML
     private void ReloadAction(ActionEvent event) {
         EmploisService us =new EmploisService();
@@ -75,54 +79,81 @@ public class AfficherEController implements Initializable {
         TableViewEmplois.refresh();
     }
     
-     private void OnUpdateClickAction()  {
-       TableViewEmplois.setOnMouseClicked(new EventHandler() {
-           @Override
-           public void handle(Event event) {
-              try {
-            FXMLLoader loader =new FXMLLoader(getClass().getResource("ModifierE.fxml"));
-              // Class dataList =  TableViewClass.getSelectionModel().getSelectedItem();
-            // Create the new controller and pass the currently selected data item to it
-                  ModifierEController controller = new ModifierEController(TableViewEmplois.getSelectionModel().getSelectedItem());
-                  
-            // Set the controller to the loader
-            loader.setController(controller);
-            
-
-            Stage editorStage = new Stage();
-            editorStage.setTitle("Edit Item");
-
-            // Centers the editor window over the current window
-            editorStage.initOwner(TableViewEmplois.getScene().getWindow());
-
-            // Ensures the new window needs to be closed before the current window can be used again
-            editorStage.initModality(Modality.APPLICATION_MODAL);
-
-            editorStage.setScene(new Scene(loader.load()));
-            editorStage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void Run() {
+        TableViewEmplois.setOnMouseClicked(new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Emplois c=TableViewEmplois.getSelectionModel().getSelectedItem();
+                if(nbr==2)
+                    UpdateDeleteClass(c);
+                else if(nbr>=2)
+                    nbr=0;
+                nbr++;              
+            }
+        });
+        
     }
-       });
-               }
-
  private void Recherche() {
-         
-     
         Recherche.textProperty().addListener((observable, oldValue, newValue) -> {
-            EmploisService us =new EmploisService();
+        EmploisService us =new EmploisService();
         TableViewEmplois.setItems(us.SearchEmplois(newValue)); 
-        TableViewEmplois.refresh();
-    
+        TableViewEmplois.refresh();    
 });
     }
 
     @FXML
     private void SendAction(ActionEvent event) throws IOException {
-        AnchorPane pane= FXMLLoader.load(getClass().getResource("SendEmplois.fxml"));
-        PaneGet.getChildren().setAll(pane);
+             try {
+               FXMLLoader loader = new FXMLLoader();
+               loader.setLocation(getClass().getResource("SendEmplois.fxml"));
+               AnchorPane rootLayout = (AnchorPane) loader.load();
+               Stage stage = new Stage();
+               stage.initModality(Modality.APPLICATION_MODAL); 
+               Scene scene = new Scene(rootLayout);               
+               stage.setScene(scene);
+               stage.show();
+           } catch (IOException ex) {
+               Logger.getLogger(AfficherEController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }
+
+
+    @FXML
+    private void AddAction(ActionEvent event) {
+            addEmplois();
     }
+    
+    private void addEmplois() {
+        try {
+             FXMLLoader loader = new FXMLLoader();
+             loader.setLocation(getClass().getResource("AjouterE.fxml"));
+             AnchorPane rootLayout = (AnchorPane) loader.load();
+             Stage stage = new Stage();
+             stage.initModality(Modality.APPLICATION_MODAL); 
+             Scene scene = new Scene(rootLayout);               
+             stage.setScene(scene);
+             stage.show();
+           } catch (IOException ex) {
+               Logger.getLogger(AfficherEController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }
+                 
+            private void UpdateDeleteClass(Emplois c) {
+            try {
+               FXMLLoader loaderrrr = new FXMLLoader();
+               loaderrrr.setLocation(getClass().getResource("ModifierE.fxml"));
+               AnchorPane rootLayout = (AnchorPane) loaderrrr.load();
+               Stage stage = new Stage();
+               stage.initModality(Modality.APPLICATION_MODAL); 
+               ModifierEController eventController = loaderrrr.getController();
+               eventController.setMainController(this);
+               eventController.setData(String.valueOf(c.getIdEmplois()),c.getDate().toLocalDate(),c.getHeure().toLocalTime(),c.getSource()); 
+               Scene scene = new Scene(rootLayout);               
+               stage.setScene(scene);
+               stage.show();
+           } catch (IOException ex) {
+               Logger.getLogger(CalendarEventController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }
      
 }

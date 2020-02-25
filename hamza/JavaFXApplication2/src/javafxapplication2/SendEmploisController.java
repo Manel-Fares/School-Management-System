@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.util.Properties;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -82,6 +83,8 @@ public class SendEmploisController implements Initializable {
     @FXML
     private void SendAction(ActionEvent event) {
         mailling();
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
     }
     
     

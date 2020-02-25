@@ -5,6 +5,7 @@
  */
 package javafxapplication2;
 
+import com.jfoenix.controls.*;
 import entity.Class;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +22,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import service.ClassService;
 
 /**
@@ -31,34 +35,31 @@ import service.ClassService;
 public class ModifierController implements Initializable {
 
     @FXML
-    private TextField ModNameClass;
+    private JFXTextField ModNameClass;
     @FXML
-    private TextField SnModClass;
+    private JFXTextField SnModClass;
     @FXML
-    private Button BtnModClass;
+    private JFXButton BtnModClass;
     @FXML
-    private ComboBox<String> ModNivClass;
+    private JFXComboBox<String> ModNivClass;
     @FXML
-    private ComboBox<String> SpecNivClass;
+    private JFXComboBox<String> SpecNivClass;
     @FXML
-    private TextArea DescModClass;
+    private JFXTextArea DescModClass;
     
     
     @FXML
-    private Button BtnDelClass;
+    private JFXButton BtnDelClass;
     
     private Class Data;
-
+    @FXML
+    private Label label;
+    AfficherController aff;
+    @FXML
+    private AnchorPane rootPane;
    
 
-    public Class getData() {
-        return Data;
-    }
 
-    public void setData(Class Data) {
-        this.Data = Data;
-    }
-    
     
     
     
@@ -71,50 +72,64 @@ public class ModifierController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       
-       ModNameClass.setText(Data.getName());
-        SnModClass.setText(String.valueOf(Data.getNbr_Etudiant()));
+       label.setVisible(false);
+        //ModNameClass.setText(Data.getName());
+        //SnModClass.setText(String.valueOf(Data.getNbr_Etudiant()));
          ObservableList<String> optionsNiv = 
     FXCollections.observableArrayList("1","2","3","4","5");
         ObservableList<String> optionsSpec = 
     FXCollections.observableArrayList("A","B","TWIN","DS","BI","GL","INFOB");
-        ModNivClass.getItems().clear();
-        SpecNivClass.getItems().clear();
-        ModNivClass.setValue(Data.getNiveau());
-        SpecNivClass.setValue(Data.getSpec());
+
         ModNivClass.setItems(optionsNiv);
         SpecNivClass.setItems(optionsSpec);
-        DescModClass.setText(Data.getDescription());
-        UpdateClassAction();
-        DeleteClassAction();
-        
-        
+
+       
     }    
 
     
     public void UpdateClassAction() {
-       BtnModClass.setOnAction(new EventHandler() {
-           @Override
-           public void handle(Event event) {
-               String niv=ModNivClass.getValue()+SpecNivClass.getValue();
-               Class u =new Class(Data.getId(),ModNameClass.getText(),ModNivClass.getValue(),SpecNivClass.getValue(),Integer.parseInt(SnModClass.getText()),DescModClass.getText());;
+        String niv=ModNivClass.getValue()+SpecNivClass.getValue();
+        Class u =new Class(Data.getId(),ModNameClass.getText(),ModNivClass.getValue(),SpecNivClass.getValue(),Integer.parseInt(SnModClass.getText()),DescModClass.getText());;
         ClassService us =new ClassService();
         us.UpdateClass(u);
-               System.out.println("updated");
-           }
-       });
+        System.out.println("updated");
     }
     
      public void DeleteClassAction() {
-       BtnDelClass.setOnAction(new EventHandler() {
-           @Override
-           public void handle(Event event) {
-               ClassService us =new ClassService();
+        ClassService us =new ClassService();
         System.out.println(Data.getId());
         us.DeleteClass(Data.getId());
         System.out.println("Deleted");
-           }
-       });
+
+    }
+
+    @FXML
+    private void BtnDelClassAction(ActionEvent event) {
+        DeleteClassAction();
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void BtnModClassAction(ActionEvent event) {
+        UpdateClassAction();
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
+    }
+
+    void setMainController(AfficherController aThis) {
+        aff=aThis;
+    }
+
+    void setData(String id,String name,String niv,String spec,String nbr,String desc) {
+        this.label.setText(id);
+        this.ModNameClass.setText(name);       
+        this.ModNivClass.setValue(niv);
+       //this.ModNivClass.getSelectionModel().selectFirst();
+        this.SpecNivClass.setValue(spec);
+       // this.SpecNivClass.getSelectionModel().selectFirst();
+        this.SnModClass.setText(nbr);
+        this.DescModClass.setText(desc);
     }
 
    

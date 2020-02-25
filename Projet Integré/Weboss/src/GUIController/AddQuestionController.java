@@ -85,20 +85,29 @@ public class AddQuestionController implements Initializable {
             String txtTagName = combotag.getValue();
             ServiceQuestion serQ = new ServiceQuestion();
             //Question q = new Question(8, txtBody, 4, 2, 1);
-            Question q2 = new Question(txtBody, 1, 1, 1, txtTitle, txtTagName);
+            Question q2 = new Question(txtBody, 1, 1, 137, txtTitle, txtTagName);
             //serQ.ajouter(q2);
+            
+            if (txtBody.isEmpty() || txtTitle.isEmpty() || txtTagName.isEmpty()) {
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setTitle("Please fill all inputs");
+                info.setHeaderText(null);
+                info.setContentText("Please fill all inputs");
+                info.show();
+            } else {
             serQ.ajouter2(q2);
             
             Alert info = new Alert(Alert.AlertType.INFORMATION);
-            info.setTitle("Question Add");
+            info.setTitle("Question Added");
             info.setHeaderText(null);
             info.setContentText("Question Added");
             info.show();
-
+            }
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        
     }
     
     public void passage(){
@@ -106,7 +115,7 @@ public class AddQuestionController implements Initializable {
         @Override
         public void handle(Event event) {
             try {
-                AnchorPane pane =FXMLLoader.load(getClass().getResource("listQuestion.fxml"));
+                AnchorPane pane =FXMLLoader.load(getClass().getResource("/GUIInterface/listQuestion.fxml"));
                 rootPan.getChildren().setAll(pane);
             } catch (IOException ex) {
                 System.out.println("");

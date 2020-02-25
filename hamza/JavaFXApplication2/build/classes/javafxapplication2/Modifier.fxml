@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication2.ModifierController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="281.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication2.ModifierController">
    <children>
-      <TextField fx:id="ModNameClass" layoutX="242.0" layoutY="97.0" promptText="Class Name" />
-      <TextField fx:id="SnModClass" layoutX="242.0" layoutY="188.0" promptText="Studient Number" />
-      <Button fx:id="BtnModClass" layoutX="219.0" layoutY="326.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Update" />
-      <ComboBox fx:id="ModNivClass" layoutX="219.0" layoutY="139.0" prefHeight="25.0" prefWidth="81.0" />
-      <ComboBox fx:id="SpecNivClass" layoutX="324.0" layoutY="139.0" prefHeight="25.0" prefWidth="81.0" />
-      <TextArea fx:id="DescModClass" layoutX="221.0" layoutY="224.0" prefHeight="85.0" prefWidth="191.0" promptText="Description" />
-      <Button fx:id="BtnDelClass" layoutX="324.0" layoutY="326.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Delete" />
+      <JFXTextField fx:id="ModNameClass" layoutX="73.0" layoutY="38.0" promptText="ClassName" />
+      <JFXTextField fx:id="SnModClass" layoutX="73.0" layoutY="128.0" promptText="StudientNumber" />
+      <JFXTextArea fx:id="DescModClass" layoutX="59.0" layoutY="173.0" prefHeight="99.0" prefWidth="170.0" promptText="Description" />
+      <JFXComboBox fx:id="SpecNivClass" layoutX="150.0" layoutY="79.0" prefHeight="25.0" prefWidth="90.0" />
+      <JFXComboBox fx:id="ModNivClass" layoutX="37.0" layoutY="79.0" prefHeight="25.0" prefWidth="90.0" />
+      <JFXButton fx:id="BtnDelClass" layoutX="150.0" layoutY="291.0" onAction="#BtnDelClassAction" prefHeight="25.0" prefWidth="90.0" text="Delete" />
+      <JFXButton fx:id="BtnModClass" layoutX="37.0" layoutY="291.0" onAction="#BtnModClassAction" prefHeight="25.0" prefWidth="90.0" text="Update" />
+      <Label fx:id="label" layoutX="23.0" layoutY="14.0" />
    </children>
 </AnchorPane>

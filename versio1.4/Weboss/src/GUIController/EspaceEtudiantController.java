@@ -125,6 +125,7 @@ public class EspaceEtudiantController implements Initializable {
     private Label error_cinR;
     @FXML
     private JFXTextField img;
+    String imgurl;
 
    
     @Override
@@ -186,7 +187,7 @@ public class EspaceEtudiantController implements Initializable {
          UserParent parent = new UserParent("",parseInt(idParent.getText()), nomR.getText(), "", "", adresse.getText(),parseInt(numTR.getText()),d,"",cin.getText(),"Parent","");
 >>>>>>> be491afefe56576ceb1d1ea16807200dbee4e183:Weboss/src/GUIController/EspaceEtudiantController.java
          System.out.println(parent);
-        Etudiant etd = new Etudiant("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),Date.valueOf(dateN.getValue()),sexe,cin.getText(),"Etudiant","", null,d, domain.getValue(),parent);
+        Etudiant etd = new Etudiant("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),Date.valueOf(dateN.getValue()),sexe,cin.getText(),"Etudiant",imgurl, null,d, domain.getValue(),parent);
         System.out.println(etd);
       SMS smsTn = new SMS();
       
@@ -378,7 +379,8 @@ FileChooser fileChooser = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter ("IMAGE Files","*.png"));
         if(selectedFile !=null)
         {
-            img.setText(selectedFile.getAbsolutePath());
+            imgurl=selectedFile.getName();
+            System.out.println(imgurl);
         }
     }
        

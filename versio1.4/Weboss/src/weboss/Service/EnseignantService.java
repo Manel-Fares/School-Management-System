@@ -39,24 +39,26 @@ public class EnseignantService implements IService1<Enseignant> {
     public void ajouter(Enseignant e) throws SQLException {
         System.out.println("cc");
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+       
 
-        PreparedStatement pre = con.prepareStatement("INSERT INTO `users` (`idUser`, `cinUser`,`nomUser`,`prenomUser`,`dateNaissanceUser`,`sexeUser`,`emailUser`,`adresseUser`,`numTelUser`,`roleUser`,`dateEmbaucheUser`,`motDePasseUser`,`statutUser`,`salaireUser`,`domaineUser`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+        PreparedStatement pre = con.prepareStatement("INSERT INTO `users` (`idUser`, `cinUser`,`nomUser`,`prenomUser`,`dateNaissanceUser`,`sexeUser`,`emailUser`,`adresseUser`,`numTelUser`,`roleUser`,`dateEmbaucheUser`,`motDePasseUser`,`statutUser`,`salaireUser`,`domaineUser`,`picUser`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
         pre.setString(1, null);
         pre.setInt(2, e.getCinUser());
         pre.setString(3, e.getNomUser());
         pre.setString(4, e.getPrenomUser());
-        pre.setString(5, dateFormat.format(e.getDateNaissanceUser()));
+        pre.setDate(5, e.getDateNaissanceUser());
         pre.setString(6, e.getSexeUser());
         pre.setString(7, e.getEmailUser());
         pre.setString(8, e.getAdresseUser());
         pre.setInt(9, e.getNumTelUser());
         pre.setString(10, "Enseignant");
-        pre.setString(11, dateFormat.format(e.getDateEmbaucheEnsg()));
+        pre.setDate(11, e.getDateEmbaucheEnsg());
         pre.setString(12, e.getMotDePasseUser());
         pre.setString(13, e.getStatutEnsg());
         pre.setDouble(14, e.getSalaireEnsg());
         pre.setString(15, e.getDomaineEnsg());
+        pre.setString(16, e.getPicUser());
+       
 
         pre.executeUpdate();
     }

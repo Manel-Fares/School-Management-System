@@ -28,6 +28,9 @@ public class CalendarAnnuel {
         String p=String.valueOf(this.DateC);
         p = DateC;
     }
+                public CalendarAnnuel() {
+
+    }
         public CalendarAnnuel(String subject, String term, Date DateC) {
         this.subject = subject;
         this.term = term;
@@ -68,7 +71,7 @@ public class CalendarAnnuel {
 
     @Override
     public String toString() {
-        return "CalendarAnnuel{" + "id=" + id + ", subject=" + subject + ", term=" + term + ", DateC=" + DateC + '}';
+        return this.subject +"  \n "+this.term +"  \n  "+this.DateC.toString();
     }
         
     

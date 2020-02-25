@@ -53,9 +53,9 @@ public class AffecterClassController implements Initializable {
     @FXML
     private JFXButton Add;
     @FXML
-    private JFXButton Get;
-    @FXML
     private AnchorPane rootPane;
+    @FXML
+    private JFXComboBox<String> MatiereClass;
 
     /**
      * Initializes the controller class.
@@ -63,15 +63,16 @@ public class AffecterClassController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        MatiereClass.setVisible(false);
         NomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-               ClassService cs=new ClassService();
-              ObservableList<String> optionsRole = 
-    FXCollections.observableArrayList("Etudiant","Enseignant");
-       SelectClass.setItems(cs.GetNomClass());
-       SelectRole.getItems().clear();
-       SelectRole.setItems(optionsRole);
-       init();
-       getall();
+        ClassService cs=new ClassService();
+        ObservableList<String> optionsRole = 
+        FXCollections.observableArrayList("Etudiant","Enseignant");
+        SelectClass.setItems(cs.GetNomClass());
+        SelectRole.getItems().clear();
+        SelectRole.setItems(optionsRole);
+        init();
+        getall();
         
     }  
     
@@ -112,12 +113,19 @@ public class AffecterClassController implements Initializable {
         });
     }
         public void init(){
+            ClassService cs=new ClassService();
         SelectRole.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
                 RoleLabel.setText(SelectRole.getValue());
                 AbsenceService as=new AbsenceService();       
                 tableUser.setItems(as.GetRole(SelectRole.getValue()));
+                if(SelectRole.getValue().equals("Enseignant"))
+                {
+                    MatiereClass.setVisible(true);
+                MatiereClass.setItems(cs.GetEnseNomMatiere());
+                tableUser.setItems(cs.GetEnseNom(SelectRole.getValue()));
+                }
             }
         });
     }
@@ -128,16 +136,20 @@ public class AffecterClassController implements Initializable {
         ClassService cs=new ClassService();
         if(SelectRole.getValue().equals("Etudiant"))
         {
-        cs.AffecteClass(u.getId(), SelectClass.getValue());
+            cs.AffecteClass(u.getId(), SelectClass.getValue());
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
         }
         else if(SelectRole.getValue().equals("Enseignant"))
-        {
-        cs.AffecteEnseigantClass(u.getId(),SelectClass.getValue());
+        {                    
+            System.out.println(cs.SearchNomClass(SelectClass.getValue()));
+            cs.AffecteEnseigantClass(cs.SearchNomClass(SelectClass.getValue()),u.getId(),Integer.valueOf(cs.GetIDMatiere(MatiereClass.getValue())));
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
         }
        
     }
 
-    @FXML
     private void GetAction(ActionEvent event) throws IOException {
          
          if(SelectRole.getValue().equals("Etudiant"))

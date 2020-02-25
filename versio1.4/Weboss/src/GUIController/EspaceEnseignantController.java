@@ -15,6 +15,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.sql.Date;
@@ -39,6 +41,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javax.mail.MessagingException;
@@ -96,6 +100,9 @@ public class EspaceEnseignantController implements Initializable {
     private TextField search;
     @FXML
     private TextField img;
+    String imgurl,imgpath;
+    @FXML
+    private ImageView image;
 
    
     @Override
@@ -140,16 +147,21 @@ public class EspaceEnseignantController implements Initializable {
         if(Gender.getSelectedToggle().equals(H))
             sexe="Homme";
         else if(Gender.getSelectedToggle().equals(F))
-            sexe="femme";
-            Enseignant ens = new Enseignant("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),d, sexe, cin.getText(),"Enseignant",img.getText(), statut.getValue(),Double.valueOf(salaire.getText()),d, domain.getValue());
-      
-       try {
+            sexe="Femme";
+            Enseignant ens = new Enseignant("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),d, sexe, cin.getText(),"Enseignant",imgurl, statut.getValue(),Double.valueOf(salaire.getText()),d, domain.getValue());
+        
+      /* try {
             UserService.sendMail(email.getText(),"Congrats ","Your Password :"+cin.getText());
         } catch (MessagingException ex) {
             Logger.getLogger(EspaceEtudiantController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     
         try {
+            try {
+                imageadd();
+            } catch (IOException ex) {
+                Logger.getLogger(EspaceEnseignantController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             ser.ajouter(ens);
               loadData();
             clearData();
@@ -186,7 +198,7 @@ public class EspaceEnseignantController implements Initializable {
          if(Gender.getSelectedToggle().equals(H))
             sexe="Homme";
         else if(Gender.getSelectedToggle().equals(F))
-            sexe="femme";
+            sexe="Femme";
           EnseignantService ser = new EnseignantService();
          Enseignant e = table.getSelectionModel().getSelectedItem();
          e.setNomUser(nom.getText());
@@ -216,6 +228,10 @@ public class EspaceEnseignantController implements Initializable {
                 dateN.setValue(e.getDateNaissanceUser().toLocalDate());
                 salaire.setText(String.valueOf(e.getSalaireEnsg()));
                 email.setText(e.getEmailUser());
+                 String path = "C:\\Users\\Neifos\\Documents\\GitHub\\School-Management-System\\Weboss\\src\\weboss\\Image\\"+e.getPicUser();
+                 File imgurll= new File(path);
+                 Image img=new Image(imgurll.toURI().toString());
+                 image.setImage(img);
              
                
             }
@@ -313,11 +329,24 @@ ex.getMessage();        }
     private void img(ActionEvent event) {
          FileChooser fc=new FileChooser();
         File selectedFile= fc.showSaveDialog(null);
-        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter ("IMAGE Files","*.png"));
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter ("PDF Files","*.*"));
         if(selectedFile !=null)
         {
-            img.setText(selectedFile.getAbsolutePath());
+            imgurl=selectedFile.getName();
+            imgpath=selectedFile.getAbsolutePath();
+            System.out.println(imgurl);
+            File imgurll= new File(imgpath);
+            Image img=new Image(imgurll.toURI().toString());
+            image.setImage(img);
         }
+    }
+    public void imageadd() throws IOException{
+        String path = "C:\\Users\\Neifos\\Documents\\GitHub\\School-Management-System\\Weboss\\src\\weboss\\Image\\"+imgurl;
+        File org = new File(imgpath);
+        File neww = new File(path);
+        Files.copy(org.toPath(), neww.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        
+        
     }
    
     

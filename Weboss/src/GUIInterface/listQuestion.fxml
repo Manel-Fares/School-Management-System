@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPan" prefHeight="605.0" prefWidth="1100.0" styleClass="bck" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.ListQuestionController">
+   <children>
+      <TableView fx:id="tableQ" layoutX="129.0" layoutY="164.0" prefHeight="338.0" prefWidth="785.0">
+         <columns>
+            <TableColumn fx:id="col_title" prefWidth="475.0" text="title" />
+            <TableColumn fx:id="col_tagname" prefWidth="296.0" text="tag" />
+         </columns></TableView>
+      <Label layoutX="432.0" layoutY="14.0" prefHeight="74.0" prefWidth="221.0" styleClass="text" stylesheets="@../CSS/style.css" text="Questions Area">
+         <font>
+            <Font size="27.0" />
+         </font></Label>
+      <Button fx:id="btn2Q" layoutX="174.0" layoutY="518.0" mnemonicParsing="false" styleClass="addbtn" stylesheets="@../CSS/style.css" text="add question" />
+      <Button fx:id="btnListR" layoutX="314.0" layoutY="518.0" mnemonicParsing="false" styleClass="loginBtn" text="list responses" />
+      <TextField fx:id="txtSearch" layoutX="643.0" layoutY="106.0" promptText="search" />
+   </children>
+</AnchorPane>

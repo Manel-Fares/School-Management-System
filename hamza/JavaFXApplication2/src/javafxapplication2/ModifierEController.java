@@ -17,9 +17,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 //import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -27,6 +34,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import service.ClassService;
@@ -49,25 +57,23 @@ public class ModifierEController implements Initializable {
     @FXML
     private JFXButton Update;
 
-    private Emplois emplois;
+    
     @FXML
     private JFXDatePicker DateE;
     String Path,listview;
+    AfficherEController aff;
+    @FXML
+    private Label label;
     /**
      * Initializes the controller class.
      */
     
-    
-    public ModifierEController(Emplois emplois) {
-    this.emplois=emplois;    
-    }    
+       
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        DateE.setValue(emplois.getDate().toLocalDate());
-        Heure.setValue(emplois.getHeure().toLocalTime());
-        Source.setText(emplois.getSource());
+        label.setVisible(false);
         UploadFile();
         UpdateClassAction();
         DeleteClassAction();
@@ -77,27 +83,20 @@ public class ModifierEController implements Initializable {
        Update.setOnAction(new EventHandler() {
            @Override
            public void handle(Event event) {             
-               Emplois u =new Emplois(emplois.getIdEmplois(),Date.valueOf(DateE.getValue()),Time.valueOf(Heure.getValue()),listview);
+               Emplois u =new Emplois(Integer.valueOf(label.getText()),Date.valueOf(DateE.getValue()),Time.valueOf(Heure.getValue()),listview);
         EmploisService us =new EmploisService();
-                File file =new File(Path);
-        File copyfile = new File("C:\\Users\\Pytrooooo\\Documents\\NetBeansProjects\\JavaFXApplication2\\src\\PDFimport\\"+listview);
-        BufferedReader reader;
-        PrintWriter writer;
-        String line; 
-        try{
-            if(copyfile.createNewFile() || !copyfile.createNewFile()) {
-                reader= new BufferedReader(new FileReader(file));
-                writer = new PrintWriter(new FileWriter(copyfile));
-                while((line=reader.readLine())!=null){
-                    writer.println(line);
-                }
-                reader.close();
-                writer.close();
-            }
-        }catch(IOException e) {
-            System.out.println("error");
-        }
-        us.UpdateEmplois(u);
+      //  String PathTo= "C:\\Users\\Pytrooooo\\Documents\\NetBeansProjects\\JavaFXApplication2\\src\\PDFimport\\"; 
+               //Paths.get("").toAbsolutePath().toString();
+                try {
+        String PathTo= "C:\\Users\\Pytrooooo\\Documents\\NetBeansProjects\\JavaFXApplication2\\src\\PDFimport\\"+listview; 
+        //Paths.get("").toAbsolutePath().toString();
+        File org=new File(Path);
+        File news=new File(PathTo);
+        Files.copy(org.toPath(), news.toPath(), StandardCopyOption.REPLACE_EXISTING);
+               } catch (IOException ex) {
+                   Logger.getLogger(ModifierEController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+                us.UpdateEmplois(u);
                System.out.println("updated");
            }
        });
@@ -108,8 +107,8 @@ public class ModifierEController implements Initializable {
            @Override
            public void handle(Event event) {
                EmploisService us =new EmploisService();
-        System.out.println(emplois.getIdEmplois());
-        us.DeleteEmplois(emplois.getIdEmplois());
+        System.out.println(Integer.valueOf(label.getText()));
+        us.DeleteEmplois(Integer.valueOf(label.getText()));
         System.out.println("Deleted");
            }
        });
@@ -145,6 +144,19 @@ public class ModifierEController implements Initializable {
             }
         });
 
+    }
+
+    void setMainController(AfficherEController aThis) {
+        aff=aThis;
+    }
+
+    void setData(String label,LocalDate aa,LocalTime bb,String pathh) {
+        this.label.setText(label);
+        this.DateE.setValue(aa);
+        this.Heure.setValue(bb);
+        this.Source.setText(pathh);
+        this.listview=pathh;
+        
     }
 
     
