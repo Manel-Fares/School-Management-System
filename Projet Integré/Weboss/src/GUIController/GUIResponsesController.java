@@ -175,6 +175,11 @@ public class GUIResponsesController implements Initializable {
         String txtBody = txtAreaR.getText();
         ServiceReponse serR = new ServiceReponse();
         Reponse r1 = new Reponse(txtBody, 0, qIndex);
+        
+        if (!txtBody.isEmpty()) {
+            
+        
+        
         serR.ajouter2(r1);
         
         Alert info = new Alert(Alert.AlertType.INFORMATION);
@@ -191,7 +196,13 @@ public class GUIResponsesController implements Initializable {
             System.out.println(e.getMessage());
         }
         
-        
+        } else {
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setTitle("Please fill all inputs");
+            info.setHeaderText(null);
+            info.setContentText("Please fill all inputs");
+            info.show();
+        }
     }
     
     public void passageReturn(){

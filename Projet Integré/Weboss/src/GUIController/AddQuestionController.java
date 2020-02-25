@@ -87,18 +87,27 @@ public class AddQuestionController implements Initializable {
             //Question q = new Question(8, txtBody, 4, 2, 1);
             Question q2 = new Question(txtBody, 1, 1, 137, txtTitle, txtTagName);
             //serQ.ajouter(q2);
+            
+            if (txtBody.isEmpty() || txtTitle.isEmpty() || txtTagName.isEmpty()) {
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setTitle("Please fill all inputs");
+                info.setHeaderText(null);
+                info.setContentText("Please fill all inputs");
+                info.show();
+            } else {
             serQ.ajouter2(q2);
             
             Alert info = new Alert(Alert.AlertType.INFORMATION);
-            info.setTitle("Question Add");
+            info.setTitle("Question Added");
             info.setHeaderText(null);
             info.setContentText("Question Added");
             info.show();
-
+            }
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        
     }
     
     public void passage(){
