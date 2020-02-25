@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="PaneAdd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="243.0" prefWidth="253.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.AjouterEController">
+   <children>
+      <JFXDatePicker fx:id="DateEmplois" layoutX="35.0" layoutY="44.0" />
+      <JFXTimePicker fx:id="HeureEmplois" layoutX="35.0" layoutY="109.0" />
+      <JFXButton fx:id="SourceEmplois" layoutX="86.0" layoutY="156.0" prefHeight="25.0" prefWidth="90.0" text="Source" />
+      <JFXButton fx:id="AddEmplois" layoutX="105.0" layoutY="197.0" onAction="#AddEmploisAction" text="Add" />
+   </children>
+</AnchorPane>

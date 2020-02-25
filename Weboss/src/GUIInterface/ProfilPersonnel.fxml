@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="GUIController.ProfilPersonnelController">
+   <children>
+      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="107.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXButton layoutX="117.0" layoutY="198.0" onAction="#img" prefHeight="25.0" prefWidth="129.0" text="Choose Image.." />
+      <JFXTextField fx:id="nom" layoutX="114.0" layoutY="247.0" />
+      <JFXTextField fx:id="prenom" layoutX="114.0" layoutY="300.0" />
+      <JFXTextField fx:id="cin" layoutX="114.0" layoutY="362.0" />
+      <Label layoutX="11.0" layoutY="264.0" prefHeight="17.0" prefWidth="86.0" text="First Name" />
+      <Label layoutX="8.0" layoutY="317.0" prefHeight="17.0" prefWidth="80.0" text="Last Name" />
+      <Label layoutX="10.0" layoutY="379.0" prefHeight="17.0" prefWidth="44.0" text="CIN" />
+      <JFXDatePicker fx:id="dateN" layoutX="114.0" layoutY="414.0" />
+      <Label layoutX="8.0" layoutY="434.0" prefHeight="17.0" prefWidth="80.0" text="Date Of Birth" />
+      <JFXTextField fx:id="email" layoutX="422.0" layoutY="247.0" />
+      <JFXTextField fx:id="mdp" layoutX="423.0" layoutY="300.0" />
+      <Label layoutX="332.0" layoutY="264.0" prefHeight="17.0" prefWidth="44.0" text="Email" />
+      <Label layoutX="327.0" layoutY="317.0" prefHeight="17.0" prefWidth="63.0" text="Password" />
+      <JFXTextField fx:id="adresse" layoutX="422.0" layoutY="362.0" />
+      <Label layoutX="324.0" layoutY="379.0" prefHeight="17.0" prefWidth="86.0" text="Street Adress" />
+      <JFXButton layoutX="272.0" layoutY="490.0" onAction="#save" text="Save" />
+   </children>
+</AnchorPane>
