@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="342.0" prefWidth="484.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication2.AffecterClassController">
+   <children>
+      <TableView fx:id="tableUser" layoutX="252.0" layoutY="69.0" prefHeight="233.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="NomCol" prefWidth="199.0" text="Name" />
+        </columns>
+      </TableView>
+      <JFXComboBox fx:id="SelectRole" layoutX="32.0" layoutY="52.0" prefHeight="33.0" prefWidth="184.0" promptText="Role" />
+      <JFXComboBox fx:id="SelectClass" layoutX="32.0" layoutY="122.0" prefHeight="33.0" prefWidth="184.0" promptText="Class Name" />
+      <Label fx:id="RoleLabel" layoutX="315.0" layoutY="25.0" prefHeight="33.0" prefWidth="74.0" />
+      <JFXButton fx:id="Add" layoutX="87.0" layoutY="279.0" onAction="#AddAction" prefHeight="33.0" prefWidth="74.0" text="Add" />
+      <JFXComboBox fx:id="MatiereClass" layoutX="32.0" layoutY="209.0" prefHeight="33.0" prefWidth="184.0" promptText="Subject" />
+   </children>
+</AnchorPane>
