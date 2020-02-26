@@ -35,8 +35,6 @@ public class InterfaceEtudiantNoteController implements Initializable {
     @FXML
     private TableColumn<Note, String> noteExam;
     @FXML
-    private TextField idEtudiant;
-    @FXML
     private TableView<Note> tableViewNotes;
     @FXML
     private TableColumn<Note, String> moyenne;
@@ -56,17 +54,10 @@ public class InterfaceEtudiantNoteController implements Initializable {
         ServiceNote sn = new ServiceNote();
         tableViewNotes.setItems(sn.listeNoteEtudiantinterface(Etudiant.etd.getIdUser()));
 
-        //   afficher();
+ 
 
     }
 
-   /* private void afficher() {
 
-        idEtudiant.textProperty().addListener((observable, oldValue, newValue) -> {
-            ServiceNote sn = new ServiceNote();
-            tableViewNotes.setItems(sn.listeNoteEtudiantinterface(newValue));
-
-        });
-    }*/
 
 }

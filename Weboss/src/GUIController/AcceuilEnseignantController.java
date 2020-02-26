@@ -27,6 +27,8 @@ public class AcceuilEnseignantController implements Initializable {
     private AnchorPane background;
     @FXML
     private Pane bck;
+    @FXML
+    private Pane menu;
 
     /**
      * initialises the controller class.
@@ -34,6 +36,7 @@ public class AcceuilEnseignantController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        menu.setVisible(false);
     }    
 void affichage(String x) {
         Parent fxml;
@@ -56,5 +59,30 @@ void affichage(String x) {
     private void AfficherGestionNotes(MouseEvent event) {
         affichage("/GUIInterface/GestionNoteEnseignant.fxml");
     }
+
+    @FXML
+    private void chapitresManagement(MouseEvent event) {
+    }
+
+    @FXML
+    private void QuizManagement(MouseEvent event) {
+    }
+
+   
+
+    @FXML
+    private void afficher(MouseEvent event) {
+    }
+    @FXML
+    private void afficherBarreMenu(MouseEvent event) {
+        menu.setVisible(true);
+    }
+
+    @FXML
+    private void BarreMenu(MouseEvent event) {
+                menu.setVisible(false);
+
+    }
+    
     
 }

@@ -7,7 +7,6 @@
 package weboss.Service;
 
 
-import Iservice.IService3;
 import java.sql.SQLException;
 import java.util.List;
 import java.sql.*;
@@ -17,12 +16,13 @@ import javafx.collections.ObservableList;
 import weboss.BD.Database;
 import weboss.Entities.Note;
 import weboss.Entities.User;
+import Iservice.IServiceNote;
 
 /**
  *
  * @author House
  */
-public class ServiceNote implements IService3<Note> {
+public class ServiceNote implements IServiceNote<Note> {
 
     private Connection con;
     private Statement ste;
@@ -33,7 +33,7 @@ public class ServiceNote implements IService3<Note> {
 
     @Override
     public void ajouter(Note n) throws SQLException {
-        PreparedStatement pre = con.prepareStatement("INSERT INTO  `school`.`Note` ( `idEtudiant`, `idMatiere`,`idEnseignant`, `dateNote`,`noteCC`, `noteDS`, `noteExam`, `moyenne`) VALUES ( ?, ?, ? ,?, ?, ?, ?, ?);");
+        PreparedStatement pre = con.prepareStatement("INSERT INTO  `Note` ( `idEtudiant`, `idMatiere`,`idEnseignant`, `dateNote`,`noteCC`, `noteDS`, `noteExam`, `moyenne`) VALUES ( ?, ?, ? ,?, ?, ?, ?, ?);");
         pre.setInt(1, Integer.parseInt(n.getEtudiant().getIdUser()));
         pre.setInt(2, n.getMatiere().getIdMatiere());
         pre.setInt(3, Integer.parseInt(n.getEnseignant().getIdUser()));
@@ -103,6 +103,7 @@ public class ServiceNote implements IService3<Note> {
 
     }
 
+    @Override
     public ObservableList<Note> getNotes() {
 
         ObservableList<Note> arr = FXCollections.observableArrayList();
@@ -155,6 +156,7 @@ public class ServiceNote implements IService3<Note> {
 
     }*/
 
+    @Override
      public ObservableList<Note> getNotesEnseignant1(String nomClasse, int idMat, int idEns) {
 
         ObservableList<Note> arr = FXCollections.observableArrayList();
@@ -193,6 +195,7 @@ public class ServiceNote implements IService3<Note> {
 
     }
 
+    @Override
          public ObservableList<User> getNotesEnseignant2(String nomClasse, int idMat, int idEns) {
 
         ObservableList<User> arr = FXCollections.observableArrayList();
@@ -222,11 +225,12 @@ public class ServiceNote implements IService3<Note> {
 
     
     
+    @Override
     public ObservableList<String> GetNomMatiere(String idE, String nomClass) {
 
-        String req = "SELECT nom from matier m join cours c on m.id = c.idMatiere "
-                + "join classe cl on cl.Id = c.idClasse "
-                + "where c.idEnseignant = " + idE + " and cl.Name like '" + nomClass + "'";
+        String req = "SELECT nom from matier m join classeenseignantmatiere c on m.id = c.id_matiere "
+                + "join classe cl on cl.Id = c.id_class "
+                + "where c.id_user = " + idE + " and cl.Name like '" + nomClass + "'";
 
         ObservableList<String> arr = FXCollections.observableArrayList();
         try {
@@ -242,10 +246,11 @@ public class ServiceNote implements IService3<Note> {
 
     }
 
+    @Override
     public int GetIdMatiere(String nomMatiere, String nomClass) {
 
-        String req = "SELECT m.id from matier m join cours c on m.id = c.idMatiere "
-                + "join classe cl on cl.Id = c.idClasse "
+        String req = "SELECT m.id from matier m join classeenseignantmatiere c on m.id = c.id_matiere "
+                + "join classe cl on cl.Id = c.id_class "
                 + "where m.nom like '" + nomMatiere + "' and cl.Name like '" + nomClass + "'";
 
         try {
@@ -261,6 +266,7 @@ public class ServiceNote implements IService3<Note> {
 
     }
 
+    @Override
     public ObservableList<String> GetEtudFromClass(String classe) {
 
         String req = "select cinUser from users where classeEtd like '" + classe + "' and roleUser = 'Etudiant'";
@@ -278,9 +284,11 @@ public class ServiceNote implements IService3<Note> {
 
     }
 
+    @Override
     public ObservableList<String> GetClassesEnseignant(String idE) {
 
-        String req = " SELECT Name from classe join cours c on Id = c.idClasse where c.idEnseignant = " + idE;
+        
+        String req = " SELECT Name from classe join classeenseignantmatiere c on Id = c.id_class where c.id_user = " + idE;
 
         ObservableList<String> arr = FXCollections.observableArrayList();
         try {
@@ -342,6 +350,7 @@ public class ServiceNote implements IService3<Note> {
         return arr;
 
     }*/
+    @Override
     public ObservableList<Note> listeNoteEtudiantinterface(String idE) {
 
         ObservableList<Note> arr = FXCollections.observableArrayList();
@@ -404,6 +413,7 @@ public class ServiceNote implements IService3<Note> {
 
     }
 
+    @Override
     public ObservableList<Note> listeEtudiantCredit(String idE) {
 
         ObservableList<Note> arr = FXCollections.observableArrayList();
@@ -435,6 +445,7 @@ public class ServiceNote implements IService3<Note> {
 
     }
 
+    @Override
     public ObservableList<Note> listeMoyenneNoteEtudiant(String idE) {
 
         ObservableList<Note> arr = FXCollections.observableArrayList();
@@ -456,6 +467,7 @@ public class ServiceNote implements IService3<Note> {
 
     }
 
+    @Override
     public int getIdEtudiant(String cin) throws SQLException {
 
         ste = con.createStatement();
@@ -467,6 +479,7 @@ public class ServiceNote implements IService3<Note> {
 
     }
 
+    @Override
     public double formuleNote(Note n) {
 
         return n.getNoteCC() * 0.3 + n.getNoteDS() * 0.2 + n.getNoteExam() * 0.5;
@@ -474,7 +487,7 @@ public class ServiceNote implements IService3<Note> {
     }
 
     //permet de calculter moyenne d'une seule matiere
-    public void calculMoyenneNote(Note n) throws SQLException {
+  /*  public void calculMoyenneNote(Note n) throws SQLException {
         String sql = "UPDATE Note SET moyenne=? WHERE idEtudiant=? and idMatiere=? and dateNote=?";
 
         PreparedStatement pre = con.prepareStatement(sql);
@@ -488,12 +501,12 @@ public class ServiceNote implements IService3<Note> {
             System.out.println("moyenne enregistrer avec succes!");
         }
 
-    }
+    }*/
 
-    public void calculMoyennesNotes(List<Note> l) throws SQLException {
+   /* public void calculMoyennesNotes(List<Note> l) throws SQLException {
         for (Note n : l) {
             calculMoyenneNote(n);
         }
 
-    }
+    }*/
 }

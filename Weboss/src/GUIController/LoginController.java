@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +20,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 import weboss.Entities.Enseignant;
 import weboss.Entities.Etudiant;
@@ -50,11 +54,14 @@ public class LoginController implements Initializable {
     private Label welcome;
     @FXML
     private Label LetfText;
+    @FXML
+    private Pane captcha;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        //   input_login();
+        
+      
     }
 
     /*
@@ -173,13 +180,14 @@ try{
     @FXML
     private void Login(MouseEvent event) {
 
-        // System.out.println(User.user);
-        UserService ser = new UserService();
         
+        UserService ser = new UserService();
+  
+    
         try {
             
             User u=ser.login(email.getText(), mdp.getText());
-            System.out.println(Personnel.pr);
+            System.out.println(Enseignant.ensg);
             if (u instanceof Etudiant) {
                 FXMLLoader loader = new FXMLLoader(getClass()
                         .getResource("/GUIInterface/AcceuilEtudiant.fxml"));
@@ -203,7 +211,30 @@ try{
                 AcceuilPersonelController apc = loader.getController();
                 
                 email.getScene().setRoot(root);
-            } else if(u instanceof User){
+            } else if(u instanceof Enseignant){
+                System.out.println("ens");
+                  FXMLLoader loader = new FXMLLoader(getClass()
+                        .getResource("/GUIInterface/AcceuilEnseignant.fxml"));
+                Parent root = loader.load();
+                AcceuilEnseignantController apc = loader.getController();
+                
+                email.getScene().setRoot(root);
+                System.out.println("p22");
+                        
+                
+            } else if(u instanceof Enseignant){
+                System.out.println("ens");
+                  FXMLLoader loader = new FXMLLoader(getClass()
+                        .getResource("/GUIInterface/AcceuilEnseignant.fxml"));
+                Parent root = loader.load();
+                AcceuilEnseignantController apc = loader.getController();
+                
+                email.getScene().setRoot(root);
+                System.out.println("p22");
+                        
+                
+            }
+            else if(u instanceof User){
                 System.out.println("hiii");
                   FXMLLoader loader = new FXMLLoader(getClass()
                         .getResource("/GUIInterface/Acceuil.fxml"));
@@ -215,10 +246,11 @@ try{
                         
                 
             }
+            
           
             
         } catch (Exception ex) {
-            System.out.println("login error");
+            System.out.println(ex.getMessage());
         }
     }
     

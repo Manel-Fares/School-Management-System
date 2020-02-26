@@ -66,9 +66,19 @@ public class GetAllEtudiantController implements Initializable {
         ClassService cs=new ClassService();
         ColNom.setCellValueFactory(new PropertyValueFactory<>("nomUser"));
         if (GroupRole.getSelectedToggle().equals(Studient))
-                ClassC.setItems(cs.GetNomClass());
+        {
+         ClassC.setItems(cs.GetNomClass());  
+         ClassC.getSelectionModel().selectFirst();
+         TableEtud.setItems(cs.GetEtudFromClass(ClassC.getValue()));
+        }
+                
         else if(GroupRole.getSelectedToggle().equals(Proffesor))
-                ClassC.setItems(cs.GetEns());
+        {
+         ClassC.setItems(cs.GetEns());
+         ClassC.getSelectionModel().selectFirst();
+         TableEtud.setItems(cs.GetEnseiFromClass(cs.SearchNomClass(ClassC.getValue())));
+        }
+                
         System.out.println("qsqsqsqsqsqsqs");
         init();
     }   
@@ -82,7 +92,7 @@ public class GetAllEtudiantController implements Initializable {
                 if (GroupRole.getSelectedToggle().equals(Studient))
                      TableEtud.setItems(as.GetEtudFromClass(ClassC.getValue()));
                 else if (GroupRole.getSelectedToggle().equals(Proffesor))
-                     TableEtud.setItems(as.GetEnseiFromClass(ClassC.getValue()));
+                     TableEtud.setItems(as.GetEnseiFromClass(as.SearchNomClass(ClassC.getValue())));
             }
         });
     }

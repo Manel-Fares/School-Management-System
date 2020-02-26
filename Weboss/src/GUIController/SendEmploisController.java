@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.regex.Pattern;
+import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.mail.Authenticator;
@@ -52,7 +54,63 @@ public class SendEmploisController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }  
+     public void afficherAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
+    }
+      
+    public boolean testSaisie() {
+        
+       // System.out.println("compare="+dateDebut.getValue().compareTo(dateFin.getValue()));
+
+        if (
+               // NameClass.getText().trim().isEmpty() || NbrEtudClass.getText().trim().isEmpty()
+               // || DescriptionClass.getText().trim().isEmpty()
+                mail.getText().trim().isEmpty()
+               // DateEmplois.getValue() == null
+               // || HeureEmplois.getValue() == null
+                || listview.equals("")
+                || Path.equals("")
+                //|| imageFileLabel.getText().trim().isEmpty()
+                ) {
+            afficherAlert("Tous les champs doivent être remplis");
+            return false;
+        }
+ Pattern err = Pattern.compile("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+ if (!err.matcher(mail.getText()).matches()) {
+     afficherAlert("Email non valider");
+            return false;
+        }      
+ /* Instant instant = Instant.from(dateDebut.getValue().atStartOfDay(ZoneId.systemDefault()));
+        Date dateD = Date.from(instant);
+        Date cuurentDate = new Date();
+        if (dateD.compareTo(cuurentDate) < 0) {
+
+            afficherAlert("Date debut doit être supérieur à la date d'aujoud'hui");
+            return false;
+        }
+        if (dateDebut.getValue().compareTo(dateFin.getValue()) > 0) {
+            afficherAlert("Date fin doit être supérieur ou égal à la date de debut");
+            return false;
+        }
+        if (dateDebut.getValue().compareTo(dateFin.getValue()) == 0) {
+            if (heureDebut.getValue().compareTo(heureFin.getValue()) > 0) {
+                afficherAlert("Heure fin doit être supérieur à l'heure de début");
+                return false;
+            }
+        }*/
+      /*  try {
+            Double num = Double.parseDouble(NbrEtudClass.getText());
+        } catch (NumberFormatException e) {
+            afficherAlert("Champs Nombre invalide");
+            return false;
+        }*/
+        return true;
+    }
 
     @FXML
     private void UploadAction(ActionEvent event) {
@@ -82,9 +140,12 @@ public class SendEmploisController implements Initializable {
 
     @FXML
     private void SendAction(ActionEvent event) {
+        if(testSaisie())
+        {
         mailling();
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
+        }
     }
     
     

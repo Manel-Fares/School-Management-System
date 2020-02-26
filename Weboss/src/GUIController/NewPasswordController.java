@@ -48,7 +48,7 @@ public class NewPasswordController implements Initializable {
     private void reset(ActionEvent event) {
         Parent fxml;
         UserService ser = new UserService();
-        if(mdp.getText().equals(mdpC.getText())){
+        if(mdp.getText().equals(mdpC.getText()) && mdp.getLength()>=8){
             try {
                 System.out.println(User.user);
                

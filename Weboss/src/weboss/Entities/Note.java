@@ -19,8 +19,8 @@ public class Note {
     private double noteExam;
     private double moyenne;
     private String info;
-   // private String nomMatiere;
-   // private float coefficient;
+    // private String nomMatiere;
+    // private float coefficient;
 
     public Note(String nomMatiere, double moyenne) {
         this.info = nomMatiere;
@@ -51,6 +51,17 @@ public class Note {
         this.info = info;
     }
 
+    public Note(int idEtudiant, int idMatiere, Date dateNote, double noteCC, double noteDS,double noteExam, int idEnseignant) {
+        this.etudiant.setIdUser(String.valueOf(idEtudiant));
+        this.matiere.setIdMatiere(idMatiere);
+        this.enseignant.setIdUser(String.valueOf(idEnseignant));
+        this.dateNote = dateNote;
+        this.noteCC = noteCC;
+        this.noteDS = noteDS;
+        this.noteExam = noteExam;
+
+    }
+
     public User getEtudiant() {
         return etudiant;
     }
@@ -71,7 +82,6 @@ public class Note {
         return info;
     }
 
-
     public int getIdEtudiant() {
         return Integer.parseInt(etudiant.getIdUser());
     }
@@ -83,7 +93,6 @@ public class Note {
     public void setIdEnseignant(int idEnseignant) {
         this.enseignant.setIdUser(String.valueOf(idEnseignant));
     }
-
 
     public int getIdEnseignant() {
         return Integer.parseInt(enseignant.getIdUser());
@@ -151,7 +160,7 @@ public class Note {
 
     @Override
     public String toString() {
-        return "\nNote :" + "\n    idEtudiant=" + enseignant.getIdUser()+ ", \n    idMatiere=" + matiere.getIdMatiere()
+        return "\nNote :" + "\n    idEtudiant=" + enseignant.getIdUser() + ", \n    idMatiere=" + matiere.getIdMatiere()
                 + ", \n    dateNote=" + dateNote + ", \n    noteCC=" + noteCC + ", \n    noteDS="
                 + noteDS + ",\n    noteExam=" + noteExam + ", \n    moyenne=" + moyenne + "\n";
     }

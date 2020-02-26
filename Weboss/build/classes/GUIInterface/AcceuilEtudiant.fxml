@@ -13,29 +13,23 @@
 
 <AnchorPane id="AnchorPane" fx:id="bckacceuiletudiant" minWidth="1100.0" prefHeight="717.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.AcceuilEtudiantController">
    <children>
-      <Pane fx:id="bck1" layoutX="10.0" layoutY="112.0" prefHeight="605.0" prefWidth="1101.0" style="-fx-background-color: white;" styleClass="bck" stylesheets="@../CSS/style.css" />
       <Pagination fx:id="pagination" layoutX="-1.0" layoutY="180.0" maxHeight="500.0" maxPageIndicatorCount="0" maxWidth="453.0" minHeight="413.0" minWidth="350.0" pageCount="0" prefHeight="500.0" prefWidth="453.0" stylesheets="@../CSS/style.css" />
-      <Pane fx:id="bck" layoutY="100.0" maxWidth="1100.0" minWidth="1100.0" prefHeight="605.0" prefWidth="1100.0">
+      <Pane fx:id="bck1" prefHeight="605.0" prefWidth="1101.0" style="-fx-background-color: white;" styleClass="bck" stylesheets="@../CSS/style.css">
          <children>
-            <Pane fx:id="bck_Rating" layoutX="459.0" layoutY="10.0" prefHeight="597.0" prefWidth="639.0" styleClass="gridpane" stylesheets="@../CSS/style.css" />
-         </children></Pane>
-      <Pane layoutY="-37.0" minWidth="1100.0" prefHeight="148.0" prefWidth="1100.0" styleClass="parent" stylesheets="@../CSS/style.css">
+            <Pane fx:id="bck" layoutX="1.0" layoutY="98.0" maxWidth="1100.0" minWidth="1100.0" prefHeight="605.0" prefWidth="1100.0">
+               <children>
+                  <Pane fx:id="bck_Rating" layoutX="459.0" layoutY="10.0" prefHeight="597.0" prefWidth="639.0" styleClass="gridpane" stylesheets="@../CSS/style.css" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutY="-37.0" minWidth="1100.0" prefHeight="136.0" prefWidth="1100.0" styleClass="parent" stylesheets="@../CSS/style.css">
          <children>
             <ImageView fitHeight="27.0" fitWidth="29.0" layoutX="1056.0" layoutY="55.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../weboss/Image/iconelogout.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="30.0" layoutX="1013.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../weboss/Image/notif.png" />
-               </image>
-            </ImageView>
-            <JFXButton layoutX="310.0" layoutY="66.0" styleClass="btns" stylesheets="@../CSS/style.css" text="Cours" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman" size="18.0" />
-               </font>
-            </JFXButton>
             <ImageView fitHeight="74.0" fitWidth="120.0" layoutX="19.0" layoutY="45.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../weboss/Image/logo.png" />
@@ -51,8 +45,11 @@
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="reclamation" layoutX="686.0" layoutY="68.0" onAction="#reclamation" styleClass="btns" stylesheets="@../CSS/style.css" text="Reclamation" />
-            <MenuButton layoutX="389.0" layoutY="66.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" styleClass="btns" stylesheets="@../CSS/style.css" text="Result">
+            <JFXButton fx:id="reclamation" layoutX="686.0" layoutY="68.0" onAction="#reclamation" styleClass="btns" stylesheets="@../CSS/style.css" text="Reclamation">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></JFXButton>
+            <MenuButton layoutX="389.0" layoutY="66.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" styleClass="btns" stylesheets="@../CSS/style.css" text="Result" textFill="WHITE">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#Notes" text="Notes" />
                 <MenuItem mnemonicParsing="false" onAction="#AnnualResults" text="Annual Results" />
@@ -63,13 +60,22 @@
                </font>
             </MenuButton>
             <Button layoutX="924.0" layoutY="62.0" mnemonicParsing="false" onAction="#profil" text="Profil" />
-            <MenuButton fx:id="evenmentMenu" layoutX="206.0" layoutY="66.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" styleClass="btns" stylesheets="@../CSS/style.css" text="Event">
+            <MenuButton fx:id="evenmentMenu" layoutX="186.0" layoutY="66.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" styleClass="btns" stylesheets="@../CSS/style.css" text="Event" textFill="WHITE">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#demandeevenement" text="Event Request" />
                   <MenuItem mnemonicParsing="false" onAction="#consulterDemande" text="consult your request" />
                </items>
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+            </MenuButton>
+            <MenuButton layoutX="298.0" layoutY="64.0" mnemonicParsing="false" styleClass="btns" stylesheets="@../CSS/style.css" text="Cours" textFill="WHITE">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#ConsultChapitres" text="Consult Chapitres" />
+                <MenuItem mnemonicParsing="false" onAction="#Quiz" text="Quiz" />
+              </items>
+               <font>
+                  <Font name="System Bold" size="15.0" />
                </font>
             </MenuButton>
          </children>

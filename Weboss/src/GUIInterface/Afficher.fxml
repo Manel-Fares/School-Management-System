@@ -20,7 +20,7 @@
         </columns>
       </TableView>
       <JFXTextField fx:id="Recherche" layoutX="598.0" layoutY="31.0" promptText="Search ..." />
-      <JFXButton fx:id="Reload" layoutX="602.0" layoutY="153.0" prefHeight="25.0" prefWidth="83.0" styleClass="loginBtn" stylesheets="@../CSS/style.css" text="Reload" />
+      <JFXButton fx:id="Reload" layoutX="602.0" layoutY="153.0" onAction="#ReloadAction" prefHeight="25.0" prefWidth="83.0" styleClass="loginBtn" stylesheets="@../CSS/style.css" text="Reload" />
       <JFXButton fx:id="Add" layoutX="601.0" layoutY="99.0" onAction="#AddAction" prefHeight="25.0" prefWidth="83.0" styleClass="addbtn" stylesheets="@../CSS/style.css" text="Add" />
       <FontAwesomeIconView glyphName="SEARCH" layoutX="748.0" layoutY="48.0" />
       <Pane fx:id="affecter" layoutX="19.0" layoutY="318.0" prefHeight="320.0" prefWidth="568.0" />

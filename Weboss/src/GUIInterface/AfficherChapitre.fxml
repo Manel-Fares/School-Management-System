@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.AfficherChapitreController">
+   <children>
+      <JFXButton layoutX="6.0" layoutY="57.0" onAction="#supp" text="delete" />
+      <JFXButton layoutX="6.0" layoutY="83.0" onAction="#update" text="update" />
+      <JFXButton layoutX="887.0" layoutY="580.0" onAction="#ret" text="return" />
+      <ComboBox fx:id="m" layoutX="290.0" layoutY="57.0" prefWidth="150.0" />
+      <ScrollPane fx:id="scp" layoutY="234.0" prefHeight="340.0" prefWidth="952.0" />
+      <JFXButton layoutX="482.0" layoutY="57.0" onAction="#findchapbysub" text="Search" />
+   </children>
+</AnchorPane>

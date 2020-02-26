@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -55,6 +56,54 @@ public class ModifierController implements Initializable {
 
 
     
+        public void afficherAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
+    }
+
+    public boolean testSaisie() {
+        
+       // System.out.println("compare="+dateDebut.getValue().compareTo(dateFin.getValue()));
+
+        if (ModNameClass.getText().trim().isEmpty() || SnModClass.getText().trim().isEmpty()
+                || DescModClass.getText().trim().isEmpty()
+                //|| adresse.getText().trim().isEmpty()
+                || ModNivClass.getValue() == null
+                || SpecNivClass.getValue() == null
+                //|| imageFileLabel.getText().trim().isEmpty()
+                ) {
+            afficherAlert("Tous les champs doivent être remplis");
+            return false;
+        }
+       /* Instant instant = Instant.from(dateDebut.getValue().atStartOfDay(ZoneId.systemDefault()));
+        Date dateD = Date.from(instant);
+        Date cuurentDate = new Date();
+        if (dateD.compareTo(cuurentDate) < 0) {
+
+            afficherAlert("Date debut doit être supérieur à la date d'aujoud'hui");
+            return false;
+        }
+        if (dateDebut.getValue().compareTo(dateFin.getValue()) > 0) {
+            afficherAlert("Date fin doit être supérieur ou égal à la date de debut");
+            return false;
+        }
+        if (dateDebut.getValue().compareTo(dateFin.getValue()) == 0) {
+            if (heureDebut.getValue().compareTo(heureFin.getValue()) > 0) {
+                afficherAlert("Heure fin doit être supérieur à l'heure de début");
+                return false;
+            }
+        }*/
+        try {
+            Double num = Double.parseDouble(SnModClass.getText());
+        } catch (NumberFormatException e) {
+            afficherAlert("Champs Nombre invalide");
+            return false;
+        }
+        return true;
+    }
     
     
 
@@ -82,11 +131,15 @@ public class ModifierController implements Initializable {
 
     
     public void UpdateClassAction() {
-        String niv=ModNivClass.getValue()+SpecNivClass.getValue();
-        Class u =new Class(Data.getId(),ModNameClass.getText(),ModNivClass.getValue(),SpecNivClass.getValue(),Integer.parseInt(SnModClass.getText()),DescModClass.getText());;
         ClassService us =new ClassService();
+        if (testSaisie()){
+        if(us.ValidatorNomClass(ModNameClass.getText()))
+        {
+        String niv=ModNivClass.getValue()+SpecNivClass.getValue();
+        Class u =new Class(Data.getId(),ModNameClass.getText(),ModNivClass.getValue(),SpecNivClass.getValue(),Integer.parseInt(SnModClass.getText()),DescModClass.getText());;        
         us.UpdateClass(u);
         System.out.println("updated");
+        }}
     }
     
      public void DeleteClassAction() {

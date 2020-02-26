@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Alert;
 import weboss.BD.Database;
 import weboss.Entities.Note;
 import weboss.Entities.Resultat;
@@ -33,8 +34,8 @@ public class ServiceResultat {
     }
 
     public void ajouterResultat(Resultat r) throws SQLException {
-        PreparedStatement pre = con.prepareStatement("INSERT INTO  `school`.`Resultat` ( `idEtudiant`, `dateResultat`, `resultat`) VALUES ( ?, ?, ?);");
-        pre.setInt(1, Integer.parseInt(r.getEtudiant().getIdUser()));
+        PreparedStatement pre = con.prepareStatement("INSERT INTO  `pidev`.`Resultat` ( `idEtudiant`, `dateResultat`, `resultat`) VALUES ( ?, ?, ?);");
+        pre.setInt(1,Integer.parseInt(r.getEtudiant().getIdUser()));
         pre.setDate(2, r.getDateResultat());
         pre.setFloat(3, r.getResultat());
         pre.executeUpdate();
@@ -59,10 +60,21 @@ public class ServiceResultat {
     public List<Integer> getListEtudiant() throws SQLException {
         List<Integer> arr = new ArrayList<>();
         ste = con.createStatement();
-        ResultSet rs = ste.executeQuery("select idUser from users where roleUser = 'Etudiant'");
+        ResultSet rs = ste.executeQuery("select idEtudiant from note");
         while (rs.next()) {
-            int id = rs.getInt("idUser");
+            int id = rs.getInt("idEtudiant");
             arr.add(id);
+        }
+        return arr;
+    }
+    
+        public List<String> getListMailEtudiant() throws SQLException {
+        List<String> arr = new ArrayList<>();
+        ste = con.createStatement();
+        ResultSet rs = ste.executeQuery("select email from users join resultat on idUser=idEtudiant ");
+        while (rs.next()) {
+            String s = rs.getString("email");
+            arr.add(s);
         }
         return arr;
     }
@@ -90,26 +102,6 @@ public class ServiceResultat {
 
     }*/
 
-    public float PourcentageReussiteparClasse(String classe) throws SQLException {
-
-        ste = con.createStatement();
-        int nb=1,nbClass=1;
-        ResultSet rs = ste.executeQuery("select COUNT(r.resultat) as nb from users u join resultat r "
-                +"on u.idUser=r.idEtudiant WHERE classeEtd like '"+classe+"%' and resultat >= 10 ");
-        while (rs.next()) {
-            nb =rs.getInt("nb");
-
-        }
-         ResultSet rs2 = ste.executeQuery("select COUNT(*) as nb2 from users  WHERE classeEtd like '"+classe+"%' and roleUser = 'Etudiant'" );
-        while (rs2.next()) {
-            System.out.println(rs.getInt("nb2"));
-            nbClass =rs.getInt("nb2");
-
-        }
-         
-        return nbClass*1.0f/nb*100;
-
-    }
 
         public float PourcentageReussiteEcole() throws SQLException {
 
@@ -150,18 +142,7 @@ public class ServiceResultat {
         return 0;
 
     }
-/*
-    public void delete(Resultat r) throws SQLException {
-        String sql = "DELETE FROM Resultat WHERE idEtudiant=? ";
 
-        PreparedStatement pre = con.prepareStatement(sql);
-        pre.setInt(1, r.getEtudiant().getId());
-
-        int rowsDeleted = pre.executeUpdate();
-        if (rowsDeleted > 0) {
-            System.out.println("Resultat a été supprimer avec succès");
-        }
-    }*/
     
         public void delete(int idE) throws SQLException {
         String sql = "DELETE FROM Resultat WHERE idEtudiant=? ";
@@ -172,10 +153,15 @@ public class ServiceResultat {
         int rowsDeleted = pre.executeUpdate();
         if (rowsDeleted > 0) {
             System.out.println("Resultat a été supprimer avec succès");
-        }else
-        {
-            System.out.println("cin n'eiste pas");
         }
+        /*else
+        {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        //alert.setTitle("Ajouter Note");
+        alert.setHeaderText("Invalid National Identity Card Number !! ");
+        alert.setContentText("please verify your Nation Identity card Number ");
+        alert.showAndWait();*/
+       // }
     
     }
     
@@ -237,5 +223,18 @@ public class ServiceResultat {
         }
 
     }
+    public void schoolAnnual(List<Integer> l) throws SQLException {
+        ServiceNote ser = new ServiceNote();
+        Resultat r;
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd-mm-yyyy");
+        Date d =new Date(System.currentTimeMillis());
+        for (Integer E : l) {
+            r = new Resultat(E,d);
+            ajouterResultat(r);
+            System.out.println("ajout resultat avec succes ");
+            enregistrerResultat(E);
 
+        }
+
+    }
 }

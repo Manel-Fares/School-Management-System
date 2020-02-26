@@ -9,10 +9,12 @@ package GUIController;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -36,11 +38,7 @@ public class InterfaceEtudiantResultatController implements Initializable {
     @FXML
     private TableColumn<Note, String> moyenne;
     @FXML
-    private Button resultat;
-    @FXML
-    private TextField idEtudiant;
-    @FXML
-    private TextField res;
+    private Label resultat;
 
     /**
      * Initializes the controller class.
@@ -48,34 +46,21 @@ public class InterfaceEtudiantResultatController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        nomMatiere.setCellValueFactory(new PropertyValueFactory<>("info"));
-        moyenne.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
-
-         ServiceNote sn = new ServiceNote();
-        tanleViewMoyenne.setItems(sn.listeNoteEtudiantinterface(Etudiant.etd.getIdUser()));
-        //afficher();
-
-    }
-
-   /* private void afficher() {
-
-        idEtudiant.textProperty().addListener((observable, oldValue, newValue) -> {
+        try {
+            nomMatiere.setCellValueFactory(new PropertyValueFactory<>("info"));
+            moyenne.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
+            
             ServiceNote sn = new ServiceNote();
-            tanleViewMoyenne.setItems(sn.listeMoyenneNoteEtudiant(newValue));
-
-        });
-    }*/
-
-    @FXML
-    private void afficherResultat(ActionEvent event) throws SQLException {
-
-        
+            tanleViewMoyenne.setItems(sn.listeNoteEtudiantinterface(Etudiant.etd.getIdUser()));
+            
             ServiceResultat sr = new ServiceResultat();
 
-            float r = sr.getResultat(idEtudiant.getText());
-            System.out.println(r);
-            res.setText(Float.toString(r));
+            float r = sr.getResultat(Etudiant.etd.getIdUser());
+        
+            resultat.setText(Float.toString(r));
             System.out.println("    resultat afficher");
+        } catch (SQLException ex) {
+        }
      
 
     }

@@ -34,6 +34,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -48,6 +49,7 @@ import javax.mail.MessagingException;
 import weboss.Entities.*;
 import weboss.Service.PersonnelService;
 import weboss.Service.UserService;
+import weboss.Service.ValidationChamps;
 
 
 /**
@@ -101,6 +103,48 @@ public class EspacePersonnelController implements Initializable {
     @FXML
     private ImageView image;
     String imgurl,imgpath;
+    @FXML
+    private ImageView valid_nom;
+    @FXML
+    private ImageView invalid_nom;
+    @FXML
+    private Label error_cin;
+    @FXML
+    private ImageView valid_cin;
+    @FXML
+    private ImageView invalid_cin;
+    @FXML
+    private ImageView valid_adresse;
+    @FXML
+    private ImageView invalid_adresse;
+    @FXML
+    private ImageView valid_date;
+    @FXML
+    private ImageView invalid_date;
+    @FXML
+    private ImageView valid_domain;
+    @FXML
+    private ImageView invalid_domain;
+    @FXML
+    private ImageView valid_prenom;
+    @FXML
+    private ImageView invalid_prenom;
+    @FXML
+    private ImageView valid_mail;
+    @FXML
+    private ImageView invalid_mail;
+    @FXML
+    private ImageView valid_salaire;
+    @FXML
+    private ImageView invalid_salaire;
+    @FXML
+    private ImageView valid_status;
+    @FXML
+    private ImageView invalid_status;
+    @FXML
+    private ImageView valid_tel;
+    @FXML
+    private ImageView invalid_tel;
     
 
    
@@ -132,6 +176,38 @@ public class EspacePersonnelController implements Initializable {
 
     @FXML
     private void add(ActionEvent event) {
+          boolean isCinEmpty = ValidationChamps.isNumber(cin, valid_cin, invalid_cin);
+        boolean isNomEmpty = ValidationChamps.isTextFieldNotEmpty(nom, valid_nom, invalid_nom);
+        boolean isPrenomEmpty = ValidationChamps.isTextFieldNotEmpty(prenom, valid_prenom, invalid_prenom);
+        boolean isEmailEmpty = ValidationChamps.isEmail(email, valid_mail, invalid_mail);
+        boolean isAdresseEmpty = ValidationChamps.isTextFieldNotEmpty(adresse, valid_adresse, invalid_adresse);
+        boolean isTelEmpty = ValidationChamps.isNumber(numT, valid_tel, invalid_tel);
+       
+ 
+        boolean isSaliareEmpty = ValidationChamps.isNumber(salaire, valid_salaire, invalid_salaire);
+      
+       
+        
+                if (!isSaliareEmpty) {
+                    error_cin.setText("TelR No Empty");}
+        
+          
+        
+                        if (!isTelEmpty) {
+                            error_cin.setText("Tel No Empty");}
+                            if (!isAdresseEmpty) {
+                                error_cin.setText("Adresse No Empty");}
+                                if (!isEmailEmpty) {
+                                    error_cin.setText("Email No Empty");}
+                                    if (!isPrenomEmpty) {
+                                        error_cin.setText("Prenom No Empty");}
+                                        if (!isNomEmpty) {
+                                            error_cin.setText("Nom No Empty");}
+                                            if (!isCinEmpty) {
+                                                error_cin.setText("cin No Empty");}
+            if(isAdresseEmpty && isCinEmpty && isEmailEmpty && isNomEmpty  && isSaliareEmpty && isPrenomEmpty && isTelEmpty ){
+                error_cin.setText(null);
+            }   
         
         String sexe = null,s;
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd-mm-yyyy");
@@ -143,14 +219,16 @@ public class EspacePersonnelController implements Initializable {
         if(Gender.getSelectedToggle().equals(H))
             sexe="Homme";
         else if(Gender.getSelectedToggle().equals(F))
-            sexe="femme";
+            sexe="Femme";
             Personnel pr = new Personnel("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),parseInt(numT.getText()),d, sexe, cin.getText(),"Enseignant",imgurl, statut.getValue(),d,Double.valueOf(salaire.getText()), domain.getValue());
       
      
         try {
+             if(isAdresseEmpty && isCinEmpty && isEmailEmpty && isNomEmpty  && isSaliareEmpty && isPrenomEmpty && isTelEmpty ){
             ser.ajouter(pr);
             loadData();
                 clearData();
+             }
             
             
         } catch (SQLException ex) {
@@ -183,6 +261,38 @@ public class EspacePersonnelController implements Initializable {
 
     @FXML
     private void update(ActionEvent event) {
+           boolean isCinEmpty = ValidationChamps.isNumber(cin, valid_cin, invalid_cin);
+        boolean isNomEmpty = ValidationChamps.isTextFieldNotEmpty(nom, valid_nom, invalid_nom);
+        boolean isPrenomEmpty = ValidationChamps.isTextFieldNotEmpty(prenom, valid_prenom, invalid_prenom);
+        boolean isEmailEmpty = ValidationChamps.isEmail(email, valid_mail, invalid_mail);
+        boolean isAdresseEmpty = ValidationChamps.isTextFieldNotEmpty(adresse, valid_adresse, invalid_adresse);
+        boolean isTelEmpty = ValidationChamps.isNumber(numT, valid_tel, invalid_tel);
+       
+ 
+        boolean isSaliareEmpty = ValidationChamps.isNumber(salaire, valid_salaire, invalid_salaire);
+      
+       
+        
+                if (!isSaliareEmpty) {
+                    error_cin.setText("TelR No Empty");}
+        
+          
+        
+                        if (!isTelEmpty) {
+                            error_cin.setText("Tel No Empty");}
+                            if (!isAdresseEmpty) {
+                                error_cin.setText("Adresse No Empty");}
+                                if (!isEmailEmpty) {
+                                    error_cin.setText("Email No Empty");}
+                                    if (!isPrenomEmpty) {
+                                        error_cin.setText("Prenom No Empty");}
+                                        if (!isNomEmpty) {
+                                            error_cin.setText("Nom No Empty");}
+                                            if (!isCinEmpty) {
+                                                error_cin.setText("cin No Empty");}
+            if(isAdresseEmpty && isCinEmpty && isEmailEmpty && isNomEmpty  && isSaliareEmpty && isPrenomEmpty && isTelEmpty ){
+                error_cin.setText(null);
+            }   
          Date d = new Date(12,12,2012);
         String sexe = null,s;
          if(Gender.getSelectedToggle().equals(H))
@@ -195,9 +305,11 @@ public class EspacePersonnelController implements Initializable {
          e.setPrenomUser(prenom.getText());
           // Etudiant etd = new Etudiant("",parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(),1,d,sexe,cin.getText(),"Etudiant", "",d, domain.getValue(),null);
         try {
+             if(isAdresseEmpty && isCinEmpty && isEmailEmpty && isNomEmpty  && isSaliareEmpty && isPrenomEmpty && isTelEmpty ){
             ser.update(e,e.getIdUser());
             loadData();
                 clearData();
+             }
         } catch (Exception ex) {
             System.out.println("update error ");
         }

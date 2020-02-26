@@ -5,15 +5,11 @@
  */
 package GUIController;
 
-import com.gembox.spreadsheet.ExcelFile;
-import com.gembox.spreadsheet.ExcelWorksheet;
-import com.gembox.spreadsheet.SpreadsheetInfo;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.effects.JFXDepthManager;
 
-import java.io.File;
 import java.io.IOException;
 
 import java.net.URL;
@@ -37,14 +33,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -57,9 +49,31 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+/*import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;*/
+import java.io.File;
+import java.io.FileOutputStream;
+ 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileNotFoundException;
+//import org.apache.log4j.Logger;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
 import weboss.Entities.CalendarAnnuel;
 import weboss.Entities.Emplois;
 import weboss.Service.CalendarAnnuelService;
+
+
 
 
 
@@ -70,9 +84,7 @@ import weboss.Service.CalendarAnnuelService;
  */
 public class CalendarEventController implements Initializable {
     
-     static {
-        SpreadsheetInfo.setLicense("FREE-LIMITED-KEY");
-    }
+     
 
     @FXML
     private GridPane calendarGrid;
@@ -638,81 +650,103 @@ public class CalendarEventController implements Initializable {
         calendarGrid.add(day, colIndex, rowIndex);
     }
      
-         public void exportCalendarPDF()
-    {
-         TableView<CalendarAnnuel> table = new TableView<>();
-         ObservableList<CalendarAnnuel> data =FXCollections.observableArrayList();  
-   
-        
-        double w = 500.00;
-        // set width of table view
-        table.setPrefWidth(w);
-        // set resize policy
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        // intialize columns
-        TableColumn<CalendarAnnuel,String> term  = new TableColumn<>("Subject");
-        TableColumn<CalendarAnnuel,String> subject  = new TableColumn<>("Term");
-        TableColumn<CalendarAnnuel,String> date = new TableColumn<>("DateC");
-        // set width of columns
-        term.setMaxWidth( 1f * Integer.MAX_VALUE * 20 ); // 50% width
-        subject.setMaxWidth( 1f * Integer.MAX_VALUE * 20 ); // 50% width
-        date.setMaxWidth( 1f * Integer.MAX_VALUE * 20 ); // 50% width
-        // 
-        term.setCellValueFactory(new PropertyValueFactory<>("subject"));
-        subject.setCellValueFactory( new PropertyValueFactory<>("term"));
-        date.setCellValueFactory(new PropertyValueFactory<>("datec"));
-        
-        // Add columns to the table
-        table.getColumns().add(term);
-        table.getColumns().add(subject);
-        table.getColumns().add(date);
- 
-         CalendarAnnuelService cas=new CalendarAnnuelService();
-         data=cas.GetCalendar();       
-        table.getItems().setAll(data);
-        // open dialog window and export table as pdf
-        PrinterJob job = PrinterJob.createPrinterJob();
-        if(job != null){
-          job.printPage(table);
-          job.endJob();
-        }
-       }
-    
-     
+          private static HSSFCellStyle createStyleForTitle(HSSFWorkbook workbook) {
+        HSSFFont font = workbook.createFont();
+        font.setBold(true);
+        HSSFCellStyle style = workbook.createCellStyle();
+        style.setFont(font);
+        return style;
+    }
     public void exportCalendarExcel() throws IOException{
+        ObservableList<CalendarAnnuel> data =FXCollections.observableArrayList();          
+        CalendarAnnuelService cas=new CalendarAnnuelService();
+        data=cas.GetCalendar();       
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("Calendar Sheet");
+        int rownum = 0;
+        Cell cell;
+        Row row;
+        //
+        HSSFCellStyle style = createStyleForTitle(workbook);
+ 
+        row = sheet.createRow(rownum);
+ 
+        // Subject
+        cell = row.createCell(0, CellType.STRING);
+        cell.setCellValue("Subject");
+        cell.setCellStyle(style);
+        // Term
+        cell = row.createCell(1, CellType.STRING);
+        cell.setCellValue("Term");
+        cell.setCellStyle(style);
+        // Date
+        cell = row.createCell(2, CellType.STRING);
+        cell.setCellValue("Date");
+        cell.setCellStyle(style);
 
-                 TableView<CalendarAnnuel> table = new TableView<CalendarAnnuel>();
-         ObservableList<CalendarAnnuel> data =FXCollections.observableArrayList();  
-         ObservableList<CalendarAnnuel> data2 =FXCollections.observableArrayList();  
-           CalendarAnnuelService cas=new CalendarAnnuelService();
-         data=cas.GetCalendar();       
-        table.getItems().setAll(data);
-          ExcelFile file = new ExcelFile();
-        ExcelWorksheet worksheet = file.addWorksheet("sheet");
-        for (int row = 0; row < table.getItems().size(); row++) {
-            data2.add(table.getItems().get(row));
-            ObservableList<CalendarAnnuel> cells =  data2;
-            for (int column = 0; column < cells.size(); column++) {
-                if (cells.get(column) != null)
-                    worksheet.getCell(row, column).setValue(cells.get(column).toString());
-            }
+ 
+        // Data
+        for (CalendarAnnuel ca : data) {
+            rownum++;
+            row = sheet.createRow(rownum);
+ 
+            // 
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue(ca.getSubject());
+            // 
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellValue(ca.getTerm());
+            // 
+            cell = row.createCell(2, CellType.NUMERIC);
+            cell.setCellValue(ca.getDateC().toString());
+
         }
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("XLSX files (*.xlsx)", "*.xlsx"),
+         FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"),
                 new FileChooser.ExtensionFilter("ODS files (*.ods)", "*.ods"),
                 new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv"),
                 new FileChooser.ExtensionFilter("HTML files (*.html)", "*.html")
         );
+                File file = new File(fc.showSaveDialog(null).getAbsolutePath());
+        file.getParentFile().mkdirs();
+ 
+        FileOutputStream outFile = new FileOutputStream(file);
+        workbook.write(outFile);
+        System.out.println("Created file: " + file.getAbsolutePath());
+    }
+ 
+    
+    public void exportCalendarPDF() throws FileNotFoundException,DocumentException {
+        
+ //FileNotFoundException, DocumentException 
+              Document doc = new Document();
+FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PDF files (.pdf)", ".pdf"),
+                new FileChooser.ExtensionFilter("HTML files (.html)", ".html")
+        );
         File saveFile = fileChooser.showSaveDialog(calendarGrid.getScene().getWindow());
 
-        file.save(saveFile.getAbsolutePath());
-
+      //  file.save(saveFile.getAbsolutePath());
+        
+        PdfWriter.getInstance(doc,new FileOutputStream(saveFile.getAbsolutePath()));
+        doc.open();
+        System.out.println(doc.getHtmlStyleClass());
+                 CalendarAnnuelService cas=new CalendarAnnuelService();
+         for ( CalendarAnnuel p :cas.GetCalendar())
+         {             
+        doc.add(new Paragraph("Subject :"+p.getSubject()));
+        doc.add(new Paragraph("Term  :"+p.getTerm()));
+        doc.add(new Paragraph("Date  :"+p.getDateC()));
+        doc.add(new Paragraph("=========================================="));
+         }
+        
+        doc.close();
+            
     }
     @FXML
-    private void pdfAction(ActionEvent event) {
+    private void pdfAction(ActionEvent event) throws FileNotFoundException, DocumentException {
          exportCalendarPDF();
     }
 

@@ -19,6 +19,9 @@ public class Enseignant extends User{
     private double salaireEnsg;
     private Date dateEmbaucheEnsg;
     public static Enseignant ensg=null;
+
+    public Enseignant() {
+    }
     
     public Enseignant(String idUser, int cinUser, String nomUser, String prenomUser, String emailUser, String adresseUser, int numTelUser, Date dateNaissanceUser, String sexeUser, String motDePasseUser,String roleUser,String picUser,String statutEnsg,Double salaireEnsg,Date dateEmbaucheEnsg,String domaineEnsg) {
         super(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser,picUser);

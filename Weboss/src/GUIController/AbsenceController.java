@@ -25,6 +25,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -66,6 +67,66 @@ public class AbsenceController implements Initializable {
     @FXML
     private AnchorPane rootPane;
 
+    
+        public void afficherAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
+    }
+
+    public boolean testSaisie() {
+        
+       // System.out.println("compare="+dateDebut.getValue().compareTo(dateFin.getValue()));
+
+        if (
+                //NameClass.getText().trim().isEmpty() || NbrEtudClass.getText().trim().isEmpty()
+               // || DescriptionClass.getText().trim().isEmpty()
+                //|| adresse.getText().trim().isEmpty()
+                /*||*/ SelectRole.getValue() == null
+                || SelectMatiere.getValue() == null
+                || TimeDebut.getValue() == null
+                || TimeFin.getValue() == null
+                
+                //|| imageFileLabel.getText().trim().isEmpty()
+                ) {
+            afficherAlert("Tous les champs doivent être remplis");
+            return false;
+        }
+       /* Instant instant = Instant.from(dateDebut.getValue().atStartOfDay(ZoneId.systemDefault()));
+        Date dateD = Date.from(instant);
+        Date cuurentDate = new Date();
+        if (dateD.compareTo(cuurentDate) < 0) {
+
+            afficherAlert("Date debut doit être supérieur à la date d'aujoud'hui");
+            return false;
+        }
+        
+        if (dateDebut.getValue().compareTo(dateFin.getValue()) > 0) {
+            afficherAlert("Date fin doit être supérieur ou égal à la date de debut");
+            return false;
+        }*/
+        //if (dateDebut.getValue().compareTo(dateFin.getValue()) == 0) {
+            
+            if (TimeDebut.getValue().compareTo(TimeFin.getValue()) > 0) {
+                afficherAlert("Heure fin doit être supérieur à l'heure de début");
+                return false;
+            }
+            if (ListEtuEns.getSelectionModel().getSelectedItem()==null) {
+                afficherAlert("vous devez selectionner user");
+                return false;
+            }
+       /* }*/
+      /*  try {
+            Double num = Double.parseDouble(NbrEtudClass.getText());
+        } catch (NumberFormatException e) {
+            afficherAlert("Champs Nombre invalide");
+            return false;
+        }*/
+        return true;
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -143,6 +204,7 @@ public class AbsenceController implements Initializable {
 
     @FXML
     private void AddAction(ActionEvent event) throws IOException {
+        if(testSaisie()){
         AbsenceService as=new AbsenceService();  
         System.out.println("a");
         Matiere m=as.GetMatiere(SelectMatiere.getValue());
@@ -155,6 +217,7 @@ public class AbsenceController implements Initializable {
         System.out.println("aaaaa");
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
+        }
     }
 
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.AffecterMatierEnseignantController1">
+   <children>
+      <Label layoutX="466.0" layoutY="76.0" text="Subject" />
+      <Label layoutX="683.0" layoutY="76.0" text="Teacher" />
+      <JFXComboBox fx:id="sub" layoutX="458.0" layoutY="132.0" />
+      <JFXComboBox fx:id="tea" layoutX="676.0" layoutY="132.0" />
+      <JFXButton layoutX="523.0" layoutY="193.0" onAction="#affecter" text="add new teacher to subject" />
+      <TableView fx:id="tab" layoutX="3.0" layoutY="62.0" />
+      <JFXButton layoutX="329.0" layoutY="237.0" onAction="#afficher" text="show" />
+   </children>
+</AnchorPane>

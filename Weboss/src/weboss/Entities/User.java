@@ -66,6 +66,12 @@ public class User {
         this.prenomUser = prenomUser;
     }
 
+    public User(String idUser, String nomUser, String prenomUser) {
+        this.idUser = idUser;
+        this.nomUser = nomUser;
+        this.prenomUser = prenomUser;
+    }
+
     public String getPicUser() {
         return picUser;
     }

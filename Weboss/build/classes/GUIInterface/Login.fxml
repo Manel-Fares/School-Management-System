@@ -12,30 +12,43 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="bck" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.LoginController">
+<AnchorPane id="AnchorPane" fx:id="bck" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.LoginController">
    <children>
-      <Pane fx:id="bckLogin" layoutX="414.0" layoutY="-3.0" prefHeight="806.0" prefWidth="682.0" />
-      <JFXTextField fx:id="email" layoutX="659.0" layoutY="311.0" maxWidth="245.0" minWidth="245.0" prefHeight="31.0" prefWidth="245.0" promptText="email" text="Personnel@gmail.com" unFocusColor="#2f1616" />
+      <Pane fx:id="bckLogin" layoutX="414.0" layoutY="-3.0" prefHeight="806.0" prefWidth="682.0">
+         <children>
+            <ImageView fitHeight="31.0" fitWidth="35.0" layoutX="203.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../weboss/Image/169-1691750_key-log-in-password-register-secure-security-icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="31.0" fitWidth="52.0" layoutX="190.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../weboss/Image/203-2037461_lock-login-key-password-protected-safe-security-icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true" />
+         </children></Pane>
+      <JFXTextField fx:id="email" layoutX="659.0" layoutY="311.0" maxWidth="245.0" minWidth="245.0" prefHeight="31.0" prefWidth="245.0" promptText="Email" unFocusColor="#2f1616" />
       <Label fx:id="f" layoutX="797.0" layoutY="414.0" onMouseClicked="#forget" styleClass="forgetBtn" stylesheets="@../CSS/style.css" text="Forget Password ?" />
       <JFXButton fx:id="loginBtn" layoutX="677.0" layoutY="449.0" onMouseClicked="#Login" prefHeight="25.0" prefWidth="202.0" styleClass="loginBtn" stylesheets="@../CSS/style.css" text="Login" />
-      <Label fx:id="welcome" layoutX="571.0" layoutY="132.0" prefHeight="68.0" prefWidth="428.0" styleClass="barre" stylesheets="@../CSS/style.css" text="Welcome Back">
+      <Label fx:id="welcome" layoutX="571.0" layoutY="132.0" prefHeight="68.0" prefWidth="428.0" style="-fx-background-color: transparent;" styleClass="barre" stylesheets="@../CSS/style.css" text="Welcome Back">
          <font>
             <Font name="Times New Roman" size="60.0" />
          </font>
          <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="0.638095238095238">
+            <LinearGradient endX="1.0" endY="1.0">
                <stops>
                   <Stop color="#dbaedd" />
-                  <Stop color="#dbaedd" offset="0.007662835249042145" />
-                  <Stop color="#a22aa4" offset="1.0" />
+                  <Stop color="#b6b7b9" offset="0.007662835249042145" />
+                  <Stop color="#2a3ea3" offset="1.0" />
                </stops>
             </LinearGradient>
          </textFill>
       </Label>
-      <JFXPasswordField fx:id="mdp" layoutX="659.0" layoutY="350.0" maxWidth="245.0" minWidth="245.0" prefHeight="31.0" prefWidth="245.0" promptText="Password" text="1234" />
+      <JFXPasswordField fx:id="mdp" layoutX="659.0" layoutY="350.0" maxWidth="245.0" minWidth="245.0" prefHeight="31.0" prefWidth="245.0" promptText="Password" />
       <Pane layoutX="-1.0" layoutY="-10.0" prefHeight="814.0" prefWidth="419.0" styleClass="parent" stylesheets="@../CSS/style.css">
          <children>
-            <Label fx:id="LetfText" layoutX="30.0" layoutY="362.0" prefHeight="90.0" prefWidth="395.0" text="LOGIN" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="LetfText" layoutX="24.0" layoutY="362.0" prefHeight="90.0" prefWidth="395.0" text="      LOGIN" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="60.0" />
                </font>

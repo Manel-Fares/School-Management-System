@@ -8,22 +8,29 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Weboss.jar" size="752179" download="eager" />
+    <jar href="Weboss.jar" size="1189983" download="eager" />
     <jar href="lib\Bulk_SMS_Library.jar" size="3292" download="eager" />
+    <jar href="lib\commons-codec-1.11.jar" size="335042" download="eager" />
+    <jar href="lib\commons-collections4-4.2.jar" size="752798" download="eager" />
+    <jar href="lib\commons-compress-1.18.jar" size="591748" download="eager" />
+    <jar href="lib\commons-math3-3.6.1.jar" size="2213560" download="eager" />
     <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib\curvesapi-1.05.jar" size="111927" download="eager" />
     <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
     <jar href="lib\gembox-spreadsheet.jar" size="11605746" download="eager" />
     <jar href="lib\itextpdf-5.0.6.jar" size="1613319" download="eager" />
     <jar href="lib\javax.mail-1.4.4.jar" size="495041" download="eager" />
     <jar href="lib\javax.mail.jar" size="434923" download="eager" />
-    <jar href="lib\jfoenix-1.0.0.jar" size="2186636" download="eager" />
     <jar href="lib\jfoenix-8.0.7.jar" size="2631271" download="eager" />
     <jar href="lib\jfoenix-9.0.8.jar" size="2419463" download="eager" />
     <jar href="lib\jfx-autocomplete-textfield-0.0.1.jar" size="28514" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
-    <jar href="lib\poi-3.6.jar" size="1539291" download="eager" />
+    <jar href="lib\poi-4.0.1.jar" size="2718209" download="eager" />
+    <jar href="lib\poi-ooxml-4.0.1.jar" size="1766188" download="eager" />
+    <jar href="lib\poi-ooxml-schemas-4.0.1.jar" size="7771088" download="eager" />
     <jar href="lib\rating-java-0.1.1.jar" size="36411" download="eager" />
     <jar href="lib\view-8.4.2.jar" size="745112" download="eager" />
+    <jar href="lib\xmlbeans-3.0.2.jar" size="2572733" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Weboss" >
     <param name="requiredFXVersion" value="8.0+"/>

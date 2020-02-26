@@ -20,10 +20,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -195,7 +193,9 @@ public class AcceuilEtudiantController implements Initializable {
 
     @FXML
     private void profil(ActionEvent event) {
-         affichage("/GUIInterface/ProfilEtudiant.fxml");
+      
+         affichage("/GUIInterface/ProdilUser.fxml");
+  
     }
 
     @FXML
@@ -224,6 +224,14 @@ public class AcceuilEtudiantController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AcceuilEtudiantController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void ConsultChapitres(ActionEvent event) {
+    }
+
+    @FXML
+    private void Quiz(ActionEvent event) {
     }
 
 

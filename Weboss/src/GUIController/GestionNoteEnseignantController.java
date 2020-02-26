@@ -7,6 +7,7 @@ package GUIController;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -17,7 +18,10 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -25,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import weboss.Entities.Enseignant;
 import weboss.Entities.Note;
 import weboss.Entities.User;
@@ -74,6 +79,8 @@ public class GestionNoteEnseignantController implements Initializable {
     @FXML
     private JFXButton supprimer;
     private TableView<User> etudiants;
+    @FXML
+    private JFXButton add;
 
     /**
      * Initializes the controller class.
@@ -88,7 +95,9 @@ public class GestionNoteEnseignantController implements Initializable {
         moyenne.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
         pane.setVisible(false);
         ServiceNote ser = new ServiceNote();
-        ObservableList<String> classesList = ser.GetClassesEnseignant(Enseignant.ensg.getIdUser());
+          ObservableList<String> classesList = ser.GetClassesEnseignant(Enseignant.ensg.getIdUser());
+       // ObservableList<String> classesList = ser.GetClassesEnseignant("19");
+        System.out.println(classesList);
         classes.setItems(classesList);
         initList();
 
@@ -111,13 +120,13 @@ public class GestionNoteEnseignantController implements Initializable {
                 try {
                     ser.update(note);
                     pane.setVisible(false);
-                    
+
                 } catch (SQLException ex) {
                 }
                 reload();
             }
         });
-        
+
     }
 
     @FXML
@@ -212,12 +221,22 @@ public class GestionNoteEnseignantController implements Initializable {
     }
 
     public void reload() {
-       ServiceNote ser = new ServiceNote();
+        ServiceNote ser = new ServiceNote();
         String nomClasse = classes.getValue();
         int idMat = ser.GetIdMatiere(subjects.getValue(), nomClasse);
-        tableViewNotes.setItems(ser.getNotesEnseignant1(nomClasse, idMat,Integer.parseInt(Enseignant.ensg.getIdUser())));
+        tableViewNotes.setItems(ser.getNotesEnseignant1(nomClasse, idMat, Integer.parseInt(Enseignant.ensg.getIdUser())));
         tableViewNotes.refresh();
 
+    }
+
+    @FXML
+    private void addAction(ActionEvent event) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("/GUIInterface/AddNote.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

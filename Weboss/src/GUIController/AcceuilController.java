@@ -138,5 +138,13 @@ public class AcceuilController implements Initializable {
 
     }
 
+    @FXML
+    private void afficher(MouseEvent event) {
+    }
+
+    @FXML
+    private void afficherBarreMenu(MouseEvent event) {
+    }
+
     
 }

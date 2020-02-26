@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import weboss.Entities.Etudiant;
 import weboss.Entities.Note;
 import weboss.Service.ServiceNote;
 
@@ -35,8 +36,6 @@ public class CreditEtudiantController implements Initializable {
     @FXML
     private TableColumn<Note, String> moyenne;
     @FXML
-    private TextField idEtudiant;
-    @FXML
     private TableColumn<Note, String> infoMatiere;
 
     /**
@@ -49,19 +48,14 @@ public class CreditEtudiantController implements Initializable {
         noteExam.setCellValueFactory(new PropertyValueFactory<>("noteExam"));
         infoMatiere.setCellValueFactory(new PropertyValueFactory<>("info"));
         moyenne.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
-
+                    ServiceNote sn = new ServiceNote();
+            tableViewNotes.setItems(sn.listeEtudiantCredit(Etudiant.etd.getIdUser()));
   
-           afficher();
+  
 
     }
 
-    private void afficher() {
+    
 
-        idEtudiant.textProperty().addListener((observable, oldValue, newValue) -> {
-            ServiceNote sn = new ServiceNote();
-            tableViewNotes.setItems(sn.listeEtudiantCredit(newValue));
-
-        });
-    }
 
 }

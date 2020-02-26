@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -60,6 +61,66 @@ public class UpdateDeleteCalendarController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+        public void afficherAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
+    }
+
+    public boolean testSaisie() {
+        
+       // System.out.println("compare="+dateDebut.getValue().compareTo(dateFin.getValue()));
+
+        if (
+                //NameClass.getText().trim().isEmpty() || NbrEtudClass.getText().trim().isEmpty()
+               // || DescriptionClass.getText().trim().isEmpty()
+                /*||*/ subject.getText().trim().isEmpty()
+                || termSelect.getValue() == null
+                || date.getValue() == null
+              //  || TimeDebut.getValue() == null
+               // || TimeFin.getValue() == null
+                
+                //|| imageFileLabel.getText().trim().isEmpty()
+                ) {
+            afficherAlert("Tous les champs doivent être remplis");
+            return false;
+        }
+       /* Instant instant = Instant.from(dateDebut.getValue().atStartOfDay(ZoneId.systemDefault()));
+        Date dateD = Date.from(instant);
+        Date cuurentDate = new Date();
+        if (dateD.compareTo(cuurentDate) < 0) {
+
+            afficherAlert("Date debut doit être supérieur à la date d'aujoud'hui");
+            return false;
+        }
+        
+        if (dateDebut.getValue().compareTo(dateFin.getValue()) > 0) {
+            afficherAlert("Date fin doit être supérieur ou égal à la date de debut");
+            return false;
+        }*/
+        //if (dateDebut.getValue().compareTo(dateFin.getValue()) == 0) {
+            
+        /*    if (TimeDebut.getValue().compareTo(TimeFin.getValue()) > 0) {
+                afficherAlert("Heure fin doit être supérieur à l'heure de début");
+                return false;
+            }
+            if (ListEtuEns.getSelectionModel().getSelectedItem()==null) {
+                afficherAlert("vous devez selectionner user");
+                return false;
+            }*/
+       /* }*/
+      /*  try {
+            Double num = Double.parseDouble(NbrEtudClass.getText());
+        } catch (NumberFormatException e) {
+            afficherAlert("Champs Nombre invalide");
+            return false;
+        }*/
+        return true;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -79,6 +140,8 @@ public class UpdateDeleteCalendarController implements Initializable {
 
     @FXML
     private void UpdateAction(ActionEvent event) throws IOException {
+        if(testSaisie())
+        {
         CalendarAnnuelService cas= new CalendarAnnuelService();
         CalendarAnnuel ca= new CalendarAnnuel(Integer.valueOf(label.getText()), subject.getText(), termSelect.getValue(), Date.valueOf(date.getValue()));
         cas.UpdateCalendar(ca);
@@ -88,6 +151,7 @@ public class UpdateDeleteCalendarController implements Initializable {
         eventController.loadCalendarLabels();*/
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
+        }
     }
 
 

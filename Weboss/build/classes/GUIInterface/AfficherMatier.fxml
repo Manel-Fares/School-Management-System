@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.AfficherMatierController">
+   <children>
+      <TableView fx:id="tab" layoutX="-1.0" layoutY="35.0" prefHeight="400.0" prefWidth="950.0" />
+      <JFXButton layoutX="12.0" layoutY="453.0" onAction="#supp" text="delete" />
+      <JFXButton layoutX="12.0" layoutY="479.0" onAction="#update" text="update" />
+      <JFXButton layoutX="887.0" layoutY="580.0" onAction="#ret" text="return" />
+      <ComboBox fx:id="res" layoutX="296.0" layoutY="453.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

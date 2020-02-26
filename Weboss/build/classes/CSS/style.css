@@ -1,6 +1,7 @@
 .parent{
   
-    -fx-background-color: linear-gradient(to top, #ff7f50, #6a5acd);
+    /*-fx-background-color: linear-gradient(to top, #ff7f50, #6a5acd);*/
+    -fx-background-color:#223d72;
 }
 .sidebare{
     -fx-background-color: linear-gradient(to top,#0055E8, #BBD4FF);
@@ -40,13 +41,29 @@
 .table-view .column-header,
 .table-view .column-header .filler,
 .table-view .column-header-background .filler {   
-    -fx-background-color: 	#ccbbff;
+    -fx-background-color:#22427C;
     -fx-stroke: transparent;
     -fx-size:50;
     -fx-alignment: CENTER ;    
     -fx-text-alignment: center;
 
 }
+.menu-button > .arrow-button , .menu-button > .arrow-button > .arrow {
+    -fx-padding:0;
+    -fx-text-fill:white;
+    -fx-background-color:transparent;
+
+}
+.menu-button {
+    -fx-text-fill:white;
+    -fx-background-color:transparent;
+
+}
+.menu-button:hover{
+    -fx-background-color: #F5F5DC;
+    -fx-text-fill:black;
+}
+
 .table-row-cell:filled:hover {
 
     -fx-size:50;
@@ -77,7 +94,8 @@
 }
 .btns{
     -fx-background-color: transparent;
-    -fx-text-fill:black;
+        -fx-text-fill:#fff;
+
 }
 .btns:hover{
     -fx-background-color: #F5F5DC;
@@ -117,9 +135,10 @@
     -fx-background-color: linear-gradient(to top, #ff7f50, #6a5acd);
 
 }
+/*
 .pagination{
 	-fx-base:black;	
-}
+}*/
 .pagination .toggle-button {
 	-fx-shape:"m74.63,72.21494l14.50002,-14.49994l14.49998,14.49994l-14.49998,14.50002l-14.50002,-14.50002z";
 	-fx-background-radius:3px;
@@ -128,9 +147,10 @@
 	-fx-padding: 8 10 8 10px;
 	-fx-background-radius:0px; /* This is used for making the Arrow Button Curve*/
 }
+/*
 .pagination .label {
 	-fx-text-fill:white;
-}
+}*/
 .img
 {   
     -fx-border-radius: 5, 5;
@@ -139,7 +159,9 @@
     -fx-padding: 15;
     -fx-spacing: 10;}
 
-
+.lblR{
+    -fx-text-fill:linear-gradient(to top, #ff7f50, #6a5acd);
+}
 
 
 

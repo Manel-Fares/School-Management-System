@@ -111,7 +111,7 @@ public class AfficherController implements Initializable {
         
     }
 
-
+    @FXML
     private void ReloadAction(ActionEvent event) {
         ClassService us =new ClassService();       
         TableViewClass.setItems(us.GetClass()); 

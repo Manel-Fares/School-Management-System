@@ -38,7 +38,8 @@
       <Label layoutX="231.0" layoutY="35.0" text="Subject" />
       <JFXComboBox fx:id="subjects" layoutX="288.0" layoutY="30.0" prefHeight="25.0" prefWidth="112.0" />
       <JFXComboBox fx:id="classes" layoutX="87.0" layoutY="30.0" prefHeight="25.0" prefWidth="120.0" />
-      <JFXButton fx:id="modifier" layoutX="400.0" layoutY="43.0" onAction="#modifierAction" prefHeight="25.0" prefWidth="63.0" text="Edit" />
-      <JFXButton fx:id="supprimer" layoutX="485.0" layoutY="43.0" onAction="#supprimerAction" text="Delete" />
+      <JFXButton fx:id="modifier" layoutX="478.0" layoutY="43.0" onAction="#modifierAction" prefHeight="25.0" prefWidth="63.0" text="Update" />
+      <JFXButton fx:id="supprimer" layoutX="547.0" layoutY="43.0" onAction="#supprimerAction" text="Delete" />
+      <JFXButton fx:id="add" layoutX="433.0" layoutY="43.0" onAction="#addAction" text="Add" />
    </children>
 </AnchorPane>

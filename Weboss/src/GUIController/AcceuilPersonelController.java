@@ -8,6 +8,7 @@ package GUIController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -46,10 +48,14 @@ public class AcceuilPersonelController implements Initializable {
      * Initializes the controller class.
      */
     DemandeEvenementService devs=new DemandeEvenementService();
+    @FXML
+    private Pane menu;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          nbr_notif_admin.setText("" + devs.nombre_demande());
          notification_area.setVisible(false);
+                 menu.setVisible(false);
+
         // TODO
     }
 
@@ -157,6 +163,44 @@ desc_notif.setText(devs.notifiction().toString());
     @FXML
     private void ResultManagement(MouseEvent event) {
                 affichage("/GUIInterface/AjouterResultat.fxml");
+
+    }
+
+    private void coursManagement(MouseEvent event) {
+                        affichage("/GUIInterface/AffecterMatierEnseignant.fxml");
+
+    }
+
+    private void chaptitreManagement(MouseEvent event) {
+                                affichage("/GUIInterface/AfficherChapitre.fxml");
+
+    }
+
+    @FXML
+    private void TeachersSubjects(ActionEvent event) {
+    }
+
+    @FXML
+    private void subjects(ActionEvent event) {
+    }
+
+    @FXML
+    private void Quiz(ActionEvent event) {
+    }
+
+    @FXML
+    private void afficher(MouseEvent event) {
+    }
+
+
+    @FXML
+    private void afficherBarreMenu(MouseEvent event) {
+        menu.setVisible(true);
+    }
+
+    @FXML
+    private void BarreMenu(MouseEvent event) {
+                menu.setVisible(false);
 
     }
 

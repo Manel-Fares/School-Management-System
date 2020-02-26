@@ -5,8 +5,12 @@
  */
 package weboss.Service;
 
+import com.mysql.jdbc.StringUtils;
+import java.util.regex.Pattern;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import static jdk.nashorn.internal.runtime.JSType.isNumber;
 
 /**
  *
@@ -19,15 +23,76 @@ public class ValidationChamps {
             b = true;
         return b;
     }
-    public static boolean isTextFieldNotEmpty(TextField tf,Label lb,String errorMessage){
-        boolean b = true;
-        String msg = null;
-        if(!isTextFieldNotEmpty(tf)){
-            b = false;
-            msg= errorMessage;
-        }
-        lb.setText(msg);
+    public static boolean isEmailValid(TextField tf){
+        boolean b = false;
+        Pattern err = Pattern.compile("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+ 
+        if(err.matcher(tf.getText()).matches() &&  !tf.getText().isEmpty()  )
+            b = true;
         return b;
+    }
+    public static boolean isNumeric(String strNum) {
+    if (strNum == null) {
+        return false;
+    }
+    try {
+        int d = Integer.parseInt(strNum);
+       
+    } catch (NumberFormatException nfe) {
+        return false;
+    }
+    return true;
+}
+     public static boolean isNumbervalid(TextField tf){
+        boolean b = false;
+        if(isNumeric(tf.getText()) &&  tf.getText().length()==8 )
+            b = true;
+        return b;
+    }
+     
+       public static boolean isNumber(TextField tf,ImageView img,ImageView img1){
+       // boolean b = true;
+    
+        if(!isNumbervalid(tf)){
+         //   b = false;
+           
+             img.setVisible(false);
+             img1.setVisible(true);
+             return false;
+        }
+        img.setVisible(true);
+         img1.setVisible(false);
+        return true;
+        
+    }
+    public static boolean isTextFieldNotEmpty(TextField tf,ImageView img,ImageView img1){
+       // boolean b = true;
+    
+        if(!isTextFieldNotEmpty(tf)){
+         //   b = false;
+           
+             img.setVisible(false);
+             img1.setVisible(true);
+             return false;
+        }
+        img.setVisible(true);
+         img1.setVisible(false);
+        return true;
+        
+    }
+      public static boolean isEmail(TextField tf,ImageView img,ImageView img1){
+       // boolean b = true;
+    
+        if(!isEmailValid(tf)){
+         //   b = false;
+           
+             img.setVisible(false);
+             img1.setVisible(true);
+             return false;
+        }
+        img.setVisible(true);
+         img1.setVisible(false);
+        return true;
         
     }
     

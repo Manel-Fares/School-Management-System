@@ -192,14 +192,14 @@ public class ClassService implements IService2<Class>{
         }
         return list;
     }   
-        public ObservableList<User> GetEnseiFromClass(String classe) {
-        String req = "SELECT * from users as u inner join classeenseignantmatiere as c on u.idUser=c.id_user where c.nom_class='"+classe+"' ";
+        public ObservableList<User> GetEnseiFromClass(int classe) {
+        String req = "SELECT u.* from users as u inner join classeenseignantmatiere as c on u.idUser=c.id_user where c.id_class='"+classe+"' ";
         ObservableList<User> list = FXCollections.observableArrayList();
         try {
             ste = cnx.createStatement();
             rs = ste.executeQuery(req);
             while (rs.next()) {
-                list.add(new User(rs.getString("nomUser"),rs.getString("prenomUser")));
+                list.add(new User(rs.getString("u.nomUser"),rs.getString("u.prenomUser")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
@@ -207,12 +207,12 @@ public class ClassService implements IService2<Class>{
         return list;
     }   
              
-        public void AffecteEnseigantClass(String classe,int id_user,int id_mateire) {
-        String req = "Insert into classeenseignantmatiere (nom_class, id_user,id_matiere)  values (?,?,?)";
+        public void AffecteEnseigantClass(int classe,int id_user,int id_mateire) {
+        String req = "Insert into classeenseignantmatiere (id_class, id_user,id_matiere)  values (?,?,?)";
         try {
             pst = cnx.prepareStatement(req);
              
-             pst.setString(1,classe);
+             pst.setInt(1,classe);
              pst.setInt(2,id_user);
              pst.setInt(3,id_mateire);
             pst.executeUpdate();
@@ -239,6 +239,66 @@ public class ClassService implements IService2<Class>{
         }
         return list;
     }
+                public boolean ValidatorNomClass(String id) {
+        String req = "select * from classe where name = '"+id+"' ";
+       // ObservableList<Class> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+                    
+            rs = ste.executeQuery(req);
+            return rs.first();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      return false;  
+    }
+    
+               public int SearchNomClass(String id) {
+        String req = "select id from classe where name = '"+id+"' ";
+       // ObservableList<Class> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+                    
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+               
+                                   public ObservableList<User> GetEnseNom(String role) {
+        String req = "select m.* from enseigner as u inner join users as m on u.idEnseignant=m.idUser where m.roleUser='"+role+"' ";
+        ObservableList<User> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+             list.add(new User (String.valueOf(rs.getInt("m.idUser")),rs.getString("m.nomUser"),rs.getString("m.prenomUser"),rs.getString("m.roleUser")));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+            public ObservableList<String> GetEnseNomMatiere() {
+        String req = "select m.nom from enseigner as u inner join matier as m on u.idMatiere=m.id ";
+        ObservableList<String> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                String nom=rs.getString(1);
+                list.add(nom);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }   
 
     @Override
     public void AddEmplois(Emplois t) {

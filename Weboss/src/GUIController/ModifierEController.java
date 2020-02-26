@@ -26,6 +26,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import weboss.Entities.Emplois;
@@ -60,7 +61,58 @@ public class ModifierEController implements Initializable {
      * Initializes the controller class.
      */
     
-       
+            
+  public void afficherAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
+    }
+
+    public boolean testSaisie() {
+        
+       // System.out.println("compare="+dateDebut.getValue().compareTo(dateFin.getValue()));
+
+        if (
+               // NameClass.getText().trim().isEmpty() || NbrEtudClass.getText().trim().isEmpty()
+               // || DescriptionClass.getText().trim().isEmpty()
+                //|| adresse.getText().trim().isEmpty()
+               /* ||*/ DateE.getValue() == null
+                || Heure.getValue() == null
+                || listview.equals("")
+                || Path.equals("")
+                //|| imageFileLabel.getText().trim().isEmpty()
+                ) {
+            afficherAlert("Tous les champs doivent être remplis");
+            return false;
+        }
+       /* Instant instant = Instant.from(dateDebut.getValue().atStartOfDay(ZoneId.systemDefault()));
+        Date dateD = Date.from(instant);
+        Date cuurentDate = new Date();
+        if (dateD.compareTo(cuurentDate) < 0) {
+
+            afficherAlert("Date debut doit être supérieur à la date d'aujoud'hui");
+            return false;
+        }
+        if (dateDebut.getValue().compareTo(dateFin.getValue()) > 0) {
+            afficherAlert("Date fin doit être supérieur ou égal à la date de debut");
+            return false;
+        }
+        if (dateDebut.getValue().compareTo(dateFin.getValue()) == 0) {
+            if (heureDebut.getValue().compareTo(heureFin.getValue()) > 0) {
+                afficherAlert("Heure fin doit être supérieur à l'heure de début");
+                return false;
+            }
+        }*/
+      /*  try {
+            Double num = Double.parseDouble(NbrEtudClass.getText());
+        } catch (NumberFormatException e) {
+            afficherAlert("Champs Nombre invalide");
+            return false;
+        }*/
+        return true;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -72,16 +124,21 @@ public class ModifierEController implements Initializable {
     }  
     
      public void UpdateClassAction() {
+        if(testSaisie())
+         {
        Update.setOnAction(new EventHandler() {
            @Override
            public void handle(Event event) {             
                Emplois u =new Emplois(Integer.valueOf(label.getText()),Date.valueOf(DateE.getValue()),Time.valueOf(Heure.getValue()),listview);
         EmploisService us =new EmploisService();
-        String PathTo= "C:\\wamp64\\www\\PDFimport\\"; 
+      //  String PathTo= "C:\\Users\\Pytrooooo\\Documents\\NetBeansProjects\\JavaFXApplication2\\src\\PDFimport\\"; 
                //Paths.get("").toAbsolutePath().toString();
                 try {
-                   if(Path!=null)                 
-                   Files.copy(Paths.get(Path), Paths.get(PathTo), StandardCopyOption.REPLACE_EXISTING);
+        String PathTo= "C:\\Users\\Pytrooooo\\Documents\\NetBeansProjects\\JavaFXApplication2\\src\\PDFimport\\"+listview; 
+        //Paths.get("").toAbsolutePath().toString();
+        File org=new File(Path);
+        File news=new File(PathTo);
+        Files.copy(org.toPath(), news.toPath(), StandardCopyOption.REPLACE_EXISTING);
                } catch (IOException ex) {
                    Logger.getLogger(ModifierEController.class.getName()).log(Level.SEVERE, null, ex);
                }
@@ -89,6 +146,7 @@ public class ModifierEController implements Initializable {
                System.out.println("updated");
            }
        });
+         }
     }
     
      public void DeleteClassAction() {
@@ -106,7 +164,7 @@ public class ModifierEController implements Initializable {
    
      
     private void UploadFile() {
-        Source.setOnAction(new EventHandler<ActionEvent>() {
+         Source.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                            FileChooser fc = new FileChooser();

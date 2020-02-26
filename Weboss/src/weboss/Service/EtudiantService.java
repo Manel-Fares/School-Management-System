@@ -97,7 +97,7 @@ public class EtudiantService implements IService1<Etudiant> {
     }
     @Override
    public boolean update(Etudiant t) throws SQLException {
-        PreparedStatement pre = con.prepareStatement("update users set nomUser='" + t.getNomUser() + "',prenomUser='" + t.getPrenomUser() + "',picUser='" + t.getPicUser() + "',DateNaissanceUserUser='" + t.getDateNaissanceUser()+ "',emailUser='" + t.getEmailUser() + "',adresseUser='" + t.getAdresseUser() + "',numTelUser='" + t.getNumTelUser() + "',motDePasseUser='" + t.getMotDePasseUser() + "' where idUser=" +t.getIdUser());
+        PreparedStatement pre = con.prepareStatement("update users set nomUser='" + t.getNomUser() + "',prenomUser='" + t.getPrenomUser() + "',picUser='" + t.getPicUser() + "',emailUser='" + t.getEmailUser() + "',adresseUser='" + t.getAdresseUser() + "',numTelUser='" + t.getNumTelUser() + "',motDePasseUser='" + t.getMotDePasseUser() + "' where idUser=" +t.getIdUser());
         if (pre.executeUpdate() == 1) {
             return true;
         }

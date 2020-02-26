@@ -88,6 +88,14 @@ public class ReclamationService implements IService1<Reclamation> {
 
         return false;
     }
+      public boolean updateEtat(Reclamation t,String etat) throws SQLException {
+        PreparedStatement pre = con.prepareStatement("update reclamation set statutReclamation='" + etat + "' where idReclamation=" + t.getIdReclamation());
+        if (pre.executeUpdate() == 1) {
+            return true;
+        }
+
+        return false;
+    }
     public Reclamation search(int id) throws SQLException{
         Reclamation r=null;
          ste = con.createStatement();

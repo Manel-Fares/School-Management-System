@@ -19,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import weboss.BD.Database;
 import weboss.Entities.Enseignant;
+import weboss.Entities.User;
 
 
 /**
@@ -159,5 +160,37 @@ public class EnseignantService implements IService1<Enseignant> {
 
   
 
+ public User findById(String id) throws SQLException {
+
+       
+        ste = con.createStatement();
+        User u=new Enseignant();
+        ResultSet rs = ste.executeQuery("select * from users where  idUser="+id+"");
+        while (rs.next()) {
+            System.out.println(rs.getString("idUser"));
+            String idUser = rs.getString("idUser");
+            int cinUser = rs.getInt("cinUser");
+            String nomUser = rs.getString("nomUser");
+            String prenomUser = rs.getString("prenomUser");
+            Date dateNaissanceUser = rs.getDate("dateNaissanceUser");
+            String sexeUser = rs.getString("sexeUser");
+            String emailUser = rs.getString("emailUser");
+            String adresseUser = rs.getString("adresseUser");
+            int numTelUser = rs.getInt("numTelUser");           
+            String motDePasseUser = rs.getString("motDePasseUser");
+            String roleUser = rs.getString("roleUser");
+            String statutEnsg = rs.getString("statutUser");
+            double salaireEnsg = rs.getDouble("salaireUser");
+            Date dateEmbaucheEnsg = rs.getDate("dateEmbaucheUser");
+            String domaineEnsg = rs.getString("domaineUser");
+            String picUser = rs.getString("picUser");
+           
+
+             u = new Enseignant(idUser, cinUser, nomUser, prenomUser, emailUser, adresseUser, numTelUser, dateNaissanceUser, sexeUser, motDePasseUser,roleUser,picUser, statutEnsg,salaireEnsg,dateEmbaucheEnsg,domaineEnsg);
+
+           
+        }
+        return u;
+    } 
 
 }

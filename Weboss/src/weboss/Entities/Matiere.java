@@ -13,8 +13,22 @@ public class Matiere {
     private int idMatiere;
     private String nomMatiere;
     private float coefficient;
+    private Enseignant Responsable;
 
     public Matiere() {
+    }
+
+    public Matiere(int idMatiere, String nomMatiere, float coefficient, Enseignant Responsable) {
+        this.idMatiere = idMatiere;
+        this.nomMatiere = nomMatiere;
+        this.coefficient = coefficient;
+        this.Responsable = Responsable;
+    }
+
+    public Matiere(String nomMatiere, float coefficient, Enseignant Responsable) {
+        this.nomMatiere = nomMatiere;
+        this.coefficient = coefficient;
+        this.Responsable = Responsable;
     }
 
     public Matiere(int idMatiere, String nomMatiere, float coefficient) {
@@ -30,6 +44,14 @@ public class Matiere {
 
     public Matiere(String nomMatiere) {
         this.nomMatiere = nomMatiere;
+    }
+
+    public Enseignant getResponsable() {
+        return Responsable;
+    }
+
+    public void setResponsable(Enseignant Responsable) {
+        this.Responsable = Responsable;
     }
     
     
@@ -56,6 +78,11 @@ public class Matiere {
 
     public float getCoefficient() {
         return coefficient;
+    }
+
+    @Override
+    public String toString() {
+        return  nomMatiere ;
     }
     
     

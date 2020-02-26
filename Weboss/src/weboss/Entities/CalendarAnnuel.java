@@ -71,7 +71,7 @@ public class CalendarAnnuel {
 
     @Override
     public String toString() {
-        return "CalendarAnnuel{" + "id=" + id + ", subject=" + subject + ", term=" + term + ", DateC=" + DateC + '}';
+        return this.subject +"  \n "+this.term +"  \n  "+this.DateC.toString();
     }
         
     
