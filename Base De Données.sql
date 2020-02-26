@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 23, 2020 at 06:01 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Generation Time: Feb 25, 2020 at 07:02 PM
+-- Server version: 5.7.19
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -70,11 +70,27 @@ CREATE TABLE IF NOT EXISTS `calendarannuel` (
 INSERT INTO `calendarannuel` (`id`, `subject`, `term`, `DateC`) VALUES
 (19, 'ss', 'Exams', '2020-02-15'),
 (17, 'wwwww', 'PI', '2020-01-31'),
-(16, 'sqdsd', 'Exams', '2020-01-04'),
+(16, 'sqdsdqq', 'Exams', '2020-01-04'),
 (15, 'qqqaaabbccc', 'PI', '2020-01-10'),
 (14, 'qqss', 'Results', '2020-01-11'),
 (2, 'bbbbb', 'ds', '2020-01-15'),
 (1, 'aaa', 'holidays', '2020-02-12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chapitre`
+--
+
+DROP TABLE IF EXISTS `chapitre`;
+CREATE TABLE IF NOT EXISTS `chapitre` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  `file` varchar(255) NOT NULL,
+  `matier` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `matier` (`matier`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -92,17 +108,21 @@ CREATE TABLE IF NOT EXISTS `classe` (
   `Description` varchar(255) NOT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Name` (`Name`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `classe`
 --
 
 INSERT INTO `classe` (`Id`, `Name`, `Niveau`, `Spec`, `Nbr_Etudiant`, `Description`) VALUES
+(1, '4A2', '4', 'A', 20, '4 eme annee'),
+(2, '2A2', '2', 'A', 20, '2eme annee'),
+(7, '3A1', '4', 'A', 20, '4 eme'),
 (12, '3B1', '3', 'B', 40, 'qsdqsd'),
 (13, '3A5', '3', 'A', 30, 'qsdqsd'),
 (14, '3B', '3', 'TWIN', 20, 'wxc'),
-(15, 'as', '1', 'B', 54, 'tgrg');
+(15, 'as', '1', 'B', 54, 'tgrg'),
+(17, '3A55', '3', 'A', 22, 'qsd');
 
 -- --------------------------------------------------------
 
@@ -119,6 +139,15 @@ CREATE TABLE IF NOT EXISTS `classeenseignantmatiere` (
   KEY `FK_USER` (`id_user`),
   KEY `FK_Matiere` (`id_matiere`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `classeenseignantmatiere`
+--
+
+INSERT INTO `classeenseignantmatiere` (`id_class`, `id_user`, `id_matiere`) VALUES
+(13, 188, 2),
+(12, 18, 5),
+(12, 18, 5);
 
 -- --------------------------------------------------------
 
@@ -229,6 +258,17 @@ CREATE TABLE IF NOT EXISTS `enseigner` (
   PRIMARY KEY (`idEnseignant`,`idMatiere`),
   KEY `AAAAAAAAAAAA` (`idMatiere`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `enseigner`
+--
+
+INSERT INTO `enseigner` (`idEnseignant`, `idMatiere`) VALUES
+(188, 2),
+(185, 3),
+(18, 4),
+(18, 5),
+(186, 7);
 
 -- --------------------------------------------------------
 
@@ -442,7 +482,7 @@ INSERT INTO `note` (`idEtudiant`, `idMatiere`, `idEnseignant`, `dateNote`, `note
 (1, '4', 18, '2020-02-12', 11.5, 16, 7, 10.15),
 (16, '3', 19, '2020-02-05', 3.75, 9.25, 8.5, 7.225),
 (15, '6', 18, '2020-01-30', 17.5, 11.75, 9.5, 12.35),
-(15, '5', 18, '2020-01-17', 5.5, 7.75, 18, 12.2),
+(15, '5', 18, '2020-02-06', 6.75, 10.75, 2.25, 5.3),
 (1, '3', 18, '2020-02-13', 12, 1, 15, 11.3),
 (25, '5', 19, '2020-02-05', 2.75, 3, 3, 2.925),
 (2, '8', 19, '2020-02-19', 9, 9, 9, 9),
@@ -466,7 +506,72 @@ CREATE TABLE IF NOT EXISTS `question` (
   PRIMARY KEY (`id_question`),
   KEY `id_personne` (`id_personne`),
   KEY `id_tag` (`id_tag`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`id_question`, `body`, `vote_question`, `id_tag`, `id_personne`, `title`, `tag_name`) VALUES
+(1, 'null pointer', 1, 1, 137, 'java exception', 'java');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questionquizz`
+--
+
+DROP TABLE IF EXISTS `questionquizz`;
+CREATE TABLE IF NOT EXISTS `questionquizz` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question` varchar(255) NOT NULL,
+  `rep1` varchar(255) NOT NULL,
+  `rep2` varchar(255) NOT NULL,
+  `rep3` varchar(255) NOT NULL,
+  `rep` varchar(255) NOT NULL,
+  `quiz` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `quiz` (`quiz`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quizz`
+--
+
+DROP TABLE IF EXISTS `quizz`;
+CREATE TABLE IF NOT EXISTS `quizz` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `chapitre` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `chapitre` (`chapitre`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rating`
+--
+
+DROP TABLE IF EXISTS `rating`;
+CREATE TABLE IF NOT EXISTS `rating` (
+  `idrating` int(11) NOT NULL AUTO_INCREMENT,
+  `iduser` int(11) NOT NULL,
+  `idClub` int(11) NOT NULL,
+  `rating` double NOT NULL,
+  PRIMARY KEY (`idrating`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`idrating`, `iduser`, `idClub`, `rating`) VALUES
+(1, 131, 212, 5),
+(2, 131, 2, 5),
+(3, 131, 1, 5),
+(4, 131, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -484,7 +589,7 @@ CREATE TABLE IF NOT EXISTS `reclamation` (
   `IdEtd` int(11) DEFAULT NULL,
   PRIMARY KEY (`idReclamation`),
   KEY `FK_reclamation` (`IdEtd`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reclamation`
@@ -511,7 +616,14 @@ CREATE TABLE IF NOT EXISTS `reponse` (
   `id_question` int(11) NOT NULL,
   PRIMARY KEY (`id_reponse`),
   KEY `id_question` (`id_question`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reponse`
+--
+
+INSERT INTO `reponse` (`id_reponse`, `body`, `vote_reponse`, `id_question`) VALUES
+(1, 'import packages', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -526,6 +638,19 @@ CREATE TABLE IF NOT EXISTS `resultat` (
   `resultat` float DEFAULT NULL,
   PRIMARY KEY (`idEtudiant`,`dateResultat`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resultat`
+--
+
+INSERT INTO `resultat` (`idEtudiant`, `dateResultat`, `resultat`) VALUES
+(2, '2020-02-25', 9),
+(4, '2020-02-25', 13.09),
+(18, '2020-02-25', 9.15),
+(25, '2020-02-25', 7.025),
+(16, '2020-02-25', 7.225),
+(1, '2020-02-25', 10.725),
+(15, '2020-02-25', 12.1095);
 
 -- --------------------------------------------------------
 
@@ -562,7 +687,19 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `nom` varchar(20) NOT NULL,
   `description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_tag`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tag`
+--
+
+INSERT INTO `tag` (`id_tag`, `nom`, `description`) VALUES
+(1, 'java', 'java'),
+(2, 'mobile', 'mobile'),
+(3, 'mni', 'mni'),
+(4, 'probabilite', 'probabilite'),
+(5, 'finance', 'finance'),
+(6, 'C', 'C');
 
 -- --------------------------------------------------------
 
@@ -592,21 +729,46 @@ CREATE TABLE IF NOT EXISTS `users` (
   `salaireUser` double DEFAULT NULL,
   `domaineUser` varchar(100) DEFAULT NULL,
   `idParent` varchar(30) DEFAULT NULL,
+  `picUser` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `cinUser` (`cinUser`),
   KEY `idParent` (`idParent`),
   KEY `sqdsssss` (`classeEtd`)
-) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`idUser`, `cinUser`, `nomUser`, `prenomUser`, `DateNaissanceUser`, `sexeUser`, `emailUser`, `adresseUser`, `numTelUser`, `roleUser`, `dateEmbaucheUser`, `motDePasseUser`, `classeEtd`, `inscriptionEtd`, `nomResponsableEtd`, `specialiteEtd`, `statutUser`, `salaireUser`, `domaineUser`, `idParent`) VALUES
-(131, 147885, 'Omar', 'Jmai', NULL, NULL, 'omar.jmai@esprit.tn', NULL, NULL, 'Etudiant', NULL, '123456', '3A5', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(132, 4896, 'Hamza', 'Ennour', NULL, NULL, 'Enseignant@gmail.com', NULL, NULL, 'Enseignant', NULL, '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(137, 1485, 'Etudiant', 'Esprit', NULL, NULL, 'Etudiant@gmail.com', NULL, NULL, 'Etudiant', NULL, '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(138, 96, NULL, NULL, NULL, NULL, 'Personnel@gmail.com', NULL, NULL, 'Personnel', NULL, '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` (`idUser`, `cinUser`, `nomUser`, `prenomUser`, `DateNaissanceUser`, `sexeUser`, `emailUser`, `adresseUser`, `numTelUser`, `roleUser`, `dateEmbaucheUser`, `motDePasseUser`, `classeEtd`, `inscriptionEtd`, `nomResponsableEtd`, `specialiteEtd`, `statutUser`, `salaireUser`, `domaineUser`, `idParent`, `picUser`) VALUES
+(15, 1113670, 'Yosr', 'Jerby', '1998-11-05', 'F', 'yosra@gmail.com', '7ay khadhra', 2014587, 'Etudiant', NULL, 'yosra', '3B1', NULL, NULL, 'Info', 'Entravail', NULL, NULL, NULL, NULL),
+(18, 10004578, 'mohsen', 'hssino', '2020-02-12', 'Homme', 'mohsen@gmail.com', NULL, NULL, 'Enseignant', NULL, 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
+(131, 147885, 'sofien', 'Jmai', NULL, NULL, 'omar.jmai@esprit.tn', 'null', 0, 'Etudiant', NULL, '123456', '3A5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(137, 1485, 'Etudiant', 'Esprit', NULL, NULL, 'Etudiant@gmail.com', NULL, NULL, 'Etudiant', NULL, '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(139, 13235258, NULL, NULL, NULL, NULL, 'root', NULL, NULL, 'root', NULL, '0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(140, 456456, 'sdfgsd', '', '2020-02-24', '', '', 'sdf', 456, 'Parent', NULL, '456456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(142, 44, 'wsdqs', '', '2020-02-24', '', '', 'sdfsdf', 44444, 'Parent', NULL, '45645', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(144, 789789, 'qsd', '', '2020-02-24', '', '', 'dsf', 56456, 'Parent', NULL, '5645', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(146, 4564, 'sdfsdf', '', '2020-02-24', '', '', 'vdffg', 888, 'Parent', NULL, '9999', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(149, 78, 'sdf', '', '2020-02-24', '', '', 'qsd', 454, 'Parent', NULL, '456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(151, 458, 'sd', '', '2020-02-24', '', '', 'qsd', 4669, 'Parent', NULL, '44', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(153, 454, 'cfg', '', '2020-02-24', '', '', 'sdf', 45, 'Parent', NULL, '213', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(157, 777, 'aaaa', 'zzzz', '2020-02-24', 'femme', 'zzz', 'ssd', 154, 'Personnel', '2020-02-24', '777', NULL, NULL, NULL, NULL, 'En cours', 1.11, 'Service Scolarite', NULL, NULL),
+(158, 99564, 'sdgf', '', '2020-02-24', '', '', 'sdf', 888, 'Parent', NULL, '444', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(160, 358, 'dfg', '', '2020-02-24', '', '', 'sdgf', 2325, 'Parent', NULL, '1010', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(162, 2301, 'sdf', '', '2020-02-24', '', '', 'sdfs', 8889, 'Parent', NULL, '112222', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(164, 2310, 'qsdf', '', '2020-02-24', '', '', 'sdf', 8564, 'Parent', NULL, '4562', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(166, 8854, 'wdf', '', '2020-02-24', '', '', 'dsf', 456, 'Parent', NULL, '4561', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(168, 966, 'qsd', '', '2020-02-24', '', '', 'sdf', 85, 'Parent', NULL, '110', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(170, 95, 'qsd', '', '2020-02-24', '', '', 'dfg', 45, 'Parent', NULL, '1112', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(172, 5245, 'fsdf', '', '2020-02-24', '', '', 'fsdfsd', 968, 'Parent', NULL, '747', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(173, 747, 'dsgf', 'sdfg', '2020-02-01', 'Homme', 'sdfsd', 'fsdfsd', 7856, 'Etudiant', NULL, '747', '3A5', '2020-02-24', NULL, 'Info', NULL, NULL, NULL, '', NULL),
+(174, 44428782, 'gfyhf', '', '2020-02-24', '', '', 'sdf', 45453, 'Parent', NULL, '4442124', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(175, 4442124, 'gg', 'gg', '2020-02-06', 'Homme', 'sdf', 'sdf', 5421, 'Etudiant', NULL, '4442124', NULL, '2020-02-24', NULL, 'Info', NULL, NULL, NULL, '', NULL),
+(176, 8965, 'azaz', '', '2020-02-24', '', '', 'rtghyu', 1447, 'Parent', NULL, '1010', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(185, 4556, 'fdf', 'sbvb', '2020-02-24', 'femme', 'qsd', 'zeef', 786, 'Enseignant', '2020-02-24', '4556', NULL, NULL, NULL, NULL, 'En cours', 145.33, 'Math', NULL, 'hamzatahan'),
+(186, 102486, 'ahmed', 'ben ali', '2020-02-24', 'Femme', 'argo', 'fffd', 4586, 'Enseignant', '2020-02-24', '102486', NULL, NULL, NULL, NULL, 'En cours', 1452.3, 'Math', NULL, 'C:\\Users\\Neifos\\Desktop\\student_PNG62542.png'),
+(188, 1045, 'hama', 'derbali', '2020-02-24', 'Homme', 'aaa', 'sdf', 896, 'Enseignant', '2020-02-24', '1045', NULL, NULL, NULL, NULL, 'Conge', 1001.2, 'Math', NULL, 'formateursst.png');
 
 --
 -- Constraints for dumped tables
@@ -638,7 +800,7 @@ ALTER TABLE `enseigner`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `sqdsssss` FOREIGN KEY (`classeEtd`) REFERENCES `classe` (`Name`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `sqdsssss` FOREIGN KEY (`classeEtd`) REFERENCES `classe` (`Name`) ON DELETE SET NULL ON UPDATE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
