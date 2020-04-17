@@ -11,18 +11,25 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import weboss.Entities.Enseignant;
 import weboss.Entities.Etudiant;
 import weboss.Entities.Personnel;
@@ -30,6 +37,7 @@ import weboss.Entities.User;
 import weboss.Entities.UserParent;
 
 import weboss.Service.UserService;
+import weboss.Weboss;
 
 /**
  * FXML Controller class
@@ -37,6 +45,7 @@ import weboss.Service.UserService;
  * @author Neifos
  */
 public class LoginController implements Initializable {
+    
     
     @FXML
     private TextField email;
@@ -59,11 +68,17 @@ public class LoginController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+         if (!Weboss.isSplashLoaded) {
+            loadSplashScreen();
+             
         // TODO
         
       
     }
-
+       
+        }
+    
     /*
     private void Login(ActionEvent event) {
         UserService ser = new UserService();
@@ -251,6 +266,54 @@ try{
             
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+     private void loadSplashScreen() {
+        try {
+            Weboss.isSplashLoaded = true;
+
+            StackPane pane = FXMLLoader.load(getClass().getResource(("/GUIInterface/splash.fxml")));
+          
+           // root.setBackground(Background.EMPTY);
+            bck.getChildren().setAll(pane);
+
+
+            FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
+            fadeIn.setFromValue(0);
+            fadeIn.setToValue(1);
+            fadeIn.setCycleCount(1);
+
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), pane);
+            fadeOut.setFromValue(1);
+            fadeOut.setToValue(0);
+            fadeOut.setCycleCount(1);
+
+            fadeIn.play();
+
+            fadeIn.setOnFinished((e) -> {
+                fadeOut.play();
+            });
+
+            fadeOut.setOnFinished((e) -> {
+                                  
+                try {
+                    Stage stageq = (Stage) bck.getScene().getWindow();
+                    stageq.close();                    
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/GUIInterface/Login.fxml"));
+                    AnchorPane rootLayout = (AnchorPane) loader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    Scene scene = new Scene(rootLayout);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }                
+            });
+
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

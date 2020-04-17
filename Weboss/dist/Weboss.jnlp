@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Weboss.jar" size="1189983" download="eager" />
+    <jar href="Weboss.jar" size="1689282" download="eager" />
     <jar href="lib\Bulk_SMS_Library.jar" size="3292" download="eager" />
     <jar href="lib\commons-codec-1.11.jar" size="335042" download="eager" />
     <jar href="lib\commons-collections4-4.2.jar" size="752798" download="eager" />

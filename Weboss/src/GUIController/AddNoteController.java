@@ -147,8 +147,8 @@ public class AddNoteController implements Initializable {
         ser.ajouter(n);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ajouter Note");
-        alert.setHeaderText("Votre Note est Enregistrée :) ");
-        alert.setContentText("veuillez fermer cette fenetre ");
+        alert.setHeaderText(null);
+        alert.setContentText("Grade Added ");
         alert.showAndWait();
 
     }

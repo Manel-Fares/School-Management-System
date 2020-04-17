@@ -47,15 +47,26 @@ public class AcceuilPersonelController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    DemandeEvenementService devs=new DemandeEvenementService();
+    DemandeEvenementService devs = new DemandeEvenementService();
     @FXML
     private Pane menu;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         nbr_notif_admin.setText("" + devs.nombre_demande());
-         notification_area.setVisible(false);
-                 menu.setVisible(false);
+        nbr_notif_admin.setText("" + devs.nombre_demande());
+        notification_area.setVisible(false);
+        menu.setVisible(false);
+        Parent fxml;
 
+        try {
+
+            fxml = FXMLLoader.load(getClass().getResource("/GUIInterface/statistiqueResultat.fxml"));
+            bck.getChildren().removeAll();
+            bck.getChildren().setAll(fxml);
+
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
         // TODO
     }
 
@@ -75,7 +86,7 @@ public class AcceuilPersonelController implements Initializable {
 
     @FXML
     private void logout(MouseEvent event) {
-         Parent fxml;
+        Parent fxml;
 
         try {
 
@@ -90,8 +101,8 @@ public class AcceuilPersonelController implements Initializable {
 
     @FXML
     private void afficherNotification(MouseEvent event) {
-         notification_area.setVisible(true);
-desc_notif.setText(devs.notifiction().toString());  
+        notification_area.setVisible(true);
+        desc_notif.setText(devs.notifiction().toString());
     }
 
     @FXML
@@ -162,36 +173,23 @@ desc_notif.setText(devs.notifiction().toString());
 
     @FXML
     private void ResultManagement(MouseEvent event) {
-                affichage("/GUIInterface/AjouterResultat.fxml");
+        affichage("/GUIInterface/AjouterResultat.fxml");
 
     }
 
     private void coursManagement(MouseEvent event) {
-                        affichage("/GUIInterface/AffecterMatierEnseignant.fxml");
+        affichage("/GUIInterface/AffecterMatierEnseignant.fxml");
 
     }
 
     private void chaptitreManagement(MouseEvent event) {
-                                affichage("/GUIInterface/AfficherChapitre.fxml");
+        affichage("/GUIInterface/AfficherChapitre.fxml");
 
-    }
-
-    @FXML
-    private void TeachersSubjects(ActionEvent event) {
-    }
-
-    @FXML
-    private void subjects(ActionEvent event) {
-    }
-
-    @FXML
-    private void Quiz(ActionEvent event) {
     }
 
     @FXML
     private void afficher(MouseEvent event) {
     }
-
 
     @FXML
     private void afficherBarreMenu(MouseEvent event) {
@@ -200,7 +198,13 @@ desc_notif.setText(devs.notifiction().toString());
 
     @FXML
     private void BarreMenu(MouseEvent event) {
-                menu.setVisible(false);
+        menu.setVisible(false);
+
+    }
+
+    @FXML
+    private void reclamationn(MouseEvent event) {
+        affichage("/GUIInterface/TraiteReclamation.fxml");
 
     }
 

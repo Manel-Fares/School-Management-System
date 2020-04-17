@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -48,6 +49,8 @@ public class AjouterEController implements Initializable {
     private AnchorPane PaneAdd;
     
     private String  listview,Path;
+    @FXML
+    private Label error_cin;
 
     
         public void afficherAlert(String message) {

@@ -5,6 +5,7 @@
  */
 package GUIController;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.net.URL;
@@ -30,6 +31,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import weboss.Service.ClassService;
 
 /**
  * FXML Controller class
@@ -40,13 +42,14 @@ public class SendEmploisController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;
-    @FXML
     private JFXTextField mail;
     @FXML
     private JFXButton Upload;
     @FXML
     private JFXButton Send;
     String listview,Path;
+    @FXML
+    private JFXComboBox<String> ClassName;
 
     /**
      * Initializes the controller class.
@@ -54,6 +57,8 @@ public class SendEmploisController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+         ClassService cs = new ClassService();
+        ClassName.setItems(cs.GetNomClass());
     }  
      public void afficherAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -70,21 +75,17 @@ public class SendEmploisController implements Initializable {
         if (
                // NameClass.getText().trim().isEmpty() || NbrEtudClass.getText().trim().isEmpty()
                // || DescriptionClass.getText().trim().isEmpty()
-                mail.getText().trim().isEmpty()
+               ClassName.getValue()==null
                // DateEmplois.getValue() == null
                // || HeureEmplois.getValue() == null
                 || listview.equals("")
                 || Path.equals("")
                 //|| imageFileLabel.getText().trim().isEmpty()
                 ) {
-            afficherAlert("Tous les champs doivent être remplis");
+            afficherAlert("All fields must be completed");
             return false;
         }
- Pattern err = Pattern.compile("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
- if (!err.matcher(mail.getText()).matches()) {
-     afficherAlert("Email non valider");
-            return false;
-        }      
+    
  /* Instant instant = Instant.from(dateDebut.getValue().atStartOfDay(ZoneId.systemDefault()));
         Date dateD = Date.from(instant);
         Date cuurentDate = new Date();
@@ -150,11 +151,12 @@ public class SendEmploisController implements Initializable {
     
     
     public void mailling() {
+        ClassService cs = new ClassService();
         //authentication info
 		final String username = "test.nom2020@gmail.com";
 		final String password = "0123azertyuiop";
 		String fromEmail = "test.nom2020@gmail.com";
-		String toEmail = mail.getText();
+		
 		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", "true");
@@ -173,7 +175,10 @@ public class SendEmploisController implements Initializable {
 		MimeMessage msg = new MimeMessage(session);
 		try {
 			msg.setFrom(new InternetAddress(fromEmail));
-			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+			 for(int i=0;i<cs.SearchEmails(ClassName.getValue()).size();i++)
+                        {
+                        msg.addRecipient(Message.RecipientType.TO, new InternetAddress(cs.SearchEmails(ClassName.getValue()).get(i))); 
+                        }
 			msg.setSubject("Emplois");
 			
 			Multipart emailContent = new MimeMultipart();

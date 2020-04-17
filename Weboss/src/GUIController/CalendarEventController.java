@@ -178,11 +178,7 @@ public class CalendarEventController implements Initializable {
                         Check=true;
                     }                    
                     }
-            
-            // Get the day number
-            
-            
-            // Store event day and month in data singleton
+
             
             if(!Check)
             {

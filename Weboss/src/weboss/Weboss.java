@@ -11,7 +11,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 /**
@@ -19,13 +22,20 @@ import javafx.stage.Stage;
  * @author asus
  */
 public class Weboss extends Application {
+    public static Boolean isSplashLoaded = false;
     
     @Override
     public void start(Stage primaryStage) {
        
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/GUIInterface/Login.fxml"));
-            Scene scene = new Scene(root, 1100, 700);
+           
+        primaryStage= new Stage(StageStyle.UNDECORATED);
+    //    primaryStage= new Stage(StageStyle.TRANSPARENT);
+      // primaryStage.initModality(Modality.APPLICATION_MODAL); 
+        primaryStage.initStyle(StageStyle.TRANSPARENT);   
+         Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
             primaryStage.setScene(scene);
             primaryStage.setTitle("WeBoss");
            // primaryStage.fullScreenProperty()

@@ -70,7 +70,11 @@ public class AcceuilEtudiantController implements Initializable {
             Logger.getLogger(AcceuilEtudiantController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        afficherAfficheEvenement();
+        try {
+            afficherAfficheEvenement();
+        } catch (SQLException ex) {
+            Logger.getLogger(AcceuilEtudiantController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         affichageRating();
  
     }
@@ -107,7 +111,7 @@ public class AcceuilEtudiantController implements Initializable {
            
         
     }
-    public void afficherAfficheEvenement() {
+    public void afficherAfficheEvenement() throws SQLException {
        EvenementService dev = new EvenementService();
         ArrayList<String> images = new ArrayList<>();
         try {
@@ -128,8 +132,15 @@ public class AcceuilEtudiantController implements Initializable {
             ex.getMessage();
         }
 
-        pagination.setPageCount(images.size());
-        pagination.setPageFactory(n -> new ImageView(images.get(n)));
+              if(dev.recpererImage().size()!=0)
+        {
+            pagination.setVisible(true);
+         pagination.setPageCount(images.size());
+       pagination.setPageFactory(n -> new ImageView(images.get(n)));    
+        }
+        else
+            pagination.setVisible(false);
+       
     }
 
     //////////

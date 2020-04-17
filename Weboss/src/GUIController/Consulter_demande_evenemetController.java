@@ -29,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import weboss.Entities.Club;
 import weboss.Entities.DemandeEvenement;
 import weboss.Entities.Etudiant;
 import weboss.Service.ClubService;
@@ -48,7 +49,7 @@ public class Consulter_demande_evenemetController implements Initializable {
     private TableView<DemandeEvenement> tab;
 
     @FXML
-    private TableColumn<DemandeEvenement, Integer> id_club;
+    private TableColumn<DemandeEvenement, Club> id_club;
 
     @FXML
     private TableColumn<DemandeEvenement, Float> budget;
@@ -89,9 +90,11 @@ int identifiant=1;
 
         try {
             System.out.println(Integer.parseInt( Etudiant.etd.getIdUser()));
-            int x=c.recuperer_id_club(Integer.parseInt( Etudiant.etd.getIdUser()));
+            Club x=c.recuperer_id_club(Integer.parseInt( Etudiant.etd.getIdUser()));
             System.out.println(x);
-            List<DemandeEvenement> oo = cs.afficherDemandeSpecifique(x);
+            System.out.println("aaa" + x);
+            List<DemandeEvenement> oo = cs.afficherDemandeSpecifique(x.getIdClub());
+            System.out.println(oo);
             l.addAll(oo);
             for (DemandeEvenement d : oo) {
                 System.out.println(d);
@@ -102,7 +105,7 @@ int identifiant=1;
         }
 
         // l.addAll((DemandeEvenement)cs.afficherDemandeSpecifique(11));
-        id_club.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, Integer>("idclub"));
+        id_club.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, Club>("idclub"));
         dd.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, String>("datedebut"));
         df.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, String>("datefin"));
         desc.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, String>("description"));
@@ -142,9 +145,9 @@ int identifiant=1;
     Optional<ButtonType> result = alert.showAndWait();
     if (result.get() == deleteGame){
         cs.supprimer(dev.getIdDemandeEvenement());
-        int x=c.recuperer_id_club(identifiant);
+        Club x=c.recuperer_id_club(identifiant);
            
-            List<DemandeEvenement> o = cs.afficherDemandeSpecifique(x);
+            List<DemandeEvenement> o = cs.afficherDemandeSpecifique(x.getIdClub());
             l2.addAll(o);
         tab.setItems(l2);
 
@@ -163,9 +166,10 @@ int identifiant=1;
         try {
             
             cs.modifier(t, dev.getIdDemandeEvenement());
-            int x=c.recuperer_id_club(identifiant);
-           
-            List<DemandeEvenement> oo = cs.afficherDemandeSpecifique(x);
+            Club x=c.recuperer_id_club(identifiant);
+            System.out.println("aaa"  + x);
+            List<DemandeEvenement> oo = cs.afficherDemandeSpecifique(x.getIdClub());
+            System.out.println(oo);
                         l2.addAll(oo);
 
                     tab.setItems(l2);

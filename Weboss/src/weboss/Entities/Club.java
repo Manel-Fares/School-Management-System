@@ -11,7 +11,7 @@ package weboss.Entities;
  */
 public class Club {
     private int idClub;  
-    private int idResponsable ;
+    private User Responsable ;
     private String nomClub;
     private String domaine;
         
@@ -19,22 +19,58 @@ public class Club {
     public Club() {
     }
 
+    public Club(int idClub) {
+        this.idClub = idClub;
+    }
+    
+
+    public Club(int idClub, String nomClub, String domaine) {
+        this.idClub = idClub;
+        this.nomClub = nomClub;
+        this.domaine = domaine;
+    }
+    
+
+    public Club(int idClub, User Responsable, String nomClub, String domaine) {
+        this.idClub = idClub;
+        this.Responsable = Responsable;
+        this.nomClub = nomClub;
+        this.domaine = domaine;
+    }
+
+    public Club(User Responsable, String nomClub, String domaine) {
+        this.Responsable = Responsable;
+        this.nomClub = nomClub;
+        this.domaine = domaine;
+    }
+
     public Club(String nomClub, String domaine) {
         this.nomClub = nomClub;
         this.domaine = domaine;
     }
 
-    public Club(int idClub, int idResponsable, String nomClub, String domaine) {
-        this.idClub = idClub;
-        this.idResponsable = idResponsable;
-        this.nomClub = nomClub;
-        this.domaine = domaine;
+    public int getIdClub() {
+        return idClub;
     }
-    public Club( int idResponsable, String nomClub, String domaine) {
-        
-        this.idResponsable = idResponsable;
+
+    public void setIdClub(int idClub) {
+        this.idClub = idClub;
+    }
+
+    public User getResponsable() {
+        return Responsable;
+    }
+
+    public void setResponsable(User Responsable) {
+        this.Responsable = Responsable;
+    }
+
+    public String getNomClub() {
+        return nomClub;
+    }
+
+    public void setNomClub(String nomClub) {
         this.nomClub = nomClub;
-        this.domaine = domaine;
     }
 
     public String getDomaine() {
@@ -45,42 +81,14 @@ public class Club {
         this.domaine = domaine;
     }
 
-   
-
-   
-    public int getIdClub() {
-        return idClub;
-    }
-
-   
-
-    public String getNomClub() {
+    @Override
+    public String toString() {
         return nomClub;
     }
 
-   
-    public void setNomClub(String nomClub) {
-        this.nomClub = nomClub;
-    }
-    public void setIdClub(int idClub) {
-        this.idClub = idClub;
-    }
+  
+  
 
-    public int getIdResponsable() {
-        return idResponsable;
-    }
-
-    public void setIdResponsable(int idResponsable) {
-        this.idResponsable = idResponsable;
-    }
-
-    @Override
-    public String toString() {
-        return "Club{" + "idClub=" + idClub + ", idResponsable=" + idResponsable + ", nomClub=" + nomClub + ", domaine=" + domaine + '}';
-    }
-
-   
-   
 
   
     

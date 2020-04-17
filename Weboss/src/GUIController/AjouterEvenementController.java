@@ -17,12 +17,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import weboss.Entities.Club;
 import weboss.Entities.Evenement;
+import weboss.Entities.Personnel;
+import weboss.Entities.User;
 import weboss.Service.EvenementService;
+import weboss.Service.ValidationChamps;
 
 /**
  * FXML Controller class
@@ -40,6 +46,16 @@ public class AjouterEvenementController implements Initializable {
     EvenementService cs = new EvenementService();
     @FXML
     private AnchorPane rootPane;
+    @FXML
+    private ImageView valid_path;
+    @FXML
+    private ImageView invalid_path;
+    @FXML
+    private ImageView valid_f;
+    @FXML
+    private ImageView invalid_f;
+    @FXML
+    private Label error_cin;
     /**
      * Initializes the controller class.
      */
@@ -50,9 +66,29 @@ public class AjouterEvenementController implements Initializable {
 
     @FXML
     private void ajouter(MouseEvent event) {
-        final ObservableList<Evenement> listEvenement2 = FXCollections.observableArrayList();
+          boolean islistViewEmpty = ValidationChamps.isTextFieldNotEmpty(listView, valid_path, invalid_path);
 
-        Evenement ev = new Evenement(dd.getValue().toString(), df.getValue().toString(), 0000, listView.getText());
+         boolean isdateEmpty = ValidationChamps.isdATE(dd, df, valid_f,invalid_f);
+        
+
+     if (!isdateEmpty) {
+              
+                error_cin.setText("Error Date");
+            }
+
+        if (!islistViewEmpty) {
+            error_cin.setText("pic");
+        }
+
+       
+   
+        if (islistViewEmpty && isdateEmpty  ) {
+            error_cin.setText(null);
+        }
+        final ObservableList<Evenement> listEvenement2 = FXCollections.observableArrayList();
+      //  User u = Personnel.pr;
+        Club c = new Club(1);
+        Evenement ev = new Evenement(dd.getValue().toString(), df.getValue().toString(), c, listView.getText());
         try {
             cs.ajouter(ev);
             listEvenement2.addAll(cs.affciher());

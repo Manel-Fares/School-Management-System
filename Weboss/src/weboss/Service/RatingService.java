@@ -60,13 +60,13 @@ public class RatingService implements IService<Rating> {
         return arr;
     }
 
-    public List<Double> recuperernbrRating(int id) throws SQLException {
-        List<Double> arr = new ArrayList<>();
+    public double recuperernbrRating(int id) throws SQLException {
+        double arr = 0;
         ste = cnx.createStatement();
-        ResultSet rs = ste.executeQuery("select rating from rating where idClub='" + id + "'");
+        ResultSet rs = ste.executeQuery("select AVG(rating)  from rating where idClub='" + id + "'");
         while (rs.next()) {
-            double c = rs.getDouble("rating");
-            arr.add(c);
+            double c = rs.getDouble(1);
+            arr=c;
         }
         return arr;
     }

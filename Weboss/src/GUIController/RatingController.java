@@ -26,106 +26,100 @@ import weboss.Entities.Club;
 import weboss.Entities.Etudiant;
 //import weboss.Entities.Rating;
 import weboss.Service.*;
+
 /**
  * FXML Controller class
  *
  * @author asus
  */
 public class RatingController implements Initializable {
+
     @FXML
     private GridPane grid;
-    double p=0;
+    double p = 0;
     @FXML
     private AnchorPane root;
     /**
      * Initializes the controller class.
      */
-    ClubService cs =new ClubService();
+    ClubService cs = new ClubService();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        
-         RatingService rs=new RatingService();
-      
-                        
-        List<Club> lst=new ArrayList<Club>();
+
+        RatingService rs = new RatingService();
+
+        List<Club> lst = new ArrayList<Club>();
         ClubService cb = new ClubService();
         try {
-             lst = cb.affciher();
+            lst = cb.affciher();
         } catch (SQLException ex) {
             Logger.getLogger(RatingController.class.getName()).log(Level.SEVERE, null, ex);
         }
         int i = 0;
-        int j=0;
-        for (Club c : lst){
-             final Rating rating = new Rating();
-             try {
-                 for(int x=0;x<rs.recuperernbrRating(c.getIdClub()).size();x++){
-                     rating.setRating(rs.recuperernbrRating(c.getIdClub()).get(x));}
-                 // System.out.println("club1 "+rs.recuperernbrRating(cs.recupererListeIDCLub().get(i)));
-             } catch (SQLException ex) {
-                 Logger.getLogger(RatingController.class.getName()).log(Level.SEVERE, null, ex);
-             }
-            
-                        rating.setUpdateOnHover(false);
-                        rating.setPartialRating(false);
-                        rating.setMax(5);
-                      
-                        rating.setOnMouseClicked(new EventHandler() {
-                 @Override
-                 public void handle(Event event) {
-               
-                         System.out.println(rating.getRating());
-                      p=rating.getRating();
-                  
-                         }
-             });
-                         System.out.println(p);
+        int j = 0;
+        for (Club c : lst) {
+            final Rating rating = new Rating();
+            try {
+                
+                    rating.setRating(rs.recuperernbrRating(c.getIdClub()));
+                
+                // System.out.println("club1 "+rs.recuperernbrRating(cs.recupererListeIDCLub().get(i)));
+            } catch (SQLException ex) {
+                Logger.getLogger(RatingController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            rating.setUpdateOnHover(false);
+            rating.setPartialRating(false);
+            rating.setMax(5);
+
+            rating.setOnMouseClicked(new EventHandler() {
+                @Override
+                public void handle(Event event) {
+
+                    System.out.println(rating.getRating());
+                    p = rating.getRating();
+
+                }
+            });
+            System.out.println(p);
             VBox vbox = new VBox();
             System.out.println(c.getIdClub());
-     Label name=new Label(c.getNomClub());
-  Label dmn=new Label(c.getDomaine());
-  Button btn=new Button("voter");
-  btn.setOnAction((event) -> {
-      // 
-      
-      weboss.Entities.Rating rate=new weboss.Entities.Rating();
-      rate.setC(c);
-      rate.setRating(p);
-      rate.setEt(Etudiant.etd);
-      RatingService rtd=new RatingService();
-                 try {
-                      if(rs.recupererRateEtudiant(rate.getC().getIdClub(), Integer.parseInt(rate.getEt().getIdUser()))==0)
-            {
-                     rtd.ajouter(rate);
-            }
-            else 
+            Label name = new Label(c.getNomClub());
+            Label dmn = new Label(c.getDomaine());
+            Button btn = new Button("voter");
+            btn.setOnAction((event) -> {
+               
+
+                weboss.Entities.Rating rate = new weboss.Entities.Rating();
+                rate.setC(c);
+                rate.setRating(p);
+                rate.setEt(Etudiant.etd);
+                RatingService rtd = new RatingService();
+                try {
+                    if (rs.recupererRateEtudiant(rate.getC().getIdClub(), Integer.parseInt(rate.getEt().getIdUser())) == 0) {
+                        rtd.ajouter(rate);
+                    } else {
                         rs.modifier(rate, p);
-            
-                 } catch (SQLException ex) {
-                     Logger.getLogger(RatingController.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-      
-      
-  });
-     vbox.getChildren().addAll(name,dmn,rating,btn);
-     grid.add(vbox, i, j);
-     i++;
-     if(i == 3)
-     { 
-         i=0;
-     j++;
-     
-     }
-    
-        
-     
-    
-    
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(RatingController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            });
+            vbox.getChildren().addAll(name, dmn, rating, btn);
+            grid.add(vbox, i, j);
+            i++;
+            if (i == 3) {
+                i = 0;
+                j++;
+
+            }
+
         }
-   
-     
-    }    
-    
+
+    }
+
 }

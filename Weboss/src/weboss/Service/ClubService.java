@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import weboss.BD.Database;
 import weboss.Entities.Club;
+import weboss.Entities.User;
 
 
 /**
@@ -38,7 +39,8 @@ public class ClubService implements IService<Club> {
 
         pst = cnx.prepareStatement(req);
         pst.setString(1, t.getNomClub());
-        pst.setInt(2, t.getIdResponsable());
+        System.out.println(t.getResponsable().getIdUser());
+        pst.setString(2, t.getResponsable().getIdUser());
         System.out.println("aaa");
         pst.setString(3, t.getDomaine());
         pst.execute();
@@ -65,13 +67,16 @@ public class ClubService implements IService<Club> {
     public List<Club> affciher() throws SQLException {
         List<Club> arr = new ArrayList<>();
         ste = cnx.createStatement();
-        ResultSet rs = ste.executeQuery("select * from club");
+        ResultSet rs = ste.executeQuery("select c.*,u.* from club as c Inner join users as u on c.idResponsable=u.idUser ");
         while (rs.next()) {
-            int id = rs.getInt("idClub");
-            String nomClub = rs.getString("nomClub");
-            int idResponsable = rs.getInt("idResponsable");
-            String domaine = rs.getString("domaine");
-            Club c = new Club(id, idResponsable, nomClub, domaine);
+            int id = rs.getInt("c.idClub");
+            String nomClub = rs.getString("c.nomClub");
+            String idResponsable = rs.getString("u.nomUser");
+            String nomResponsable = rs.getString("u.prenomUser");
+            String domaine = rs.getString("c.domaine");
+            User u=new User(idResponsable, nomResponsable);
+            Club c = new Club(id, u, nomClub, domaine);
+            
             arr.add(c);
         }
         return arr;
@@ -90,28 +95,35 @@ public class ClubService implements IService<Club> {
 
     public Club RecupererClb(int idd) throws SQLException {
 
+     Club cc=new Club();
         ste = cnx.createStatement();
-        ResultSet rs = ste.executeQuery("select * from club where idClub='" + idd + "'");
-        Club c = new Club();
+        ResultSet rs = ste.executeQuery("select c.*,u.* from club as c Inner join users as u on c.idResponsable=u.idUser where c.idClub = '"+idd+"'");
         while (rs.next()) {
-            int id = rs.getInt("idClub");
-            int idResp = rs.getInt("idResponsable");
-            String nom = rs.getString("nomClub");
-            String Domaie = rs.getString("domaine");
-            c = new Club(id, idResp, nom, Domaie);
+            int id = rs.getInt("c.idClub");
+            String nomClub = rs.getString("c.nomClub");
+            String idResponsable = rs.getString("u.nomUser");
+            String nomResponsable = rs.getString("u.prenomUser");
+            String domaine = rs.getString("c.domaine");
+            User u=new User(idResponsable, nomResponsable);
+            Club c = new Club(id, u, nomClub, domaine);
+            cc=c;
+        
         }
-        return c;
+        return cc;
     }
 
-    public int recuperer_id_club(int id) throws SQLException {
+    public Club recuperer_id_club(int id) throws SQLException {
         List<Integer> arr = new ArrayList<>();
+        Club cc=new Club();
         ste = cnx.createStatement();
-        int c = 0;
-        ResultSet rs = ste.executeQuery("select club.idClub from club INNER JOIN users on club.idResponsable=users.idUser where users.idUser='" + id + "'  ");
+       // int c = 0;
+        ResultSet rs = ste.executeQuery("select club.*,users.* from club INNER JOIN users on club.idResponsable=users.idUser where users.idUser='" + id + "'  ");
         while (rs.next()) {
-            c = rs.getInt("idClub");
+            User u=new User(rs.getString("users.idUser"),rs.getString("users.nomUser"),rs.getString("users.prenomUser"));
+            Club c=new Club(rs.getInt("club.idClub"),u,rs.getString("club.nomClub"),rs.getString("club.domaine"));
+            cc=c;
         }
-        return c;
+        return cc;
     }
        public int recupererResponsable(int id) throws SQLException {
         List<Integer> arr = new ArrayList<>();
@@ -123,21 +135,33 @@ public class ClubService implements IService<Club> {
         }
         return c;
     }
+       public User recupererInfoResponsable(String id) throws SQLException {
+        User uu=new User();
+        ste = cnx.createStatement();
+        int c = 0;
+        ResultSet rs = ste.executeQuery("select IdUser,nomUser,prenomUser from users where idUser='" + id + "'");
+        while (rs.next()) {
+            User u = new User(rs.getString("idUser"), rs.getString("nomUser"), rs.getString("prenomUser"));
+            uu=u;
+            System.out.println(uu);
+        }
+        return uu;
+    }
     // select club.idClub from club INNER JOIN users on club.idResponsable=users.idUser
 
     public List<Club> recherche(String x) throws SQLException {
-        List<Club> arr = new ArrayList<>();
+          List<Club> arr = new ArrayList<>();
         ste = cnx.createStatement();
-                    System.out.println("bbbbbbbbbb");
-
-        ResultSet rs = ste.executeQuery("select * from club where nomClub like '%" + x + "%'");
+        ResultSet rs = ste.executeQuery("select c.*,u.* from club as c Inner join users as u on c.idResponsable=u.idUser where c.nomClub like '%"+x+"%' ");
         while (rs.next()) {
-            System.out.println("aaaaaaaaa");
-            int id = rs.getInt("idClub");
-            String nomClub = rs.getString("nomClub");
-            int idResponsable = rs.getInt("idResponsable");
-            String domaine = rs.getString("domaine");
-            Club c = new Club(id, idResponsable, nomClub, domaine);
+            int id = rs.getInt("c.idClub");
+            String nomClub = rs.getString("c.nomClub");
+            String idResponsable = rs.getString("u.nomUser");
+            String nomResponsable = rs.getString("u.prenomUser");
+            String domaine = rs.getString("c.domaine");
+            User u=new User(idResponsable, nomResponsable);
+            Club c = new Club(id, u, nomClub, domaine);
+            
             arr.add(c);
         }
         return arr;

@@ -59,6 +59,8 @@ public class AffecterClassController implements Initializable {
     private AnchorPane rootPane;
     @FXML
     private JFXComboBox<String> MatiereClass;
+    @FXML
+    private Label error_cin;
 
        public void afficherAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -78,13 +80,21 @@ public class AffecterClassController implements Initializable {
                 //|| adresse.getText().trim().isEmpty()
                 /*||*/ SelectRole.getValue() == null
                 || SelectClass.getValue() == null
-                || MatiereClass.getValue() == null
+                //|| MatiereClass.getValue() == null
                 //|| TimeFin.getValue() == null
                 
                 //|| imageFileLabel.getText().trim().isEmpty()
                 ) {
-            afficherAlert("Tous les champs doivent être remplis");
+            afficherAlert("All fields must be completed");
             return false;
+        }
+          if( SelectRole.getValue().equals("Enseignant"))
+        {
+            if(MatiereClass.getValue() == null)
+            {
+               afficherAlert("All fields must be completed");
+            return false; 
+            }
         }
        /* Instant instant = Instant.from(dateDebut.getValue().atStartOfDay(ZoneId.systemDefault()));
         Date dateD = Date.from(instant);
@@ -106,7 +116,7 @@ public class AffecterClassController implements Initializable {
                 return false;
             }*/
             if (tableUser.getSelectionModel().getSelectedItem()==null) {
-                afficherAlert("vous devez selectionner user");
+                afficherAlert("you must select a user");
                 return false;
             }
        /* }*/
@@ -197,25 +207,37 @@ public class AffecterClassController implements Initializable {
 
     @FXML
     private void AddAction(ActionEvent event) {
+        String k =SelectClass.getValue();
         if(testSaisie())
         {
         User u= tableUser.getSelectionModel().getSelectedItem();
         ClassService cs=new ClassService();
         if(SelectRole.getValue().equals("Etudiant"))
         {
+            if(cs.GetnbrMax(k)!=cs.GetnbrFromClass(k))
+            {
         cs.AffecteClass(Integer.parseInt(u.getIdUser()), SelectClass.getValue());
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
+         }
+            else
+            afficherAlert("This Class is Full");
         }
         else if(SelectRole.getValue().equals("Enseignant"))
-        {                                
+        {   
+            if(!cs.GetEnseDejaAffecter(cs.SearchNomClass(SelectClass.getValue()),Integer.parseInt(u.getIdUser()),Integer.valueOf(cs.GetIDMatiere(MatiereClass.getValue()))))
+        {
         cs.AffecteEnseigantClass(cs.SearchNomClass(SelectClass.getValue()),Integer.parseInt(u.getIdUser()),Integer.valueOf(cs.GetIDMatiere(MatiereClass.getValue())));
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
+         }
+        else
+        afficherAlert("This Teacher already affected");    
+        }
         }
         }
        
-    }
+    
 
  
     

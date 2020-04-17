@@ -3,25 +3,36 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/GUIResponsesController.java</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIInterface/AffecterMatierEnseignant.fxml</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Service/UserService.java</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Service/TeachingService.java</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Entities/Enseignant.java</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AcceuilController.java</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AffecterMatierEnseignantController1.java</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AcceuilEnseignantController.java</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIInterface/Acceuil.fxml</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AffecterMatierEnseignantController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIInterface/loginarea.fxml</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AjouterEController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/CalendarEventController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Service/ServiceTag.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Service/ServiceNote.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AbsenceController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/CodeLoginController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/NewPasswordController.java</file>
             <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AcceuilEtudiantController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Service/AbsenceService.java</file>
             <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Service/EnseignantService.java</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIInterface/AcceuilEnseignant.fxml</file>
             <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AddNoteController.java</file>
             <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AcceuilPersonelController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/StatistiqueResultatController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIInterface/AjouterE.fxml</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Entities/Note.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Service/EtudiantService.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Service/ServiceReponse.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/Afficher_Demande_EvenementController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AcceuilEnseignantController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Weboss.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AjouterController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/GestionNoteEnseignantController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Service/ValidationChamps.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/ForgetPasswordController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/EspaceEtudiantController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Service/ServiceQuestion.java</file>
             <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/LoginController.java</file>
+            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/LoginareaController.java</file>
             <file>file:/C:/Users/Neifos/Desktop/Weboss/src/weboss/Service/ServiceResultat.java</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/GUIController/AcceuilParentController.java</file>
-            <file>file:/C:/Users/Neifos/Desktop/Weboss/src/CSS/style.css</file>
         </group>
     </open-files>
 </project-private>

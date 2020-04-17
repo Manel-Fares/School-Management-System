@@ -49,6 +49,8 @@ public class AjouterController implements Initializable {
     private JFXComboBox<String> SpecClass;
     @FXML
     private JFXTextArea DescriptionClass;
+    @FXML
+    private Label error_cin;
     
 
        public void afficherAlert(String message) {

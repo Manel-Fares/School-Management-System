@@ -5,6 +5,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="background" prefHeight="680.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.AcceuilController">
    <children>
@@ -14,50 +18,22 @@
             <Pane fx:id="user_charts" layoutX="-3.0" layoutY="6.0" prefHeight="270.0" prefWidth="987.0" />
             <Pane fx:id="nbrEtudiantClass" layoutX="458.0" layoutY="286.0" prefHeight="350.0" prefWidth="528.0" />
          </children></Pane>
-      <Pane layoutY="-2.0" prefHeight="58.0" prefWidth="1152.0" styleClass="barre" stylesheets="@../CSS/style.css">
-         <children>
-            <ImageView fitHeight="46.0" fitWidth="74.0" layoutX="1068.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../weboss/Image/userr.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
+      <Pane layoutY="-2.0" prefHeight="58.0" prefWidth="1152.0" styleClass="barre" stylesheets="@../CSS/style.css" />
       <Pane layoutX="-2.0" layoutY="-1.0" onMouseEntered="#afficherBarreMenu" prefHeight="698.0" prefWidth="36.0" style="-fx-background-color: white;">
          <children>
-            <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="5.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="5.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../weboss/Image/students-on-class.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="6.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="7.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../weboss/Image/schedule.png" />
+                  <Image url="@../weboss/Image/teacher-pointing-blackboard.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="5.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="9.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../weboss/Image/icon.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="8.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../weboss/Image/add.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="7.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../weboss/Image/calendar-with-alarm-clock.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="8.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../weboss/Image/man-in-a-party-dancing-with-people.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="8.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../weboss/Image/application-form.png" />
+                  <Image url="@../weboss/Image/staff-people-group-in-a-circular-arrow.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="31.0" fitWidth="26.0" layoutX="5.0" layoutY="10.0" onMouseEntered="#afficher" pickOnBounds="true" preserveRatio="true">
@@ -65,21 +41,78 @@
                   <Image url="@../weboss/Image/menu.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="67.0" layoutX="7.0" layoutY="658.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="3.0" layoutY="665.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../weboss/Image/iconelogout.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="31.0" fitWidth="26.0" layoutX="5.0" layoutY="121.0" onMouseEntered="#afficher" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../weboss/Image/graphics-scale.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="34.0" layoutY="-2.0" prefHeight="704.0" prefWidth="200.0" styleClass="parent" stylesheets="@../CSS/style.css">
+      <Pane fx:id="menu" layoutX="34.0" layoutY="-2.0" onMouseExited="#BarreMenu" prefHeight="704.0" prefWidth="200.0" styleClass="parent" stylesheets="@../CSS/style.css">
          <children>
-            <JFXButton layoutX="81.0" layoutY="352.0" onMouseClicked="#GestionClub" text="club" />
-            <JFXButton fx:id="etudiant" layoutX="23.0" layoutY="75.0" onAction="#EspaceEtudiant" styleClass="btns" text="Student Management" />
-            <JFXButton fx:id="enseignant" layoutX="1.0" layoutY="130.0" onAction="#EspaceEnseignant" styleClass="btns" stylesheets="@../CSS/style.css" text="Teachers Management" />
-            <JFXButton layoutX="24.0" layoutY="273.0" onMouseClicked="#demandeEvenement" prefHeight="25.0" prefWidth="130.0" styleClass="btns" stylesheets="@../CSS/style.css" text="Request Event" />
-            <JFXButton fx:id="personnel" layoutX="24.0" layoutY="208.0" onAction="#EspacePersonnel" styleClass="btns" stylesheets="@../CSS/style.css" text="Staff Management" />
+            <JFXButton fx:id="etudiant" layoutX="4.0" layoutY="159.0" onAction="#EspaceEtudiant" prefHeight="25.0" prefWidth="196.0" text="Student Management" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></JFXButton>
+            <JFXButton fx:id="enseignant" layoutX="3.0" layoutY="203.0" onAction="#EspaceEnseignant" prefHeight="25.0" prefWidth="196.0" text="Teachers Management" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></JFXButton>
+            <JFXButton fx:id="personnel" layoutX="2.0" layoutY="244.0" onAction="#EspacePersonnel" prefHeight="25.0" prefWidth="196.0" text="Staff Management" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></JFXButton>
+            <Line endX="100.0" layoutX="88.0" layoutY="278.0" startX="-88.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Line>
+            <Line endX="100.0" layoutX="100.0" layoutY="197.0" startX="-95.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Line>
+            <Line endX="100.0" layoutX="97.0" layoutY="155.0" startX="-95.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Line>
+            <JFXButton layoutX="6.0" layoutY="121.0" prefHeight="25.0" prefWidth="196.0" styleClass="btns" stylesheets="@../CSS/style.css" text="Dashboard">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
+      <Line endX="100.0" layoutX="130.0" layoutY="236.0" startX="-95.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
    </children>
 </AnchorPane>

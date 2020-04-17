@@ -50,7 +50,7 @@ public class CodeLoginController implements Initializable {
              info.setContentText("Done");
              info.show();
              
-            fxml = FXMLLoader.load(getClass().getResource("/GUIInterface/CodeLogin.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/GUIInterface/NewPassword.fxml"));
             bck.getChildren().removeAll();
             bck.getChildren().setAll(fxml);
             

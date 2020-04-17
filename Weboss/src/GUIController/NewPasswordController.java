@@ -58,7 +58,7 @@ public class NewPasswordController implements Initializable {
                     System.out.println("error update mdp");
                 }
                 
-            fxml = FXMLLoader.load(getClass().getResource("/GUIInterface/L.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/GUIInterface/AcceuilEtudiant.fxml"));
             bck.getChildren().removeAll();
             bck.getChildren().setAll(fxml);
             } catch (IOException ex) {

@@ -32,7 +32,7 @@
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
             </JFXButton>
-            <MenuButton layoutX="372.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" style="-fx-text-fill: #ffff;" stylesheets="@../CSS/style.css" text="Result" textFill="WHITE">
+            <MenuButton layoutX="372.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Result" textFill="WHITE">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#Notes" text="Notes" />
                   <MenuItem mnemonicParsing="false" onAction="#AnnualResults" text="Annual Results" />

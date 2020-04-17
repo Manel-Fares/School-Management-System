@@ -37,6 +37,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import weboss.Entities.Club;
+import weboss.Entities.User;
 import weboss.Service.ClubService;
 import weboss.Service.EvenementService;
 
@@ -60,7 +61,7 @@ public class GestionClub implements Initializable {
     private TableColumn<Club, String> nom_club;
 
     @FXML
-    private TableColumn<Club, Integer> id_responsable;
+    private TableColumn<Club, User> id_responsable;
     @FXML
     private TableColumn<Club, String> domaine;
 
@@ -114,7 +115,7 @@ public class GestionClub implements Initializable {
 
         id_club.setCellValueFactory(new PropertyValueFactory<Club, Integer>("idClub"));
         nom_club.setCellValueFactory(new PropertyValueFactory<Club, String>("nomClub"));
-        id_responsable.setCellValueFactory(new PropertyValueFactory<Club, Integer>("idResponsable"));
+        id_responsable.setCellValueFactory(new PropertyValueFactory<Club, User>("Responsable"));
         domaine.setCellValueFactory(new PropertyValueFactory<Club, String>("domaine"));
         tab_club.setItems(listClub);
             
@@ -202,13 +203,16 @@ public class GestionClub implements Initializable {
     }
 
     @FXML
-    private void ajouter(MouseEvent event) {
+    private void ajouter(MouseEvent event) throws SQLException {
                 final ObservableList<Club> listClub2 = FXCollections.observableArrayList();
 
-       int  id_resp=Integer.parseInt(ID_resp.getText());
+      // int  id_resp=Integer.parseInt(ID_resp.getText());
        String nom=nom_clb.getText();
        String domainee=doma.getText();
-       Club c=new Club(id_resp, nom, domainee);
+       User u =cs.recupererInfoResponsable(ID_resp.getText());
+     //  User uu = new User(id_resp,u.getNomUser(),u.getPrenomUser()); 
+        System.out.println(u);
+       Club c=new Club(u, nom, domainee);
         try {
             cs.ajouter(c);
              listClub2.addAll(cs.affciher());

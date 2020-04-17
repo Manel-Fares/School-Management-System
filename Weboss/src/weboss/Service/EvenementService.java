@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import weboss.BD.Database;
+import weboss.Entities.Club;
 import weboss.Entities.Evenement;
 
 
@@ -46,7 +47,7 @@ public class EvenementService implements IService<Evenement> {
         pst = cnx.prepareStatement(req);
         pst.setString(1, t.getDateDebut());
         pst.setString(2, t.getDateFin());
-        pst.setInt(3, t.getIdClub());
+        pst.setInt(3, t.getIdClub().getIdClub());
         pst.setString(4, t.getImage());
         pst.execute();
     }
@@ -72,19 +73,21 @@ public class EvenementService implements IService<Evenement> {
     public List<Evenement> affciher() throws SQLException {
         List<Evenement> arr = new ArrayList<>();
         ste = cnx.createStatement();
-        ResultSet rs = ste.executeQuery("select * from Evenement");
+        ResultSet rs = ste.executeQuery("select e.*,c.* from Evenement as e inner join club as c on e.idClub=c.idClub");
         while (rs.next()) {
-            int id = rs.getInt("idEvenement");
-            int idClub = rs.getInt("idClub");
+            int id = rs.getInt("e.idEvenement");
+            String idClub = rs.getString("c.nomClub");
+            String dom = rs.getString("c.domaine");
 
-            Date dd = rs.getDate("dateDebut");
-            Date df = rs.getDate("dateFin");
+            Date dd = rs.getDate("e.dateDebut");
+            Date df = rs.getDate("e.dateFin");
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String ddd = dateFormat.format(dd);
             DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
             String dff = dateFormat0.format(df);
-            String img = rs.getString("image");
-            Evenement e = new Evenement(id, ddd, dff, idClub, img);
+            String img = rs.getString("e.image");
+            Club cc=new Club(idClub,dom);
+            Evenement e = new Evenement(id, ddd, dff, cc, img);
             arr.add(e);
         }
         return arr;
@@ -157,24 +160,25 @@ public class EvenementService implements IService<Evenement> {
     public List<Evenement> recherche(String x) throws SQLException {
  List<Evenement> arr = new ArrayList<>();
         ste = cnx.createStatement();
-                    System.out.println("bbbbbbbbbb");
-
-        ResultSet rs = ste.executeQuery("select * from evenement where idEvenement like '%" + x + "%'");
+        ResultSet rs = ste.executeQuery("select e.*,c.* from Evenement as e inner join club as c on e.idClub=c.idClub where c.nomClub like '%"+x+"%' ");
         while (rs.next()) {
-           int id = rs.getInt("idEvenement");
-            int idClub = rs.getInt("idClub");
+            int id = rs.getInt("e.idEvenement");
+            String idClub = rs.getString("c.nomClub");
+            String dom = rs.getString("c.domaine");
 
-            Date dd = rs.getDate("dateDebut");
-            Date df = rs.getDate("dateFin");
+            Date dd = rs.getDate("e.dateDebut");
+            Date df = rs.getDate("e.dateFin");
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String ddd = dateFormat.format(dd);
             DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
             String dff = dateFormat0.format(df);
-            String img = rs.getString("image");
-            Evenement e = new Evenement(id, ddd, dff, idClub, img);
+            String img = rs.getString("e.image");
+            Club cc=new Club(idClub,dom);
+            Evenement e = new Evenement(id, ddd, dff, cc, img);
             arr.add(e);
         }
-        return arr;    }
+        return arr;
+    }
 }
 /* public void ajouterEvenemet(Evenement ev) {
  DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

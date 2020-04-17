@@ -5,6 +5,8 @@
  */
 package weboss.Service;
 
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.skins.JFXDatePickerSkin;
 import com.mysql.jdbc.StringUtils;
 import java.util.regex.Pattern;
 import javafx.scene.control.Label;
@@ -95,5 +97,29 @@ public class ValidationChamps {
         return true;
         
     }
+        public static boolean isDateValid(JFXDatePicker D,JFXDatePicker D1){
+        boolean b = true;
+         if (D.getValue().compareTo(D1.getValue()) > 0) {
+                
+                return false;
+            }
+        return b;
+    }
+           public static boolean isdATE(JFXDatePicker D,JFXDatePicker D1,ImageView img,ImageView img1){
+       // boolean b = true;
+    
+        if(!isDateValid(D,D1)){
+         //   b = false;
+           
+             img.setVisible(false);
+             img1.setVisible(true);
+             return false;
+        }
+        img.setVisible(true);
+         img1.setVisible(false);
+        return true;
+        
+    }
+      
     
 }

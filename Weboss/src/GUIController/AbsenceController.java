@@ -30,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -66,6 +67,28 @@ public class AbsenceController implements Initializable {
     private JFXDatePicker DateAb;
     @FXML
     private AnchorPane rootPane;
+    @FXML
+    private ImageView valid_TF;
+    @FXML
+    private ImageView invalid_TF;
+    @FXML
+    private ImageView valid_TD;
+    @FXML
+    private ImageView invalid_TD;
+    @FXML
+    private ImageView valid_d;
+    @FXML
+    private ImageView invalid_d;
+    @FXML
+    private ImageView valid_role;
+    @FXML
+    private ImageView invalid_role;
+    @FXML
+    private ImageView valid_Mat;
+    @FXML
+    private ImageView invalid_Mat;
+    @FXML
+    private Label error_cin;
 
     
         public void afficherAlert(String message) {

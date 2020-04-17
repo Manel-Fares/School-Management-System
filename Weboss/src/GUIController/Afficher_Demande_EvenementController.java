@@ -21,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javax.mail.MessagingException;
+import weboss.Entities.Club;
 import weboss.Entities.DemandeEvenement;
 import weboss.Service.ClubService;
 import weboss.Service.DemandeEvenementService;
@@ -45,7 +46,7 @@ public class Afficher_Demande_EvenementController implements Initializable {
     private TableColumn<DemandeEvenement, Integer> id_evenement;
 
     @FXML
-    private TableColumn<DemandeEvenement, Integer> id_club;
+    private TableColumn<DemandeEvenement, Club> id_club;
 
     @FXML
     private TableColumn<DemandeEvenement, String> date_debut;
@@ -79,7 +80,7 @@ public class Afficher_Demande_EvenementController implements Initializable {
 ex.getMessage();        }
 
         id_evenement.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, Integer>("idDemandeEvenement"));
-        id_club.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, Integer>("idclub"));
+        id_club.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, Club>("idClub"));
         date_debut.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, String>("datedebut"));
         date_fin.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, String>("datefin"));
         description.setCellValueFactory(new PropertyValueFactory<DemandeEvenement, String>("description"));
@@ -107,7 +108,8 @@ ex.getMessage();        }
             DemandeEvenement dev = tab_demande_evenemnt.getSelectionModel().getSelectedItem();
             cs.valider(Integer.parseInt(id_evenment_selectionne.getText()));
             evs.ajouter_demande_valider();
-           cs.supprimer(dev.getIdDemandeEvenement());
+           //cs.supprimer(dev.getIdDemandeEvenement());
+           String mail="omar.jmai@esprit.tn";
             String html = "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:v=\"urn:schemas-microsoft-com:vml\">\n" +
 "<head>\n" +
 "<!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->\n" +
@@ -306,10 +308,11 @@ ex.getMessage();        }
                         
                         
 
-             String maill=u.getMail(clubs.recupererResponsable(dev.getIdclub()));
-             System.out.println("id"+clubs.recupererResponsable(dev.getIdclub()));
+             String maill=u.getMail(clubs.recupererResponsable(dev.getIdclub().getIdClub()));
+             System.out.println(maill);
+             System.out.println("id"+clubs.recupererResponsable(dev.getIdclub().getIdClub()));
             try {
-                UserService.sendMail(maill, "Confirmation", "aaaa");
+                UserService.sendMail(mail, "Confirmation", "aaaa");
             } catch (MessagingException ex) {
                 Logger.getLogger(Afficher_Demande_EvenementController.class.getName()).log(Level.SEVERE, null, ex);
             }

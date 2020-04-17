@@ -53,6 +53,17 @@ void affichage(String x) {
     }
     @FXML
     private void logout(MouseEvent event) {
+  Parent fxml;
+
+        try {
+
+            fxml = FXMLLoader.load(getClass().getResource("/GUIInterface/Login.fxml"));
+            background.getChildren().removeAll();
+            background.getChildren().setAll(fxml);
+
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
     }
 
     @FXML

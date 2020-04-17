@@ -17,14 +17,18 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import weboss.Entities.Club;
 import weboss.Entities.DemandeEvenement;
 import weboss.Entities.Etudiant;
 import weboss.Entities.User;
 import weboss.Service.ClubService;
 import weboss.Service.DemandeEvenementService;
+import weboss.Service.ValidationChamps;
 
 /**
  * FXML Controller class
@@ -55,6 +59,28 @@ public class DemandeEvenementController implements Initializable {
     private JFXTextField listView;
 //int identifiant=FXML1Controller.getIdentifiant();
 ClubService c=new ClubService();
+    @FXML
+    private ImageView valid_budget;
+    @FXML
+    private ImageView invalid_budget;
+    @FXML
+    private ImageView valid_image;
+    @FXML
+    private ImageView invalid_image;
+    @FXML
+    private ImageView valid_debut;
+    @FXML
+    private ImageView invalid_debut;
+    @FXML
+    private ImageView valid_fin;
+    @FXML
+    private ImageView invalid_fin;
+    @FXML
+    private ImageView valid_desc;
+    @FXML
+    private ImageView invalid_desc;
+    @FXML
+    private Label error_cin;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,9 +99,35 @@ ClubService c=new ClubService();
 
     @FXML
     void ajouter_demande(MouseEvent event) throws SQLException {
+        
+     
+        boolean islistViewEmpty = ValidationChamps.isTextFieldNotEmpty(listView, valid_image, invalid_image);
+     
+        boolean isbudgetEmpty = ValidationChamps.isTextFieldNotEmpty(budget, valid_budget, invalid_budget);
+         boolean isdateEmpty = ValidationChamps.isdATE(date_debut, date_fin, valid_fin,invalid_fin);
+        
+
+     if (!isdateEmpty) {
+              
+                error_cin.setText("Error Date");
+            }
+
+        if (!islistViewEmpty) {
+            error_cin.setText("pic");
+        }
+
+        if (!isbudgetEmpty) {
+            error_cin.setText("Budget");
+        }
     
+   
+        if (islistViewEmpty && isbudgetEmpty  && isdateEmpty  ) {
+            error_cin.setText(null);
+        }
+
        // System.out.println("" + Etudiant.etd.getIdUser());
-        int id=c.recuperer_id_club(Integer.parseInt( Etudiant.etd.getIdUser()));
+        Club id=c.recuperer_id_club(Integer.parseInt( Etudiant.etd.getIdUser()));
+        System.out.println(id);
         String dd = date_debut.getValue().toString();
         String df = date_fin.getValue().toString();
         String descc= desc.getText();

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import weboss.BD.Database;
+import weboss.Entities.Club;
 import weboss.Entities.DemandeEvenement;
 
 
@@ -47,7 +48,7 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
         pst.setString(2, t.getDatedebut());
         pst.setString(3, t.getDatefin());
         pst.setString(4, "Non valider");
-        pst.setInt(5, t.getIdclub());
+        pst.setInt(5, t.getIdclub().getIdClub());
         pst.setFloat(6, t.getBudget());
         pst.setString(7,t.getImage());
         System.out.println("aaaaaaaaaaaaaaa");
@@ -73,21 +74,23 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
     public List<DemandeEvenement> affciher() throws SQLException {
         List<DemandeEvenement> arr = new ArrayList<>();
         ste = cnx.createStatement();
-         rs = ste.executeQuery("select * from demandeevenement");
+         rs = ste.executeQuery("select d.*,c.* from demandeevenement as d inner join club as c on d.idClub=c.idClub");
         while (rs.next()) {
-            int id = rs.getInt("idDemandeEvenement");
-            int idClub = rs.getInt("idClub");
-            String Description = rs.getString("Description");
-            Date dd = rs.getDate("DateDebut");
-            Date df = rs.getDate("DateFin");
-            String etat = rs.getString("Etat");
-            String img=rs.getString("image");
-            float budget=rs.getFloat("budget");
+            int id = rs.getInt("d.idDemandeEvenement");
+            String idClub = rs.getString("c.nomClub");
+            String Club = rs.getString("c.domaine");
+            String Description = rs.getString("d.Description");
+            Date dd = rs.getDate("d.DateDebut");
+            Date df = rs.getDate("d.DateFin");
+            String etat = rs.getString("d.Etat");
+            String img=rs.getString("d.image");
+            float budget=rs.getFloat("d.budget");
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String ddd = dateFormat.format(dd);
             DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
             String dff = dateFormat0.format(df);
-            DemandeEvenement dv = new DemandeEvenement(idClub, id, Description, ddd, dff, etat, budget, img);
+            Club cc = new Club(idClub, Club);
+            DemandeEvenement dv = new DemandeEvenement(cc, id, Description, ddd, dff, etat, budget, img);
             arr.add(dv);
 
         }
@@ -95,35 +98,30 @@ public class DemandeEvenementService implements IService<DemandeEvenement> {
     }
 
     public List<DemandeEvenement> afficherDemandeSpecifique(int idd) throws SQLException {
-       List<DemandeEvenement>xd=new ArrayList<>();
+     List<DemandeEvenement> arr = new ArrayList<>();
         ste = cnx.createStatement();
-     
-        rs = ste.executeQuery("select * from demandeevenement where  idClub='"+idd+"' ");
+         rs = ste.executeQuery("select d.*,c.* from demandeevenement as d inner join club as c on d.idClub=c.idClub where c.idClub = '"+idd+"'");
         while (rs.next()) {
-            int id = rs.getInt("idDemandeEvenement");
-            int idClub = rs.getInt("idClub");
-            String Description = rs.getString("Description");
-            Date dd = rs.getDate("DateDebut");
-            Date df = rs.getDate("DateFin");
-            float budget = rs.getFloat("budget");
-            String etat=rs.getString("etat");
+            int id = rs.getInt("d.idDemandeEvenement");
+            int iddClub = rs.getInt("c.idClub");
+            String idClub = rs.getString("c.nomClub");
+            String Club = rs.getString("c.domaine");
+            String Description = rs.getString("d.Description");
+            Date dd = rs.getDate("d.DateDebut");
+            Date df = rs.getDate("d.DateFin");
+            String etat = rs.getString("d.Etat");
+            String img=rs.getString("d.image");
+            float budget=rs.getFloat("d.budget");
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String ddd = dateFormat.format(dd);
-
             DateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
             String dff = dateFormat0.format(df);
-            String img=rs.getString("image");
+            Club cc = new Club(iddClub,idClub, Club);
+            DemandeEvenement dv = new DemandeEvenement(cc, id, Description, ddd, dff, etat, budget, img);
+            arr.add(dv);
 
-          try{
-           DemandeEvenement dem=new DemandeEvenement(idClub, id, Description, ddd, dff, etat, budget, img);
-           
-        xd.add(dem);
-          }
-          catch(NullPointerException p){
         }
-        
-        }
-        return xd;
+        return arr;
     }
 
     public void valider(int id) throws SQLException {

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="240.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.SendEmploisController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="240.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.SendEmploisController">
    <children>
-      <JFXTextField fx:id="mail" layoutX="22.0" layoutY="29.0" prefHeight="30.0" prefWidth="200.0" promptText="Mail .." />
-      <JFXButton fx:id="Upload" layoutX="22.0" layoutY="113.0" onAction="#UploadAction" prefHeight="30.0" prefWidth="200.0" text="Upload" />
-      <JFXButton fx:id="Send" layoutX="36.0" layoutY="173.0" onAction="#SendAction" prefHeight="44.0" prefWidth="168.0" text="Send">
+      <JFXButton fx:id="Upload" layoutX="22.0" layoutY="113.0" onAction="#UploadAction" prefHeight="30.0" prefWidth="200.0" styleClass="loginBtn" stylesheets="@../CSS/style.css" text="Upload" />
+      <JFXButton fx:id="Send" layoutX="45.0" layoutY="172.0" onAction="#SendAction" prefHeight="44.0" prefWidth="168.0" styleClass="addbtn" stylesheets="@../CSS/style.css" text="Send">
          <font>
             <Font size="18.0" />
          </font>
       </JFXButton>
+      <JFXComboBox fx:id="ClassName" layoutX="57.0" layoutY="52.0" prefHeight="44.0" prefWidth="130.0" />
    </children>
 </AnchorPane>

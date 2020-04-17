@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.ModifierEvenementController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.ModifierEvenementController">
    <children>
       <JFXDatePicker fx:id="dd" layoutX="98.0" layoutY="45.0" promptText="Date Debut" />
       <JFXDatePicker fx:id="df" layoutX="97.0" layoutY="121.0" promptText="Date fin" />

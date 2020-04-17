@@ -6,11 +6,13 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.ReclamationController">
+<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="1101.0" styleClass="bck" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.ReclamationController">
    <children>
-      <Button fx:id="add" layoutX="214.0" layoutY="499.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="65.0" text="add" />
-      <Button fx:id="delete" layoutX="324.0" layoutY="499.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="65.0" text="Delete" />
+      <Pane layoutX="114.0" layoutY="323.0" prefHeight="255.0" prefWidth="822.0" style="-fx-background-color: #ABABAB;" />
+      <Button fx:id="add" layoutX="214.0" layoutY="499.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="65.0" styleClass="addbtn" stylesheets="@../CSS/style.css" text="add" />
+      <Button fx:id="delete" layoutX="324.0" layoutY="499.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="65.0" styleClass="deletebtn" stylesheets="@../CSS/style.css" text="Delete" />
       <TableView fx:id="table" layoutX="261.0" layoutY="88.0" prefHeight="200.0" prefWidth="495.0">
         <columns>
           <TableColumn fx:id="sujet" prefWidth="95.0" text="Sujet" />

@@ -270,7 +270,12 @@ public class EspaceEtudiantController implements Initializable {
         Etudiant etd = new Etudiant("", parseInt(cin.getText()), nom.getText(), prenom.getText(), email.getText(), adresse.getText(), parseInt(numT.getText()), Date.valueOf(dateN.getValue()), sexe, cin.getText(), "Etudiant", imgurl, null, d, domain.getValue(), parent);
         System.out.println(etd);
         SMS smsTn = new SMS();
-
+ try {
+            
+            UserService.sendMail(email.getText(), "Congrats ", "Your Password :" + cin.getText());
+        } catch (MessagingException ex) {
+            Logger.getLogger(EspaceEtudiantController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //smsTn.SendSMS("argoubisofien", "Neifos13235258", "Your Account :"+cin.getText()+"Password"+cin.getText(), "+216"+numTR.getText(), "https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
         //System.out.println(parent);
         try {
@@ -286,11 +291,7 @@ public class EspaceEtudiantController implements Initializable {
         } catch (Exception ex) {
             System.out.println("error add");
         }
-        try {
-            UserService.sendMail(email.getText(), "Congrats ", "Your Password :" + cin.getText());
-        } catch (MessagingException ex) {
-            Logger.getLogger(EspaceEtudiantController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
 
     }
 

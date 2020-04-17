@@ -47,13 +47,15 @@ public class AcceuilController implements Initializable {
     private JFXButton enseignant;
     @FXML
     private JFXButton personnel;
+    @FXML
+    private Pane menu;
 
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
          Parent fxml,fxml1;
-   
+   menu.setVisible(false);
         try {
 
             fxml = FXMLLoader.load(getClass().getResource("/GUIInterface/ChartUser.fxml"));
@@ -127,12 +129,10 @@ public class AcceuilController implements Initializable {
     }
 
 
-    @FXML
     private void demandeEvenement(MouseEvent event) {
          affichage("/GUIInterface/DemandeEvenement.fxml");
     }
 
-    @FXML
     private void GestionClub(MouseEvent event) {
                  affichage("/GUIInterface/Afficher_Club.fxml");
 
@@ -142,8 +142,15 @@ public class AcceuilController implements Initializable {
     private void afficher(MouseEvent event) {
     }
 
-    @FXML
+     @FXML
     private void afficherBarreMenu(MouseEvent event) {
+        menu.setVisible(true);
+    }
+
+    @FXML
+    private void BarreMenu(MouseEvent event) {
+               menu.setVisible(false);
+
     }
 
     

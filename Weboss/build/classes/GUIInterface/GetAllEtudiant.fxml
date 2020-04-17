@@ -8,7 +8,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="345.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.GetAllEtudiantController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="345.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.GetAllEtudiantController">
    <children>
       <TableView fx:id="TableEtud" layoutX="14.0" layoutY="91.0" prefHeight="204.0" prefWidth="382.0">
         <columns>
@@ -22,6 +22,6 @@
          </toggleGroup>
       </JFXRadioButton>
       <JFXRadioButton fx:id="Studient" layoutX="303.0" layoutY="59.0" prefHeight="17.0" prefWidth="93.0" selected="true" text="Studient" toggleGroup="$GroupRole" />
-      <JFXButton fx:id="Add" layoutX="312.0" layoutY="311.0" onAction="#AddAction" prefHeight="25.0" prefWidth="84.0" text="Add" />
+      <JFXButton fx:id="Add" layoutX="312.0" layoutY="311.0" onAction="#AddAction" prefHeight="25.0" prefWidth="84.0" styleClass="addbtn" stylesheets="@../CSS/style.css" text="Add" />
    </children>
 </AnchorPane>

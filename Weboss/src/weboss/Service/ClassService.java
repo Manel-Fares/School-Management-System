@@ -299,6 +299,69 @@ public class ClassService implements IService2<Class>{
         }
         return list;
     }   
+            
+            
+            
+            
+
+                public boolean GetEnseDejaAffecter(int id_classe,int id_user,int id_matiere) {
+        String req = "select * from classeenseignantmatiere where id_class='"+id_classe+"' and id_user='"+id_user+"' and id_matiere='"+id_matiere+"'";
+        
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            if(rs.first())
+                return true;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }   
+                public int GetnbrMax(String classe) {
+        String req = "select Nbr_Etudiant from classe where name='"+classe+"'";
+        
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+                                public int GetnbrFromClass(String classe) {
+        String req = "select count(*) from users where classeEtd='"+classe+"'";
+        
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+                                
+                                    public ObservableList<String> SearchEmails(String nom) {
+        String req = "select emailUser from users where classeEtd = '"+nom+"' ";
+        ObservableList<String> list = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+                    
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
 
     @Override
     public void AddEmplois(Emplois t) {

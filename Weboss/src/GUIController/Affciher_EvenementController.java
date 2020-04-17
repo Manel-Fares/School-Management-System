@@ -39,6 +39,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import weboss.Entities.Club;
 import weboss.Entities.Evenement;
 import weboss.Service.EvenementService;
 
@@ -54,7 +55,7 @@ public class Affciher_EvenementController implements Initializable {
     @FXML
     private TableColumn<Evenement, Integer> id_evenement;
     @FXML
-    private TableColumn<Evenement, Integer> id_club;
+    private TableColumn<Evenement, Club> id_club;
 
     @FXML
     private TableColumn<Evenement, String> date_debut;
@@ -83,12 +84,13 @@ public class Affciher_EvenementController implements Initializable {
 
     public void affichee() {
         try {
+            System.out.println(cs.affciher());
             listEvenement.addAll(cs.affciher());
         } catch (SQLException ex) {
 ex.getMessage();        }
 
         id_evenement.setCellValueFactory(new PropertyValueFactory<Evenement, Integer>("idEvenement"));
-        id_club.setCellValueFactory(new PropertyValueFactory<Evenement, Integer>("idClub"));
+        id_club.setCellValueFactory(new PropertyValueFactory<Evenement, Club>("idClub"));
         date_debut.setCellValueFactory(new PropertyValueFactory<Evenement, String>("dateDebut"));
         date_fin.setCellValueFactory(new PropertyValueFactory<Evenement, String>("dateFin"));
         image.setCellValueFactory(new PropertyValueFactory<Evenement, String>("image"));
